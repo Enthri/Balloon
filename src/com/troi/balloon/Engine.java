@@ -6,6 +6,7 @@ import java.awt.Graphics2D;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 public class Engine {
 	
@@ -21,6 +22,8 @@ public class Engine {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setPreferredSize(new Dimension(800, 600));
 		frame.pack();
+		JTextArea area = new JTextArea(50, 50);
+		frame.add(area);
 		frame.setVisible(true);
 	}
 }
