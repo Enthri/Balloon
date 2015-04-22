@@ -4,9 +4,12 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
+import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
+import javax.swing.JScrollPane;
+
+import jsyntaxpane.DefaultSyntaxKit;
 
 public class Engine {
 	
@@ -22,8 +25,12 @@ public class Engine {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setPreferredSize(new Dimension(800, 600));
 		frame.pack();
-		JTextArea area = new JTextArea(50, 50);
-		frame.add(area);
+		DefaultSyntaxKit.initKit();
+        final JEditorPane codeEditor = new JEditorPane();
+        JScrollPane scrPane = new JScrollPane(codeEditor);
+        scrPane.setPreferredSize(new Dimension(400,600));
+        codeEditor.setContentType("text/java");
+		frame.add(scrPane);
 		frame.setVisible(true);
 	}
 }
