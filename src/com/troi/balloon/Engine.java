@@ -30,6 +30,7 @@ public class Engine {
         JScrollPane scrPane = new JScrollPane(codeEditor);
         scrPane.setPreferredSize(new Dimension(400,600));
         codeEditor.setContentType("text/java");
+        codeEditor.setText("public class Test {\n\tpublic static void main(String[] args) {\n\t\t\n\t}\n}");
 		frame.add(scrPane);
 		frame.setVisible(true);
 	}
