@@ -2,12 +2,8 @@ package com.troi.balloon;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -21,15 +17,17 @@ import org.fife.ui.rtextarea.RTextScrollPane;
 
 public class Engine {
 	
+	private static JPanel panel0;
+	private static JPanel panel1;
+	
 	@SuppressWarnings("serial")
 	public static void main(String[] args) {
 		final JFrame frame = new JFrame("Test");
-		frame.setContentPane(new JPanel() {
-			@Override
-			public void paintComponent(Graphics g) {
-				Graphics2D render = (Graphics2D) g;
-			}
-		});
+		panel0 = new JPanel() {
+		};
+		panel1 = new JPanel() {
+		};
+		frame.setContentPane(panel0);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setPreferredSize(new Dimension(800, 600));
 		frame.pack();
@@ -48,17 +46,9 @@ public class Engine {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				if(chooser.showSaveDialog(frame) == JFileChooser.APPROVE_OPTION) {
-					PrintWriter writer;
-					try {
-						writer = new PrintWriter(chooser.getSelectedFile().toString(), "UTF-8");
-						for(String a : textArea.getText().split("\n")) writer.println(a);
-						writer.close();
-					} catch (FileNotFoundException | UnsupportedEncodingException e) {
-						e.printStackTrace();
-					}
-					compiler.run(null, null, null, chooser.getSelectedFile().toString());
-				}
+				if(frame.getContentPane() == panel0) frame.setContentPane(panel1);
+				else frame.setContentPane(panel0);
+				frame.repaint();
 			}
 
 			@Override
