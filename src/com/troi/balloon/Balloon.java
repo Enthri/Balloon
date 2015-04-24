@@ -19,5 +19,14 @@ public class Balloon implements Runnable {
 		frame.setPreferredSize(new Dimension(800, 600));
 		frame.pack();
 		frame.setVisible(true);
+//		frame.pack();
+//        final RSyntaxTextArea textArea = new RSyntaxTextArea(20, 60);
+//        textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA);
+//        textArea.setCodeFoldingEnabled(true);
+//        textArea.setText("public class Test {\n}");
+//        RTextScrollPane sp = new RTextScrollPane(textArea);
+//        frame.add(sp);
+//        System.setProperty("java.home", "C:\\Program Files\\Java\\jdk1.7.0_71");
+//        final JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
 	}
 }
