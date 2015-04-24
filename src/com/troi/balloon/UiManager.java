@@ -1,5 +1,5 @@
 package com.troi.balloon;
 
-public class CompilerClass {
+public class UiManager {
 
 }
