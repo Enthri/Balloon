@@ -1,6 +1,5 @@
 package com.troi.balloon;
 
-public class Panel {
-	
+public class DragAndDrop {
 
 }

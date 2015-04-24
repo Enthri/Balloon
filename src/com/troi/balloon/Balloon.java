@@ -1,15 +1,18 @@
 package com.troi.balloon;
 
 import java.awt.Dimension;
+import java.awt.Graphics2D;
 
 import javax.swing.JFrame;
 
 public class Balloon implements Runnable {
-	
+	UiManager manager;
 	private JFrame frame;
 	
 	public static void main(String[] args) {
+		
 		(new Thread(new Balloon())).start();
+		
 	}
 
 	@Override
@@ -17,6 +20,7 @@ public class Balloon implements Runnable {
 		frame = new JFrame("Test");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setPreferredSize(new Dimension(800, 600));
+		manager = new UiManager(frame);
 		frame.pack();
 		frame.setVisible(true);
 //		frame.pack();
