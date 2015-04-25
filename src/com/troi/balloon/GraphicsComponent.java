@@ -8,11 +8,15 @@ import java.util.ArrayList;
 import javax.swing.JComponent;
 
 public class GraphicsComponent extends JComponent{
+	
 	Graphics2D paint;
+	
 	ArrayList<Panel> panels = new ArrayList<Panel>();
+	
 	public void paintComponent(Graphics g)
 	{
 		this.paint = (Graphics2D) g;
+		
 		for (int x = 0; x > panels.size()-1; x++)
 		{
 			if (panels.get(x).getRepaintValue() == true)
@@ -44,6 +48,7 @@ public class GraphicsComponent extends JComponent{
 	public void test()
 	{
 		Rectangle2D.Double x = new Rectangle2D.Double(10,10,10,10);
+		
 		paint.fill(x);
 	}
 
