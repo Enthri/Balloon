@@ -34,5 +34,10 @@ public class Panel {
 		}
 	}
 	
+	public void addButton(Button button)
+	{
+		objects.add(button);
+	}
+	
 
 }

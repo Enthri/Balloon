@@ -22,7 +22,16 @@ public class GraphicsComponent extends JComponent{
 		}
 		
 	}
-	
+	public void addButton(Button button, Panel panel)
+	{
+		for (int x = 0; x > panels.size()-1; x++)
+		{
+			if (panels.get(x) == panel)
+			{
+				panels.get(x).addButton(button);
+			}
+		}
+	}
 	public Graphics2D getGraphics()
 	{
 		return paint;
