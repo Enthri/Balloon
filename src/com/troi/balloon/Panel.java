@@ -16,8 +16,10 @@ public class Panel {
 	protected Graphics2D paint;
 	protected panelDimension dimension;
 	protected Rectangle2D.Double background;
-	public Panel(JFrame frame)
+	protected String type;
+	public Panel(JFrame frame, String type)
 	{
+		this.type = type;
 		background = new Rectangle2D.Double(0,0,frame.getHeight(),(frame.getWidth() / 3)); s
 		repaintValue = true;
 		map = new HashMap();
@@ -27,6 +29,7 @@ public class Panel {
 		dimension = new panelDimension((int)background.getX(), (int)background.getY(), (int) background.getWidth(), (int) background.getHeight());
 		
 	}
+	
 	public void paintPanel(Graphics2D paint)
 	{
 		sizeOfMap = buttons.size();
@@ -36,19 +39,23 @@ public class Panel {
 			map.get(buttons.get(x).paint());
 		}
 	}
+	public void setSize(int x, int y, int width)
+	{
+		background.setFrame(x, y, width, background.getHeight());
+	}
 	public void repaintButton(Button button)
 	{
 		map.get(this.buttons.get(button).paint());
 	}
-	
-	public void updatePanel()
-	{
-		
-	}
+
 	public void moveButtonPanel(Panel panel, Button button)
 	{
 		panel.addButton(button);
 		this.removeButton(button);
+	}
+	public string getType()
+	{
+		return type;
 	}
 	public void removeButton(Button button)
 	{
