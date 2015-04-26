@@ -8,16 +8,17 @@ import javax.swing.JFrame;
 public class UiManager{
 	JFrame frame;
 	Graphics2D paint;
-	TextEditer textEditer;
-	DragAndDrop guiEditer;
+	TextEditer textEditor;
+	DragAndDrop guiEditor;
 	GraphicsComponent gComponent;
 	boolean textInUse;
+	
 	public UiManager(JFrame frame)
 	{
 		gComponent = new GraphicsComponent(); 
-		textEditer = new TextEditer();
-		guiEditer = new DragAndDrop();
-		setCurrentEnviroment(textEditer);
+		textEditor = new TextEditer();
+		guiEditor = new DragAndDrop();
+		frame.add(gComponent);
 	}
 	
 	public void resetEnviroment()

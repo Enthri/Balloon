@@ -1,7 +1,7 @@
 package com.troi.balloon;
 
+import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Graphics2D;
 
 import javax.swing.JFrame;
 
@@ -21,6 +21,7 @@ public class Balloon implements Runnable {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setPreferredSize(new Dimension(800, 600));
 		manager = new UiManager(frame);
+		frame.add(new ButtonComponent(20, 20, 20, 20, Color.BLACK));
 		frame.pack();
 		frame.setVisible(true);
 //		frame.pack();
