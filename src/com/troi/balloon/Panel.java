@@ -17,7 +17,7 @@ public class Panel {
 	protected panelDimension dimension;
 	protected Rectangle2D.Double background;
 	protected String type;
-	public Panel(JFrame frame, String type)
+	public Panel(JFrame frame, String type,Graphics2D paint)
 	{
 		this.type = type;
 		background = new Rectangle2D.Double(0,0,frame.getHeight(),(frame.getWidth() / 3)); s
@@ -27,7 +27,7 @@ public class Panel {
 		map.put("background", background);
 		map.put("buttons",buttons);
 		dimension = new panelDimension((int)background.getX(), (int)background.getY(), (int) background.getWidth(), (int) background.getHeight());
-		
+		this.paint = paint;
 	}
 	
 	public void paintPanel(Graphics2D paint)
@@ -53,7 +53,7 @@ public class Panel {
 		panel.addButton(button);
 		this.removeButton(button);
 	}
-	public string getType()
+	public String getType()
 	{
 		return type;
 	}

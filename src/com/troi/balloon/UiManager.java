@@ -5,8 +5,11 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
+import util.panelDimension;
+
 
 public class UiManager{
+	panelDimension mainDimension, sideDimension, toolDimension;
 	ArrayList<Panel> panels = new ArrayList<Panel>();
 	JFrame frame;
 	Graphics2D paint;
@@ -17,26 +20,28 @@ public class UiManager{
 	
 	public UiManager(JFrame frame)
 	{
+		sideDimension = new panelDimension(0,0,(frame.getWidth() / 5),frame.getHeight());
+		toolDimension = new panelDimension(sideDimension.getWidth(),0,(frame.getWidth() / 5),frame.getHeight());
+		mainDimension = new panelDimension((sideDimension.getWidth() * 2),0,(frame.getWidth() - (sideDimension.getWidth() * 2)), frame.getHeight());
 		gComponent = new GraphicsComponent(); 
 		textEditor = new TextEditer();
 		guiEditor = new DragAndDrop();
 		frame.add(gComponent);
 	}
 	
-	public void addPanel(Object panel)
+	public void addPanel(Panel panel)
 	{
-		if (panel instanceof Panel)
-		{
+		
 			panels.add(panel);
-			if (panel.getType.equals("main"))
+			if (panel.getType().equals("main"))
 			{
-				movePanelsAround(panel);
+				panel.setSize();
 			}
 			if (panel.getType.equal("tools"))
 			{
 				
 			}
-		}
+		
 		
 	}
 	
