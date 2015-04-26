@@ -17,6 +17,7 @@ public class Button {
 	int glo_y;
 	int width;
 	int height;
+	boolean isMouseDown;
 	BufferedImage button;
 	public Button(int x, int y, int w, int h){
 		glo_x = x;
@@ -35,7 +36,16 @@ public class Button {
 	public void move(){
 		
 	}
-	public void MouseDragged(MouseEvent e){
+	public void mouseDragged(MouseEvent e) {
+		if(isMouseDown){
+			glo_x = e.getX() - startX;
+			glo_y = e.getY() - startY;
+			//paint();
+		}
+		
+	}
+	
+	public void mouseReleased(MouseEvent e){
 		
 	}
 	
