@@ -15,13 +15,13 @@ public class GraphicsComponent extends JPanel {
 	{
 		Graphics2D paint = (Graphics2D) g;
 		
-		for (int x = 0; x > panels.size()-1; x++)
-		{
-			if (panels.get(x).getRepaintValue() == true)
-			{
-				panels.get(x).repaint(paint);
-			}
-		}
+//		for (int x = 0; x > panels.size()-1; x++)
+//		{
+//			if (panels.get(x).getRepaintValue() == true)
+//			{
+//				panels.get(x).repaint(paint);
+//			}
+//		}
 		
 	}
 	

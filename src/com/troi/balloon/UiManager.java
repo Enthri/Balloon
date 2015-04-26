@@ -32,22 +32,22 @@ public class UiManager{
 	public void addPanel(Panel panel)
 	{
 		
-			panels.add(panel);
-			if (panel.getType().equals("main"))
-			{
-				panel.setSize();
-			}
-			if (panel.getType.equal("tools"))
-			{
-				
-			}
-		
+//			panels.add(panel);
+//			if (panel.getType().equals("main"))
+//			{
+//				panel.setSize();
+//			}
+//			if (panel.getType.equal("tools"))
+//			{
+//				
+//			}
+//		
 		
 	}
 	
 	public void movePanelsAround(Panel panel)
 	{
-		panel.setSize(x, y, width);
+		panel.setSize(new panelDimension(0, 0, 0, 0));
 	}
 	public void resetEnviroment()
 	{
