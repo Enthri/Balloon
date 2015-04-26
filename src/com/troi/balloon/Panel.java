@@ -11,7 +11,7 @@ import util.panelDimension;
 public class Panel {
 	
 	protected boolean repaintValue = false;
-	protected HashMap map, buttons;
+	protected HashMap buttons;
 	protected int sizeOfMap,x,y,width,hieght;
 	protected Graphics2D paint;
 	protected panelDimension dimension;
@@ -22,17 +22,14 @@ public class Panel {
 		this.type = type;
 		background = new Rectangle2D.Double(0,0,frame.getHeight(),(frame.getWidth() / 3)); 
 		repaintValue = true;
-		map = new HashMap();
 		buttons = new HashMap();
-		map.put("background", background);
-		map.put("buttons",buttons);
 		dimension = new panelDimension((int)background.getX(), (int)background.getY(), (int) background.getWidth(), (int) background.getHeight());
 		this.paint = paint;
 	}
 	
 	public void paintPanel(Graphics2D paint) {
 		sizeOfMap = buttons.size();
-		paint.fill((Rectangle2D.Double)map.get("background"));
+		paint.fill(background);
 		for(int x = 0; x < sizeOfMap;x++)
 		{
 			((Button) buttons.get(x)).paint(paint);
