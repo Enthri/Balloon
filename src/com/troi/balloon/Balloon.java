@@ -17,7 +17,7 @@ public class Balloon implements Runnable {
 
 	@Override
 	public void run() {
-		JCompiler.init();
+		//JCompiler.init();
 		frame = new JFrame("Test");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setPreferredSize(new Dimension(800, 600));
