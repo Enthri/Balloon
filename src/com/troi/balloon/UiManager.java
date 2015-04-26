@@ -32,7 +32,7 @@ public class UiManager{
 	public void addPanel(Panel panel)
 	{
 		
-//			panels.add(panel);
+			panels.add(panel);
 //			if (panel.getType().equals("main"))
 //			{
 //				panel.setSize();

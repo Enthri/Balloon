@@ -11,22 +11,17 @@ public class GraphicsComponent extends JPanel {
 
 	ArrayList<Panel> panels = new ArrayList<Panel>();
 	
-	public void paintComponent(Graphics g)
-	{
+	public void paintComponent(Graphics g) {
 		Graphics2D paint = (Graphics2D) g;
 		
-//		for (int x = 0; x > panels.size()-1; x++)
-//		{
-//			if (panels.get(x).getRepaintValue() == true)
-//			{
-//				panels.get(x).repaint(paint);
-//			}
-//		}
+		for (int x = 0; x > panels.size()-1; x++)
+		{
+			panels.get(x).paintPanel(paint);
+		}
 		
 	}
 	
-	public void addButton(Button button, Panel panel)
-	{
+	public void addButton(Button button, Panel panel) {
 		for (int x = 0; x > panels.size()-1; x++)
 		{
 			if (panels.get(x) == panel)
@@ -40,13 +35,11 @@ public class GraphicsComponent extends JPanel {
 		return (Graphics2D) this.getGraphics();
 	}
 
-	public void newPanel(Panel panel)
-	{
+	public void newPanel(Panel panel) {
 		panels.add(panel);
 	}
 	
-	public void test()
-	{
+	public void test() {
 		Rectangle2D.Double x = new Rectangle2D.Double(10,10,10,10);
 		getGraphics2D().fill(x);
 	}
