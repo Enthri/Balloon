@@ -3,11 +3,13 @@ package com.troi.balloon;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.geom.Rectangle2D;
 
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 
 
@@ -20,6 +22,7 @@ public class ButtonComponent extends JComponent implements MouseListener, MouseM
 	int startY;
 	boolean isMouseDown;
 	Color glo_color;
+	ImageIcon buttonPng = new ImageIcon("src/com.troi.balloon/gray-button-template.png");
 	public ButtonComponent(int x, int y, int w, int h, Color color) {
 		this.addMouseListener(this);
 		this.addMouseMotionListener(this);
@@ -36,7 +39,9 @@ public class ButtonComponent extends JComponent implements MouseListener, MouseM
 		Rectangle2D button = new Rectangle2D.Double(glo_x, glo_y, width, height);
 		g2.setColor(glo_color);
 		g2.fill(button);
-		g2.draw(button);
+		
+		//g2.draw(button);
+		g2.drawImage(buttonPng.getImage(), null, this);
 	}
 	public void drawButton(Graphics2D g2){
 		
