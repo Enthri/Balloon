@@ -24,7 +24,6 @@ public class Balloon implements Runnable {
 		frame.add(new ButtonComponent(20, 20, 20, 20, Color.BLACK));
 		frame.pack();
 		frame.setVisible(true);
-		manager.setCurrentEnviroment(manager.textEditor);
 //		frame.pack();
 //        final RSyntaxTextArea textArea = new RSyntaxTextArea(20, 60);
 //        textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA);
