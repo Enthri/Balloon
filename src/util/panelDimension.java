@@ -17,7 +17,7 @@ public class panelDimension {
 	
 	public int getWidth()
 	{
-		return this.getWidth();
+		return this.width;
 	}
 	
 	public int getX()

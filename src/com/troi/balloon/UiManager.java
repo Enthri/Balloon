@@ -47,7 +47,7 @@ public class UiManager{
 	
 	public void movePanelsAround(Panel panel)
 	{
-		
+		panel.setSize(x, y, width);
 	}
 	public void resetEnviroment()
 	{

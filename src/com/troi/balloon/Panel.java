@@ -39,9 +39,9 @@ public class Panel {
 			map.get(buttons.get(x).paint());
 		}
 	}
-	public void setSize(int x, int y, int width)
+	public void setSize(panelDimension size)
 	{
-		background.setFrame(x, y, width, background.getHeight());
+		background.setFrame(size.getX(), size.getY(), size.getWidth(), background.getHeight());
 	}
 	public void repaintButton(Button button)
 	{
