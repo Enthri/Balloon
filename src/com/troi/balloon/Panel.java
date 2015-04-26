@@ -8,10 +8,11 @@ import java.util.HashMap;
 import javax.swing.JFrame;
 public class Panel {
 	protected boolean repaintValue = false;
-	protected HashMap<K, V> map;
+	protected HashMap map;
 	public Panel(JFrame frame)
 	{
 		repaintValue = true;
+		map = new HashMap();
 		map.put("background", new Rectangle2D.Double(0,0,frame.getHeight(),(frame.getWidth() / 3)));
 	}
 	public boolean getRepaintValue()
