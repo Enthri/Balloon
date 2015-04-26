@@ -2,14 +2,17 @@ package com.troi.balloon;
 
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.util.ArrayList;
 import java.awt.geom.Rectangle2D;
+import java.util.HashMap;
+
+import javax.swing.JFrame;
 public class Panel {
 	protected boolean repaintValue = false;
-	protected ArrayList<Object> objects = new ArrayList<Object>();
-	public Panel()
+	protected HashMap<K, V> map;
+	public Panel(JFrame frame)
 	{
 		repaintValue = true;
+		map.put("background", new Rectangle2D.Double(0,0,frame.getHeight(),(frame.getWidth() / 3)));
 	}
 	public boolean getRepaintValue()
 	{
