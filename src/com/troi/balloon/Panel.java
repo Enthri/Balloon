@@ -37,7 +37,7 @@ public class Panel {
 		paint.fill(background);
 		for(int x = 0; x < sizeOfMap;x++)
 		{
-			map.get(buttons.get(x).paint());
+			((Button) buttons.get(x)).paint(paint);
 		}
 	}
 	public void setSize(panelDimension size)
@@ -46,7 +46,7 @@ public class Panel {
 	}
 	public void repaintButton(Button button)
 	{
-		map.get(this.buttons.get(button).paint());
+		((Button) buttons.get(button)).paint(paint);
 	}
 
 	public void moveButtonPanel(Panel panel, Button button)

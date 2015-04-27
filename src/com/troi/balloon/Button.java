@@ -37,11 +37,7 @@ public class Button {
 		
 	}
 	public void mouseDragged(MouseEvent e) {
-		if(isMouseDown){
-			glo_x = e.getX() - startX;
-			glo_y = e.getY() - startY;
-			//paint();
-		}
+		
 		
 	}
 	
