@@ -22,34 +22,13 @@ public class UiManager{
 	{
 		sideDimension = new panelDimension(0,0,(frame.getWidth() / 5),frame.getHeight());
 		toolDimension = new panelDimension(sideDimension.getWidth(),0,(frame.getWidth() / 5),frame.getHeight());
-		mainDimension = new panelDimension((sideDimension.getWidth() * 2),0,(frame.getWidth() - (sideDimension.getWidth() * 2)), frame.getHeight());
+		mainDimension = new panelDimension((sideDimension.getWidth() * 2),1000,(frame.getWidth() - (sideDimension.getWidth() * 2)), frame.getHeight());
 		gComponent = new GraphicsComponent(); 
 		textEditor = new TextEditer();
 		guiEditor = new DragAndDrop(frame,this);
 		frame.setContentPane(gComponent);
-		Panel panel = new Panel(frame,"main");
+		Panel panel = new Panel(mainDimension);
 		gComponent.newPanel(panel);
-	}
-	
-	public void addPanel(Panel panel)
-	{
-		
-			panels.add(panel);
-//			if (panel.getType().equals("main"))
-//			{
-//				panel.setSize();
-//			}
-//			if (panel.getType.equal("tools"))
-//			{
-//				
-//			}
-//		
-		
-	}
-	
-	public void movePanelsAround(Panel panel)
-	{
-		panel.setSize(new panelDimension(0, 0, 0, 0));
 	}
 	public void resetEnviroment()
 	{

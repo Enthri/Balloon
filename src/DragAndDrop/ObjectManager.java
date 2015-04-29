@@ -19,12 +19,12 @@ public class ObjectManager extends Panel {
 		return currentState;
 	}
 	
-	public void switchState(String state)
+	public void switchState(String state,panelDimension dimension)
 	{
 		currentState = state;
 		if (state.equals("Viewer"))
 		{
-			
+			this.setSize(dimension);
 		}
 	}
 	

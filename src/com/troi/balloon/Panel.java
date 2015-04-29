@@ -25,7 +25,13 @@ public class Panel {
 	{
 		if (this instanceof Tools)
 		{
-			background = new Rectangle(0,0,(dimension.getWidth()),dimension.getHeight());
+			background = new Rectangle(dimension.getX(),0,(dimension.getWidth()),dimension.getHeight());
+			buttons = new HashMap();
+			dimension = new panelDimension((int)background.getX(), (int)background.getY(), (int) background.getWidth(), (int) background.getHeight());
+		}
+		else
+		{
+			background = new Rectangle(dimension.getX(),0,(dimension.getWidth()),dimension.getHeight());
 			buttons = new HashMap();
 			dimension = new panelDimension((int)background.getX(), (int)background.getY(), (int) background.getWidth(), (int) background.getHeight());
 		}
@@ -36,13 +42,13 @@ public class Panel {
 		{
 			if (state.equals("Viewer"))
 			{
-			background = new Rectangle(0,0,(dimension.getWidth()),dimension.getHeight());
+				background = new Rectangle(dimension.getX(),0,(dimension.getWidth()),dimension.getHeight());
 			buttons = new HashMap();
 			dimension = new panelDimension((int)background.getX(), (int)background.getY(), (int) background.getWidth(), (int) background.getHeight());
 			}
 			else 
 			{
-				background = new Rectangle(0,0,(dimension.getWidth()),dimension.getHeight());
+				background = new Rectangle(dimension.getX(),0,(dimension.getWidth()),dimension.getHeight());
 				buttons = new HashMap();
 				dimension = new panelDimension((int)background.getX(), (int)background.getY(), (int) background.getWidth(), (int) background.getHeight());
 			}
