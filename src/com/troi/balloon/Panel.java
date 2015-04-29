@@ -44,6 +44,10 @@ public class Panel {
 //	{
 //		((Button) buttons.get(buttons)).paint(paint);
 //	}
+	public void repaintButton(Button button,Graphics2D paint)
+	{
+		((Button)buttons.get(button)).paint(paint);
+	}
 
 	public void moveButtonPanel(Panel panel, Button button)
 	{
