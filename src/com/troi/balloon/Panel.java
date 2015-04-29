@@ -10,6 +10,8 @@ import java.util.HashMap;
 
 import javax.swing.JFrame;
 
+import DragAndDrop.ObjectManager;
+import DragAndDrop.Tools;
 import util.panelDimension;
 public class Panel {
 	protected boolean repaintValue = false;
@@ -18,13 +20,34 @@ public class Panel {
 	protected panelDimension dimension;
 	protected Rectangle background;
 	protected String type;
-	public Panel(JFrame frame, String type)
+	
+	public Panel(panelDimension dimension)
 	{
-		this.type = type;
-		background = new Rectangle(0,0,(frame.getWidth() / 3),frame.getHeight());
-		repaintValue = true;
-		buttons = new HashMap();
-		dimension = new panelDimension((int)background.getX(), (int)background.getY(), (int) background.getWidth(), (int) background.getHeight());
+		if (this instanceof Tools)
+		{
+			background = new Rectangle(0,0,(dimension.getWidth()),dimension.getHeight());
+			buttons = new HashMap();
+			dimension = new panelDimension((int)background.getX(), (int)background.getY(), (int) background.getWidth(), (int) background.getHeight());
+		}
+	}
+	public Panel(panelDimension dimension,String state)
+	{
+		if (this instanceof ObjectManager)
+		{
+			if (state.equals("Viewer"))
+			{
+			background = new Rectangle(0,0,(dimension.getWidth()),dimension.getHeight());
+			buttons = new HashMap();
+			dimension = new panelDimension((int)background.getX(), (int)background.getY(), (int) background.getWidth(), (int) background.getHeight());
+			}
+			else 
+			{
+				background = new Rectangle(0,0,(dimension.getWidth()),dimension.getHeight());
+				buttons = new HashMap();
+				dimension = new panelDimension((int)background.getX(), (int)background.getY(), (int) background.getWidth(), (int) background.getHeight());
+			}
+		}
+		
 	}
 	
 	public void paintPanel(Graphics2D paint)

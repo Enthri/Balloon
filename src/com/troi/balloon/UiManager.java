@@ -5,12 +5,12 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
+import DragAndDrop.DragAndDrop;
 import util.panelDimension;
 
 
 public class UiManager{
-	panelDimension mainDimension, sideDimension, toolDimension;
-	ArrayList<Panel> panels = new ArrayList<Panel>();
+	public final panelDimension mainDimension, sideDimension, toolDimension;
 	JFrame frame;
 	Graphics2D paint;
 	TextEditer textEditor;

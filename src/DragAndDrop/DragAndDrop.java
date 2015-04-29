@@ -1,8 +1,11 @@
-package com.troi.balloon;
+package DragAndDrop;
 
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
+
+import com.troi.balloon.Panel;
+import com.troi.balloon.UiManager;
 
 
 public class DragAndDrop{
@@ -11,14 +14,14 @@ public class DragAndDrop{
 	JFrame frame;
 	public DragAndDrop(JFrame frame, UiManager manager)
 	{
+		
 		this.manager = manager;
 		this.frame = frame;
 	}
 	
 	public void addNewTool()
 	{
-		//currentPanels.add();
-		//Smanager.addPanel(panel);
+		
 	}
 	
 	public void addNewEditer()
