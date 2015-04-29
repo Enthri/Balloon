@@ -28,7 +28,9 @@ public class UiManager{
 		guiEditor = new DragAndDrop(frame,this);
 		frame.setContentPane(gComponent);
 		Panel panel = new Panel(frame,"main");
+		Panel panel2 = new Panel(frame,"main");
 		gComponent.newPanel(panel);
+		gComponent.newPanel(panel2);
 	}
 	
 	public void addPanel(Panel panel)
