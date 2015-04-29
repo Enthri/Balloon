@@ -25,8 +25,10 @@ public class UiManager{
 		mainDimension = new panelDimension((sideDimension.getWidth() * 2),0,(frame.getWidth() - (sideDimension.getWidth() * 2)), frame.getHeight());
 		gComponent = new GraphicsComponent(); 
 		textEditor = new TextEditer();
-		guiEditor = new DragAndDrop();
-		frame.add(gComponent);
+		guiEditor = new DragAndDrop(frame,this);
+		frame.setContentPane(gComponent);
+		Panel panel = new Panel(frame,"main");
+		gComponent.newPanel(panel);
 	}
 	
 	public void addPanel(Panel panel)
@@ -59,7 +61,6 @@ public class UiManager{
 		if (panel instanceof TextEditer)
 		{
 			textInUse = true;
-			gComponent.test();
 		}
 		else if (panel instanceof DragAndDrop)
 		{

@@ -11,24 +11,14 @@ public class GraphicsComponent extends JPanel {
 
 	ArrayList<Panel> panels = new ArrayList<Panel>();
 	
+	@Override
 	public void paintComponent(Graphics g) {
 		Graphics2D paint = (Graphics2D) g;
-		
-		for (int x = 0; x > panels.size()-1; x++)
+		for (int x = 0; x < panels.size(); x++)
 		{
 			panels.get(x).paintPanel(paint);
 		}
 		
-	}
-	
-	public void addButton(Button button, Panel panel) {
-		for (int x = 0; x > panels.size()-1; x++)
-		{
-			if (panels.get(x) == panel)
-			{
-				panels.get(x).addButton(button);
-			}
-		}
 	}
 	
 	public Graphics2D getGraphics2D() {
@@ -37,11 +27,7 @@ public class GraphicsComponent extends JPanel {
 
 	public void newPanel(Panel panel) {
 		panels.add(panel);
-	}
-	
-	public void test() {
-		Rectangle2D.Double x = new Rectangle2D.Double(10,10,10,10);
-		getGraphics2D().fill(x);
+		this.repaint();
 	}
 
 }

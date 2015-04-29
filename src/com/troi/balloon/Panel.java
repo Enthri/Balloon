@@ -2,6 +2,8 @@ package com.troi.balloon;
 
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Rectangle;
+import java.awt.Window;
 import java.awt.geom.Dimension2D;
 import java.awt.geom.Rectangle2D;
 import java.util.HashMap;
@@ -11,24 +13,18 @@ import javax.swing.JFrame;
 import util.panelDimension;
 public class Panel {
 	protected boolean repaintValue = false;
-<<<<<<< HEAD
 	protected HashMap buttons;
-=======
-	protected HashMap map, buttons; //huh
->>>>>>> origin/master
 	protected int sizeOfMap,x,y,width,hieght;
-	protected Graphics2D paint;
 	protected panelDimension dimension;
-	protected Rectangle2D.Double background;
+	protected Rectangle background;
 	protected String type;
-	public Panel(JFrame frame, String type,Graphics2D paint)
+	public Panel(JFrame frame, String type)
 	{
 		this.type = type;
-		background = new Rectangle2D.Double(0,0,frame.getHeight(),(frame.getWidth() / 3));
+		background = new Rectangle(0,0,(frame.getWidth() / 3),frame.getHeight());
 		repaintValue = true;
 		buttons = new HashMap();
 		dimension = new panelDimension((int)background.getX(), (int)background.getY(), (int) background.getWidth(), (int) background.getHeight());
-		this.paint = paint;
 	}
 	
 	public void paintPanel(Graphics2D paint)
@@ -37,17 +33,17 @@ public class Panel {
 		paint.fill(background);
 		for(int x = 0; x < sizeOfMap;x++)
 		{
-			map.get(buttons.get(x).paint());
+			((Button) buttons.get(x)).paint(paint);
 		}
 	}
 	public void setSize(panelDimension size)
 	{
 		background.setFrame(size.getX(), size.getY(), size.getWidth(), background.getHeight());
 	}
-	public void repaintButton(Button button)
-	{
-		map.get(this.buttons.get(button).paint());
-	}
+//	public void repaintButton(Button button)
+//	{
+//		((Button) buttons.get(buttons)).paint(paint);
+//	}
 
 	public void moveButtonPanel(Panel panel, Button button)
 	{
