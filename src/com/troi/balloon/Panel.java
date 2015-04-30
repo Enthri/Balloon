@@ -21,6 +21,11 @@ public class Panel {
 	protected Rectangle background;
 	protected String type;
 	
+	public Panel()
+	{
+		System.out.println("ERROR: NO GIVEN DIMESION");
+	}
+	
 	public Panel(panelDimension dimension)
 	{
 		if (this instanceof Tools)

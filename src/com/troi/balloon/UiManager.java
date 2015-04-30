@@ -2,6 +2,7 @@ package com.troi.balloon;
 
 import java.awt.Graphics2D;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.swing.JFrame;
 
@@ -10,7 +11,7 @@ import util.panelDimension;
 
 
 public class UiManager{
-	public final panelDimension mainDimension, sideDimension, toolDimension;
+	HashMap Dimensions;
 	JFrame frame;
 	Graphics2D paint;
 	TextEditer textEditor;
@@ -20,14 +21,15 @@ public class UiManager{
 	
 	public UiManager(JFrame frame)
 	{
-		sideDimension = new panelDimension(0,0,(frame.getWidth() / 5),frame.getHeight());
-		toolDimension = new panelDimension(sideDimension.getWidth(),0,(frame.getWidth() / 5),frame.getHeight());
-		mainDimension = new panelDimension((sideDimension.getWidth() * 2),1000,(frame.getWidth() - (sideDimension.getWidth() * 2)), frame.getHeight());
+		Dimensions = new HashMap();
+		Dimensions.put("FileManager", new panelDimension(0,0,(frame.getWidth() / 5),frame.getHeight()));
+		Dimensions.put("ToolManager",new panelDimension(((panelDimension)Dimensions.get("FileManager")).getWidth(),0,(frame.getWidth() / 5),frame.getHeight()));
+		Dimensions.put("MainManager", new panelDimension((((panelDimension)Dimensions.get("FileManager")).getWidth() * 2),1000,(frame.getWidth() - (((panelDimension)Dimensions.get("FileManager")).getWidth() * 2)), frame.getHeight()));
 		gComponent = new GraphicsComponent(); 
 		textEditor = new TextEditer();
 		guiEditor = new DragAndDrop(frame,this);
 		frame.setContentPane(gComponent);
-		Panel panel = new Panel(mainDimension);
+		Panel panel = new Panel((panelDimension) Dimensions.get("MainManager"));
 		gComponent.newPanel(panel);
 	}
 	public void resetEnviroment()
@@ -45,6 +47,27 @@ public class UiManager{
 		{
 			textInUse = false;
 		}
+		
+	}
+	
+	public panelDimension getFileDimension()
+	{
+		return (panelDimension) Dimensions.get("FileManager");
+	}
+	
+	public panelDimension getToolDimension()
+	{
+		return (panelDimension) Dimensions.get("ToolManager");
+	}
+	
+	public panelDimension getMainDimension()
+	{
+		return (panelDimension) Dimensions.get("MainManager");
+	}
+	
+	public panelDimension getCustomDimension(String name)
+	{
+		return (panelDimension) Dimensions.get(name);
 	}
 
 }
