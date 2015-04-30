@@ -91,7 +91,7 @@ public class DragAndDrop{
 	}
 	
 	public void removeCurrentTool()
-	{1
+	{
 		
 	}
 	
