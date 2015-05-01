@@ -9,12 +9,12 @@ import javax.swing.JPanel;
 
 public class GraphicsComponent extends JPanel {
 
-	ArrayList<Panel> panels = new ArrayList<Panel>();
+	public ArrayList<Panel> panels = new ArrayList<Panel>();
 	
 	@Override
 	public void paintComponent(Graphics g) {
 		Graphics2D paint = (Graphics2D) g;
-		for (int x = 0; x < panels.size(); x++)
+		for (int x = 0; x < 3; x++)
 		{
 			panels.get(x).paintPanel(paint);
 		}
@@ -25,7 +25,7 @@ public class GraphicsComponent extends JPanel {
 		return (Graphics2D) this.getGraphics();
 	}
 
-	public void newPanel(Panel panel) {
+	public void paintPanel(Panel panel) {
 		panels.add(panel);
 		this.repaint();
 	}
