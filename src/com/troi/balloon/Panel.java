@@ -21,13 +21,15 @@ public class Panel {
 	protected Rectangle background;
 	protected String type;
 	
-	public Panel()
+	/*public Panel()
 	{
 		System.out.println("ERROR: NO GIVEN DIMESION");
-	}
+	}*/
 	
 	public Panel(panelDimension dimension)
+
 	{
+		type = "panel";
 		if (this instanceof Tools)
 		{
 			background = new Rectangle(dimension.getX(),0,(dimension.getWidth()),dimension.getHeight());
@@ -43,20 +45,14 @@ public class Panel {
 	}
 	public Panel(panelDimension dimension,String state)
 	{
+		type = state;
 		if (this instanceof ObjectManager)
 		{
-			if (state.equals("Viewer"))
-			{
+
 				background = new Rectangle(dimension.getX(),0,(dimension.getWidth()),dimension.getHeight());
 			buttons = new HashMap();
 			dimension = new panelDimension((int)background.getX(), (int)background.getY(), (int) background.getWidth(), (int) background.getHeight());
-			}
-			else 
-			{
-				background = new Rectangle(dimension.getX(),0,(dimension.getWidth()),dimension.getHeight());
-				buttons = new HashMap();
-				dimension = new panelDimension((int)background.getX(), (int)background.getY(), (int) background.getWidth(), (int) background.getHeight());
-			}
+
 		}
 		
 	}
@@ -67,7 +63,7 @@ public class Panel {
 		paint.fill(background);
 		for(int x = 0; x < sizeOfMap;x++)
 		{
-			((Button) buttons.get(x)).paint(paint);
+			//((Button) buttons.get(x)).paint(paint);
 		}
 	}
 	public void setSize(panelDimension size)
@@ -104,6 +100,7 @@ public class Panel {
 	public void addButton(Button button)
 	{
 		sizeOfMap += 1;
+		button.setID(sizeOfMap);
 		buttons.put(sizeOfMap, button);
 	}
 	

@@ -17,6 +17,7 @@ public class Button {
 	int glo_y;
 	int width;
 	int height;
+	int ID;
 	boolean isMouseDown;
 	BufferedImage button;
 	public Button(int x, int y, int w, int h){
@@ -43,6 +44,10 @@ public class Button {
 //			//paint();
 		}
 		
+	}
+	public void setID(int number)
+	{
+		ID = number;
 	}
 	
 	public void mouseReleased(MouseEvent e){
