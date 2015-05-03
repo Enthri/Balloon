@@ -1,24 +1,27 @@
 package com.troi.balloon;
 
 import java.awt.Graphics2D;
-import java.util.ArrayList;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.HashMap;
+import java.util.TreeMap;
 
 import javax.swing.JFrame;
 
-import DragAndDrop.DragAndDrop;
 import util.panelDimension;
+import DragAndDrop.DragAndDrop;
 
 
 public class UiManager{
 	HashMap<String,panelDimension> Dimensions;
+	TreeMap<String,Panel> buttonLocator;
 	JFrame frame;
 	Graphics2D paint;
 	TextEditer textEditor;
 	DragAndDrop guiEditor;
 	GraphicsComponent gComponent;
 	DragAndDrop guiEditer;
-	boolean textInUse;
+	boolean mouseInUse;
 	
 	public UiManager(JFrame frame)
 	{
@@ -29,6 +32,7 @@ public class UiManager{
 		gComponent = new GraphicsComponent(); 
 		textEditor = new TextEditer();
 		guiEditor = new DragAndDrop(frame,this);
+		buttonsLocator = guiEditer.setButtons(new TreeMap<String, Panel>());
 		frame.setContentPane(gComponent);
 		//Panel panel = new Panel((panelDimension) Dimensions.get("MainManager"));
 		//guiEditer = new DragAndDrop(frame,this);
@@ -39,18 +43,18 @@ public class UiManager{
 		
 	}
 	
-	public void setCurrentEnviroment(Object panel)
-	{
-		if (panel instanceof TextEditer)
-		{
-			textInUse = true;
-		}
-		else if (panel instanceof DragAndDrop)
-		{
-			textInUse = false;
-		}
-		
-	}
+//	public void setCurrentEnviroment(Object panel)
+//	{
+//		if (panel instanceof TextEditer)
+//		{
+//			textInUse = true;
+//		}
+//		else if (panel instanceof DragAndDrop)
+//		{
+//			textInUse = false;
+//		}
+//		
+//	}
 	public void paintPanels(DragAndDrop editer)
 	{
 		for (int x = 0; x <= editer.currentPanels.size()-1; x++)
@@ -58,7 +62,10 @@ public class UiManager{
 			gComponent.paintPanel(editer.currentPanels.get(x));
 		} 
 	}
-	
+	public void setCustomDimension(String key , panelDimension object)
+	{
+		Dimensions.put(key, object);
+	}
 	public panelDimension getFileDimension()
 	{
 		return (panelDimension) Dimensions.get("FileManager");
@@ -77,6 +84,40 @@ public class UiManager{
 	public panelDimension getCustomDimension(String name)
 	{
 		return (panelDimension) Dimensions.get(name);
+	}
+	public class ButtonsListener implements MouseListener
+	{
+
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mousePressed(MouseEvent e) {
+			mouseInUse = true;
+			
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent e) {
+			mouseInUse = false;
+			
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseExited(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+		
 	}
 
 }

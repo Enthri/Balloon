@@ -1,21 +1,16 @@
 package com.troi.balloon;
 
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.Rectangle;
-import java.awt.Window;
-import java.awt.geom.Dimension2D;
-import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
 import java.util.HashMap;
 
-import javax.swing.JFrame;
-
+import util.panelDimension;
 import DragAndDrop.ObjectManager;
 import DragAndDrop.Tools;
-import util.panelDimension;
 public class Panel {
 	protected boolean repaintValue = false;
-	protected HashMap buttons;
+	protected ArrayList<Button> buttons;
 	protected int sizeOfMap,x,y,width,hieght;
 	protected panelDimension dimension;
 	protected Rectangle background;
@@ -33,14 +28,16 @@ public class Panel {
 		if (this instanceof Tools)
 		{
 			background = new Rectangle(dimension.getX(),0,(dimension.getWidth()),dimension.getHeight());
-			buttons = new HashMap();
+			buttons = new ArrayList<Button>();
 			dimension = new panelDimension((int)background.getX(), (int)background.getY(), (int) background.getWidth(), (int) background.getHeight());
+			setRepaintValue(true);
 		}
 		else
 		{
 			background = new Rectangle(dimension.getX(),0,(dimension.getWidth()),dimension.getHeight());
-			buttons = new HashMap();
+			buttons = new ArrayList<Button>();
 			dimension = new panelDimension((int)background.getX(), (int)background.getY(), (int) background.getWidth(), (int) background.getHeight());
+			setRepaintValue(true);
 		}
 	}
 	public Panel(panelDimension dimension,String state)
@@ -50,20 +47,32 @@ public class Panel {
 		{
 
 				background = new Rectangle(dimension.getX(),0,(dimension.getWidth()),dimension.getHeight());
-			buttons = new HashMap();
+				buttons = new ArrayList<Button>();
 			dimension = new panelDimension((int)background.getX(), (int)background.getY(), (int) background.getWidth(), (int) background.getHeight());
-
+			setRepaintValue(true);
 		}
 		
 	}
-	
+	public void addButton(Button button, panelDimension dimension)
+	{
+		buttons.add(button);
+		buttons.get(buttons.size()-1).resize();;
+	}
+	public void setRepaintValue(boolean setValue)
+	{
+		this.repaintValue = setValue;
+	}
+	public boolean checkRepaint()
+	{
+		return repaintValue;
+	}
 	public void paintPanel(Graphics2D paint)
 	{
 		sizeOfMap = buttons.size();
 		paint.fill(background);
 		for(int x = 0; x < sizeOfMap;x++)
 		{
-			//((Button) buttons.get(x)).paint(paint);
+			((Button) buttons.get(x)).paint(paint);
 		}
 	}
 	public void setSize(panelDimension size)
@@ -76,7 +85,7 @@ public class Panel {
 //	}
 	public void repaintButton(Button button,Graphics2D paint)
 	{
-		((Button)buttons.get(button)).paint(paint);
+		((Button) buttons.get(x)).paint(paint);
 	}
 
 	public void moveButtonPanel(Panel panel, Button button)
@@ -101,7 +110,12 @@ public class Panel {
 	{
 		sizeOfMap += 1;
 		button.setID(sizeOfMap);
-		buttons.put(sizeOfMap, button);
+		buttons.add(button);
+	}
+	
+	public panelDimension getDimension()
+	{
+		return dimension;
 	}
 	
 

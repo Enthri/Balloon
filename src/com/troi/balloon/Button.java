@@ -10,6 +10,8 @@ import javax.imageio.ImageIO;
 
 import org.w3c.dom.events.MouseEvent;
 
+import util.panelDimension;
+
 public class Button {
 	int startX;
 	int startY;
@@ -18,6 +20,7 @@ public class Button {
 	int width;
 	int height;
 	int ID;
+	panelDimension dimension;
 	boolean isMouseDown;
 	BufferedImage button;
 	public Button(int x, int y, int w, int h){
@@ -54,7 +57,11 @@ public class Button {
 		
 	}
 	
-	public void resize(){
-		
+	public void setSize(panelDimension dimension)
+	{
+		this.startX = dimension.getX();
+		this.startY = dimension.getY();
+		this.width = dimension.getWidth();
+		this.height = dimension.getHeight();
 	}
 }

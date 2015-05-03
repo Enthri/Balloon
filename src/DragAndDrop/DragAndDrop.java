@@ -1,6 +1,7 @@
 package DragAndDrop;
 
 import java.util.ArrayList;
+import java.util.TreeMap;
 
 import javax.swing.JFrame;
 
@@ -28,6 +29,15 @@ public class DragAndDrop{
 		currentPanels.add(new PackageManager(manager.getMainDimension(),"MainViewer"));
 	}
 	
+	public TreeMap<String,Panel> setButtons(TreeMap<String,Panel> map)
+	{
+		
+		map.put("FileManagerButtons", currentPanels.get(0));
+		map.put("ToolManagerButtons", currentPanels.get(1));
+		map.put("MainManagerButtons", currentPanels.get(2));
+		return map;
+	
+	}
 	public void addNewTool()
 	{
 		if (currentPanels.get(2) instanceof PackageManager)
