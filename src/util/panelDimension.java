@@ -1,6 +1,7 @@
 package util;
 
 public class panelDimension {
+	
 	int x,y,width,height;
 	public panelDimension(int x, int y, int width, int height)
 	{

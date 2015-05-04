@@ -8,64 +8,65 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import org.w3c.dom.events.MouseEvent;
-
 import util.panelDimension;
 
 public class Button {
-	int startX;
-	int startY;
-	int glo_x;
-	int glo_y;
-	int width;
-	int height;
-	int ID;
+
 	panelDimension dimension;
-	boolean isMouseDown;
 	BufferedImage button;
-	public Button(int x, int y, int w, int h){
-		glo_x = x;
-		glo_y = y;
-		w = width;
-		h = height;
+	Panel panel;
+	String state;
+	
+	public Button(panelDimension panelDimension){
 		try{
-			button = ImageIO.read(new File("resources/gray-button-template"));
+			button = ImageIO.read(new File("resources/gray-fade.png"));
 		}catch(IOException e){
 			button = null;
 		}
 	}
+	
+	public Button(panelDimension panelDimension, Panel p){
+		try{
+			button = ImageIO.read(new File("resources/gray-fade.png"));
+		}catch(IOException e){
+			button = null;
+		}
+		panel = p;
+	}
+	
+	public Button(panelDimension panelDimension, Panel p, String s){
+		try{
+			button = ImageIO.read(new File("resources/gray-fade.png"));
+		}catch(IOException e){
+			button = null;
+		}
+		panel = p;
+		state = s;
+	}
+	
+	
+	
+	public Panel getContainer(){
+		return panel;
+	}
+	
 	public void paint(Graphics2D render) {
-		render.drawImage(button.getScaledInstance(width, height, Image.SCALE_FAST), glo_x, glo_y, null);
+		render.drawImage(button.getScaledInstance(dimension.getWidth(), dimension.getHeight(), Image.SCALE_FAST), dimension.getX(), dimension.getY(), null);
 	}
-	public void move(int x, int y){
-		
-	}
+	
 	public panelDimension getSize()
 	{
 		return dimension;
 	}
-	public void mouseDragged(MouseEvent e) {
-		if(isMouseDown){
-//			glo_x = e.getX() - startX;
-//			glo_y = e.getY() - startY;
-//			//paint();
-		}
-		
-	}
-	public void setID(int number)
-	{
-		ID = number;
-	}
 	
-	public void mouseReleased(MouseEvent e){
-		
-	}
+	//check in use -- checks to see if the button currently being dragged
 	
-	public void setSize(panelDimension dimension)
+	//toggle draggable
+	
+	//
+	
+	public void setDimension(panelDimension dimension)
 	{
-		this.startX = dimension.getX();
-		this.startY = dimension.getY();
-		this.width = dimension.getWidth();
-		this.height = dimension.getHeight();
+		this.dimension = dimension;
 	}
 }
