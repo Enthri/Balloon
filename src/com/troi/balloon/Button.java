@@ -16,7 +16,6 @@ public class Button {
 	BufferedImage button;
 	Panel panel;
 	String state;
-	
 	public Button(panelDimension panelDimension){
 		try{
 			button = ImageIO.read(new File("resources/gray-fade.png"));
@@ -34,7 +33,7 @@ public class Button {
 		panel = p;
 	}
 	
-	public Button(panelDimension panelDimension, Panel p, String s){
+	public Button(panelDimension panelDimension, Panel p, String s, String size){
 		try{
 			button = ImageIO.read(new File("resources/gray-fade.png"));
 		}catch(IOException e){
@@ -42,10 +41,27 @@ public class Button {
 		}
 		panel = p;
 		state = s;
+		setSize(size);
+		}
+	
+	public Button(Panel p,String size)
+	{
+		try{
+		button = ImageIO.read(new File("src/resources/gray-fade.png"));
+		}catch(IOException e){
+			button = null;
+		}
+		setSize(size);
+		panel = p;
 	}
 	
-	
-	
+	public void setSize(String size) {
+		// TODO Auto-generated method stub
+		if(size.equals("Small")){
+			setDimension(new panelDimension(100, 10, 10, 10));
+		}
+	}
+
 	public Panel getContainer(){
 		return panel;
 	}
