@@ -2,13 +2,16 @@
 package com.troi.balloon;
 
 import java.awt.Graphics2D;
-import java.util.ArrayList;
+import java.awt.Point;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.HashMap;
+import java.util.TreeMap;
 
 import javax.swing.JFrame;
 
-import DragAndDrop.DragAndDrop;
 import util.panelDimension;
+import DragAndDrop.DragAndDrop;
 
 
 public class UiManager{
@@ -19,7 +22,8 @@ public class UiManager{
 	DragAndDrop guiEditor;
 	GraphicsComponent gComponent;
 	DragAndDrop guiEditer;
-	boolean textInUse;
+	Button buttonInUse = null;
+	boolean mouseInUse;
 	
 	public UiManager(JFrame frame)
 	{
@@ -31,6 +35,7 @@ public class UiManager{
 		textEditor = new TextEditer();
 		guiEditor = new DragAndDrop(frame,this);
 		frame.setContentPane(gComponent);
+		frame.addMouseListener(new ButtonsListener());
 		//Panel panel = new Panel((panelDimension) Dimensions.get("MainManager"));
 		//guiEditer = new DragAndDrop(frame,this);
 		paintPanels(guiEditor);
@@ -40,17 +45,22 @@ public class UiManager{
 		
 	}
 	
-	public void setCurrentEnviroment(Object panel)
+//	public void setCurrentEnviroment(Object panel)
+//	{
+//		if (panel instanceof TextEditer)
+//		{
+//			textInUse = true;
+//		}
+//		else if (panel instanceof DragAndDrop)
+//		{
+//			textInUse = false;
+//		}
+//		
+//	}
+	
+	public void setCustomDimension(String key , panelDimension object)
 	{
-		if (panel instanceof TextEditer)
-		{
-			textInUse = true;
-		}
-		else if (panel instanceof DragAndDrop)
-		{
-			textInUse = false;
-		}
-		
+		Dimensions.put(key, object);
 	}
 	public void paintPanels(DragAndDrop editer)
 	{
@@ -59,7 +69,6 @@ public class UiManager{
 			gComponent.paintPanel(editer.currentPanels.get(x));
 		} 
 	}
-	
 	public panelDimension getFileDimension()
 	{
 		return (panelDimension) Dimensions.get("FileManager");
@@ -79,9 +88,81 @@ public class UiManager{
 	{
 		return (panelDimension) Dimensions.get(name);
 	}
+	public boolean checkButtonLocation(Button button, Point point)
+	{
+		if (button.getSize().getX() < point.getX() && button.getSize().getY() < point.getY() && (button.getSize().getX() + button.getSize().getWidth()) > point.getX() && (button.getSize().getY() + button.getSize().getHeight()) > point.getY())
+		{
+			return true;
+		}
+		
+		
+		else return false;
+	}
+	public void checkButtonInUse(MouseEvent e)
+	{
+		if(e.getPoint().getX() > getMainDimension().getX())
+		{
+			for(int x = 0;x < guiEditer.map.get("MainManagerButtons").buttons.size()-1;x++)
+				
+				if (checkButtonLocation(guiEditer.map.get("MainManagerButtons").buttons.get(x),e.getPoint()) == true)
+				{
+					buttonInUse = guiEditer.map.get("MainManagerButtons").buttons.get(x);
+				}
+		}
+		else if(e.getPoint().getX() > getToolDimension().getX())
+		{
+			for(int x = 0;x < guiEditer.map.get("ToolManagerButtons").buttons.size()-1;x++)
+				
+				if (checkButtonLocation(guiEditer.map.get("ToolManagerButtons").buttons.get(x),e.getPoint()) == true)
+				{
+					buttonInUse = guiEditer.map.get("ToolManagerButtons").buttons.get(x);
+				}
+		}
+		else if (e.getPoint().getX() > getFileDimension().getX())
+		{
+			for(int x = 0;x < guiEditer.map.get("FileManagerButtons").buttons.size()-1;x++)
+				
+				if (checkButtonLocation(guiEditer.map.get("FileManagerButtons").buttons.get(x),e.getPoint()) == true)
+				{
+					buttonInUse = guiEditer.map.get("FileManagerButtons").buttons.get(x);
+				}
+		}
+		
+	}
+	public class ButtonsListener implements MouseListener
+	{
 
-<<<<<<< HEAD
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+		@Override
+		public void mousePressed(MouseEvent e) {
+			mouseInUse = true;
+			if (buttonInUse == null)
+			{
+				checkButtonInUse(e);
+			}
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent e) {
+			mouseInUse = false;
+			
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseExited(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+	}
 }
-=======
-}
->>>>>>> origin/master

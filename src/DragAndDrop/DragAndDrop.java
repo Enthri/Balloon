@@ -1,6 +1,7 @@
 package DragAndDrop;
 
 import java.util.ArrayList;
+import java.util.TreeMap;
 
 import javax.swing.JFrame;
 
@@ -9,6 +10,7 @@ import com.troi.balloon.UiManager;
 
 
 public class DragAndDrop{
+	public TreeMap<String,Panel> map;
 	public ArrayList<Panel> currentPanels = new ArrayList<Panel>();
 	UiManager manager;
 	JFrame frame;
@@ -28,6 +30,15 @@ public class DragAndDrop{
 		currentPanels.add(new PackageManager(manager.getMainDimension(),"MainViewer"));
 	}
 	
+	public TreeMap<String,Panel> setButtons()
+	{
+		
+		map.put("FileManagerButtons", currentPanels.get(0));
+		map.put("ToolManagerButtons", currentPanels.get(1));
+		map.put("MainManagerButtons", currentPanels.get(2));
+		return map;
+	
+	}
 	public void addNewTool()
 	{
 		if (currentPanels.get(2) instanceof PackageManager)
@@ -46,6 +57,7 @@ public class DragAndDrop{
 		{
 			currentPanels.set(1, new CommandTools(manager.getToolDimension()));
 		}
+		
 	
 	}
 	
@@ -69,7 +81,7 @@ public class DragAndDrop{
 		}
 		else
 		{
-			currentPanels.set(2, new Panel(manager.getToolDimension()));
+			currentPanels.set(2, new PackageManager(manager.getToolDimension(),"MainViewer"));
 			addNewTool();
 		}
 		
