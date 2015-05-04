@@ -10,6 +10,7 @@ import com.troi.balloon.UiManager;
 
 
 public class DragAndDrop{
+	public TreeMap<String,Panel> map;
 	public ArrayList<Panel> currentPanels = new ArrayList<Panel>();
 	UiManager manager;
 	JFrame frame;
@@ -29,7 +30,7 @@ public class DragAndDrop{
 		currentPanels.add(new PackageManager(manager.getMainDimension(),"MainViewer"));
 	}
 	
-	public TreeMap<String,Panel> setButtons(TreeMap<String,Panel> map)
+	public TreeMap<String,Panel> setButtons()
 	{
 		
 		map.put("FileManagerButtons", currentPanels.get(0));

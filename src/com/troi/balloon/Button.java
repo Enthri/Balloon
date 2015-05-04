@@ -37,8 +37,12 @@ public class Button {
 	public void paint(Graphics2D render) {
 		render.drawImage(button.getScaledInstance(width, height, Image.SCALE_FAST), glo_x, glo_y, null);
 	}
-	public void move(){
+	public void move(int x, int y){
 		
+	}
+	public panelDimension getSize()
+	{
+		return dimension;
 	}
 	public void mouseDragged(MouseEvent e) {
 		if(isMouseDown){
