@@ -60,7 +60,7 @@ public class Panel {
 	}
 	public void addButton(Button button, panelDimension dimension)
 	{
-		button.setSize(dimension);
+		button.setDimension(dimension);
 		buttons.add(button);
 		
 	}
@@ -114,8 +114,6 @@ public class Panel {
 	}
 	public void addButton(Button button)
 	{
-		sizeOfMap += 1;
-		button.setID(sizeOfMap);
 		buttons.add(button);
 	}
 	
