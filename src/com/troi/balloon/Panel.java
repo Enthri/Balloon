@@ -9,13 +9,14 @@ import util.panelDimension;
 import DragAndDrop.ObjectManager;
 import DragAndDrop.Tools;
 public class Panel {
-	protected boolean repaintValue = false;
+	protected boolean repaintValue = false,buttonInUse = false;
 	protected ArrayList<Button> buttons;
 	protected int sizeOfMap,x,y,width,hieght;
 	protected panelDimension dimension;
 	protected Rectangle background;
 	protected String type;
 	protected Color color;
+	protected Button redrawButton;
 	
 	/*public Panel()
 	{
@@ -67,7 +68,7 @@ public class Panel {
 	{
 		this.repaintValue = setValue;
 	}
-	public boolean checkbuttonRepaint()
+	public boolean checkRepaint()
 	{
 		return repaintValue;
 	}
@@ -75,9 +76,9 @@ public class Panel {
 	{
 		sizeOfMap = buttons.size();
 		paint.fill(background);
-		for(int x = 0; x < sizeOfMap;x++)
+		for (Button button: buttons)
 		{
-			//((Button) buttons.get(x)).paint(paint);
+			button.paint(paint);
 		}
 	}
 	public void setSize(panelDimension size)

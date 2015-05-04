@@ -19,8 +19,8 @@ public class GraphicsComponent extends JPanel {
 			
 			if (panels.get(x).checkRepaint() == true)
 			{
-				if(panels.get(x).checkPanelRepaint() == false)
-						paint.setColor(panels.get(x).getColor());
+			
+				paint.setColor(panels.get(x).getColor());
 				panels.get(x).paintPanel(paint);
 			}
 		}
