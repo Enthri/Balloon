@@ -137,16 +137,25 @@ public class UiManager{
 		}
 		@Override
 		public void mousePressed(MouseEvent e) {
-			mouseInUse = true;
-			checkButtonInUse(e);
-			/*if (buttonInUse == null)
+			if (mouseInUse = true)
 			{
-				checkButtonInUse(e);
+				if (buttonInUse == null)
+				{
+					checkButtonInUse(e);
+				}
+				else if (buttonInUse != null)
+				{
+					buttonInUse.setDimension(new panelDimension(e.getX(),e.getY(), buttonInUse.getSize().getWidth(), buttonInUse.getSize().getHeight()));
+					while(buttonInUse.withIn(buttonInUse.getContainer()) == true)
+					{
+					buttonInUse.getContainer().paintPanel(gComponent.getGraphics2D());
+					
+					}
+					 gComponent.repaint();
+					
+				}
 			}
-			else 
-			{
-				buttonInUse.getContainer().paintPanel(gComponent.getGraphics2D());
-			}*/
+			
 			
 		}
 

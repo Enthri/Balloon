@@ -96,4 +96,13 @@ public class Button {
 	{
 		this.dimension = dimension;
 	}
+	
+	public boolean withIn(Panel panel)
+	{
+		if (panel.getDimension().getX() < this.getSize().getX() && panel.getDimension().getY() < this.getSize().getY() && (this.getSize().getWidth() +this.getSize().getX()) < (panel.getDimension().getX() + panel.getDimension().getX()))
+		{
+			return true;
+		}
+		else return false;
+	}
 }
