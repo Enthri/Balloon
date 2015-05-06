@@ -1,14 +1,23 @@
 package com.troi.balloon.panelsystem;
 
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.util.ArrayList;
 
 public class Panel {
 	
-	private ArrayList<Button> buttonList = new ArrayList<Button>();
-	private boolean requestedRepaint = false;
+	private ArrayList<Button> buttonList;
+	private boolean requestedRepaint;
+	private Rectangle bounds;
+	
+	public Panel() {
+		buttonList = new ArrayList<Button>();
+		requestedRepaint = false;
+		bounds = new Rectangle(0, 0, 20, 20);
+	}
 	
 	public void paint(Graphics2D render) {
+		render.fill(bounds);
 		for(Button button : buttonList) {
 			button.paint(render);
 		}

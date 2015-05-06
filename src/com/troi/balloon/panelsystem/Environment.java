@@ -9,10 +9,10 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class Environment extends JPanel {
 	
-	private ArrayList<Panel> panelList = new ArrayList<Panel>();
+	private ArrayList<Panel> panelList;
 	
 	public Environment() {
-		
+		panelList = new ArrayList<Panel>();
 	}
 	
 	@Override
