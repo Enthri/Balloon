@@ -1,23 +1,23 @@
 package com.troi.balloon.panelsystem;
 
+import java.awt.Dimension;
 import java.awt.Graphics2D;
-import java.awt.Rectangle;
 import java.util.ArrayList;
 
 public class Panel {
 	
 	private ArrayList<Button> buttonList;
 	private boolean requestedRepaint;
-	private Rectangle bounds;
+	private Dimension bounds;
 	
 	public Panel() {
 		buttonList = new ArrayList<Button>();
 		requestedRepaint = false;
-		bounds = new Rectangle(0, 0, 20, 20);
+		bounds = new Dimension(100, 500);
 	}
 	
 	public void paint(Graphics2D render) {
-		render.fill(bounds);
+		render.fillRect(0, 0, (int)bounds.getWidth(), (int)bounds.getHeight());
 		for(Button button : buttonList) {
 			button.paint(render);
 		}
@@ -40,5 +40,9 @@ public class Panel {
 	
 	public boolean needsRepaint() {
 		return requestedRepaint;
+	}
+	
+	public Dimension getDimension() {
+		return bounds;
 	}
 }
