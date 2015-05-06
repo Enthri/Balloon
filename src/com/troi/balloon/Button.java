@@ -17,6 +17,15 @@ public class Button {
 	BufferedImage button;
 	Panel panel;
 	String state;
+	public Button(Panel p){
+		try{
+			button = ImageIO.read(new File("resources/gray-fade.png"));
+		}catch(IOException e){
+			button = null;
+		}
+		dimension = new panelDimension((p.returnDimension().getX()+panel.width/2), (p.getDimension().getHeight()/3),20 ,20);
+	}
+	
 	public Button(panelDimension panelDimension){
 		try{
 			button = ImageIO.read(new File("resources/gray-fade.png"));
