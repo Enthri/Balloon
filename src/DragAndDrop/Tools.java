@@ -8,8 +8,8 @@ import com.troi.balloon.Panel;
 
 public class Tools extends Panel{
 
-	public Tools(panelDimension dimension) {
-		super(dimension);
+	public Tools(panelDimension dimension, String string) {
+		super(dimension,string);
 		
 	}
 

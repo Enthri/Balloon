@@ -11,7 +11,6 @@ import com.troi.balloon.UiManager;
 
 
 public class DragAndDrop{
-	public HashMap<String,Panel> map;
 	public ArrayList<Panel> currentPanels = new ArrayList<Panel>();
 	UiManager manager;
 	JFrame frame;
@@ -21,7 +20,6 @@ public class DragAndDrop{
 		this.manager = manager;
 		this.frame = frame;
 		initializeEditer();
-		setButtons();
 		System.out.println(currentPanels.get(2).getType());
 		
 	}
@@ -29,37 +27,26 @@ public class DragAndDrop{
 	public void initializeEditer()
 	{
 		currentPanels.add(new PackageManager(manager.getFileDimension(),"FileViewer"));
-		currentPanels.add(new PackageTools(manager.getToolDimension()));
+		currentPanels.add(new PackageTools(manager.getToolDimension(),"ToolViewer"));
 		currentPanels.add(new PackageManager(manager.getMainDimension(),"MainViewer"));
-		map = new HashMap<String,Panel>();
-	}
-	
-	public void setButtons()
-	{
-		
-		
-		map.put("FileManagerButtons", currentPanels.get(0));
-		map.put("ToolManagerButtons", currentPanels.get(1));
-		map.put("MainManagerButtons", currentPanels.get(2));
-	
 	}
 	public void addNewTool()
 	{
 		if (currentPanels.get(2) instanceof PackageManager)
 		{
-			currentPanels.set(1, new PackageTools(manager.getToolDimension()));
+			currentPanels.set(1, new PackageTools(manager.getToolDimension(),"ToolViewer"));
 		}
 		else if (currentPanels.get(2) instanceof ClassManager)
 		{
-			currentPanels.set(1, new ClassTools(manager.getToolDimension()));
+			currentPanels.set(1, new ClassTools(manager.getToolDimension(),"ToolViewer"));
 		}
 		else if (currentPanels.get(2) instanceof MethodManager)
 		{
-			currentPanels.set(1, new MethodTools(manager.getToolDimension()));
+			currentPanels.set(1, new MethodTools(manager.getToolDimension(),"ToolViewer"));
 		}
 		else if (currentPanels.get(2) instanceof CommandManager)
 		{
-			currentPanels.set(1, new CommandTools(manager.getToolDimension()));
+			currentPanels.set(1, new CommandTools(manager.getToolDimension(),"ToolViewer"));
 		}
 		
 	
@@ -90,7 +77,20 @@ public class DragAndDrop{
 		}
 		
 	}
+	public Panel getMainViewer()
+	{
+		return currentPanels.get(2);
+	}
 	
+	public Panel getToolViewer()
+	{
+		return currentPanels.get(1);
+	}
+	
+	public Panel getFileViewer()
+	{
+		return currentPanels.get(0);
+	}
 	public void addNewFileManager()
 	{
 

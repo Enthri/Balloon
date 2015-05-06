@@ -93,7 +93,11 @@ public class Panel {
 	{
 		((Button) buttons.get(x)).paint(paint);
 	}
-
+	
+	public ArrayList<Button> getButtonList()
+	{
+		return buttons;
+	}
 	public void moveButtonPanel(Panel panel, Button button)
 	{
 		panel.addButton(button);
