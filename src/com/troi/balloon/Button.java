@@ -1,6 +1,5 @@
 package com.troi.balloon;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -17,6 +16,15 @@ public class Button {
 	BufferedImage button;
 	Panel panel;
 	String state;
+	public Button(Panel p){
+		try{
+			button = ImageIO.read(new File("resources/gray-fade.png"));
+		}catch(IOException e){
+			button = null;
+		}
+		dimension = new panelDimension((p.returnDimension().getX()+panel.width/2), (p.getDimension().getHeight()/3),20 ,20);
+	}
+	
 	public Button(panelDimension panelDimension){
 		try{
 			button = ImageIO.read(new File("resources/gray-fade.png"));
@@ -51,9 +59,10 @@ public class Button {
 			button = ImageIO.read(new File("resources/gray-fade.png"));
 		}catch(IOException e){
 			button = null;
-		}
+		
 		setSize(size);
 		panel = p;
+		}
 	}
 	
 	public void setSize(String size) {
@@ -79,7 +88,7 @@ public class Button {
 	
 	//check in use -- checks to see if the button currently being dragged
 	
-	//toggle draggable
+	//toggle dragsable
 	
 	//
 	

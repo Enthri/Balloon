@@ -1,9 +1,6 @@
 package DragAndDrop;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.TreeMap;
-
 import javax.swing.JFrame;
 
 import com.troi.balloon.Panel;

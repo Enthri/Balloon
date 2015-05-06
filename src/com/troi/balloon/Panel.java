@@ -20,7 +20,7 @@ public class Panel {
 	
 	/*public Panel()
 	{
-		System.out.println("ERROR: NO GIVEN DIMESION");
+		System.out.println("ERROR: NO GIVEN DIMENSION");
 	}*/
 	
 	public Panel(panelDimension dimension,String state)

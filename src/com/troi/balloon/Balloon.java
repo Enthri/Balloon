@@ -1,6 +1,5 @@
 package com.troi.balloon;
 
-import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
@@ -23,7 +22,6 @@ public class Balloon implements Runnable {
 		frame.setPreferredSize(new Dimension(800, 600));
 		frame.pack();
 		manager = new UiManager(frame);
-		frame.add(new ButtonComponent(20, 20, 20, 20, Color.BLACK));
 		frame.setVisible(true);
 //		frame.pack();
 //        final RSyntaxTextArea textArea = new RSyntaxTextArea(20, 60);
