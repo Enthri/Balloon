@@ -45,10 +45,11 @@ public class Panel {
 		}
 		
 	}
-	public void addButton(Button button, panelDimension dimension)
+	public void addButton(Button button)
 	{
-		button.setDimension(dimension);
+		
 		buttons.add(button);
+		button.setDimension(new panelDimension((this.getDimension().getX() + this.getDimension().getWidth()/2), ((this.getDimension().getY() + button.getSize().getHeight() - 10)*buttons.size()), button.getSize().getWidth(),button.getSize().getHeight()));
 		
 	}
 	public void setDefualtRepaintValue(boolean setValue)
@@ -102,10 +103,6 @@ public class Panel {
 	{
 		dimension = new panelDimension(x,y,width,hieght);
 		return dimension;
-	}
-	public void addButton(Button button)
-	{
-		buttons.add(button);
 	}
 	
 	public panelDimension getDimension()

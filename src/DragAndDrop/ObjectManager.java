@@ -1,9 +1,8 @@
 package DragAndDrop;
 
-import java.util.ArrayList;
-
 import util.panelDimension;
 
+import com.troi.balloon.Button;
 import com.troi.balloon.Panel;
 
 public class ObjectManager extends Panel {
@@ -12,6 +11,7 @@ public class ObjectManager extends Panel {
 	public ObjectManager(panelDimension dimension,String state) {
 		super(dimension,state);
 		this.currentState = state;
+		this.addButton(new Button(this));
 	}
 	
 	public String getState()
