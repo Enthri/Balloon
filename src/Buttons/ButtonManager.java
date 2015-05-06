@@ -15,7 +15,7 @@ import com.troi.balloon.*;
 //	method button
 //	command button
 //	tools button
-public class PackageButton extends Button {
+public class ButtonManager extends Button {
 	panelDimension dimension;
 	BufferedImage button;
 	Panel panel;
@@ -25,7 +25,7 @@ public class PackageButton extends Button {
 	String title;
 	int w;
 	int h;
-	public PackageButton(Panel p) {
+	public ButtonManager(Panel p, String type) {
 		super(p);
 		try{
 			button = ImageIO.read(new File("resources/gray-fade.png"));

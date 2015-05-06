@@ -24,46 +24,15 @@ public class Button {
 		}
 		dimension = new panelDimension((p.returnDimension().getX()+panel.width/2), (p.getDimension().getHeight()/3),20 ,20);
 	}
-	
-	public Button(panelDimension panelDimension){
-		try{
-			button = ImageIO.read(new File("resources/gray-fade.png"));
-		}catch(IOException e){
-			button = null;
-		}
-	}
-	
-	public Button(panelDimension panelDimension, Panel p){
+	public Button(panelDimension panelDimension, Panel p, String type){
 		try{
 			button = ImageIO.read(new File("resources/gray-fade.png"));
 		}catch(IOException e){
 			button = null;
 		}
 		panel = p;
-	}
-	
-	public Button(panelDimension panelDimension, Panel p, String s, String size){
-		try{
-			button = ImageIO.read(new File("resources/gray-fade.png"));
-		}catch(IOException e){
-			button = null;
+		state = type;
 		}
-		panel = p;
-		state = s;
-		setSize(size);
-		}
-	
-	public Button(Panel p,String size)
-	{
-		try{
-			button = ImageIO.read(new File("resources/gray-fade.png"));
-		}catch(IOException e){
-			button = null;
-		
-		setSize(size);
-		panel = p;
-		}
-	}
 	
 	public void setSize(String size) {
 		// TODO Auto-generated method stub
@@ -81,7 +50,7 @@ public class Button {
 		render.fillRect(10,10,10,10);
 	}
 	
-	public panelDimension getSize()
+	public String getSize()
 	{
 		return dimension;
 	}
