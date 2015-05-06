@@ -14,6 +14,7 @@ public class Environment extends JPanel {
 	
 	public Environment() {
 		panelList = new ArrayList<Panel>();
+		this.add(new Panel());
 	}
 	
 	@Override

@@ -2,6 +2,7 @@ package com.troi.balloon.panelsystem;
 
 import java.awt.Dimension;
 import java.awt.Graphics2D;
+import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 
 public class Panel {
@@ -13,18 +14,27 @@ public class Panel {
 	public Panel() {
 		buttonList = new ArrayList<Button>();
 		requestedRepaint = false;
-		bounds = new Dimension(100, 500);
+		bounds = new Dimension(100, 100);
+		this.add(new Button());
 	}
 	
 	public void paint(Graphics2D render) {
 		render.fillRect(0, 0, (int)bounds.getWidth(), (int)bounds.getHeight());
+		AffineTransform oldTransform = render.getTransform();
 		for(Button button : buttonList) {
 			button.paint(render);
+			render.translate(0, button.getDimension().getHeight());
 		}
+		render.setTransform(oldTransform);
 	}
 	
 	public void update() {
 		for(Button button : buttonList) {
+			if(button.getDimension().getWidth() != getDimension().getWidth()) {
+				button.getDimension().setSize(button.getDimension().getWidth(), getDimension().getWidth());
+				button.requestRepaint();
+			}
+			button.update();
 			if(button.needsRepaint()) this.requestRepaint();
 		}
 	}
