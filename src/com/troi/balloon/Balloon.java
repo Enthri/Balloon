@@ -27,7 +27,7 @@ public class Balloon implements Runnable {
 		frame.setPreferredSize(new Dimension(800, 600));
 		frame.pack();
 		frame.setVisible(true);
-		Timer timer = new Timer(20, new ActionListener(){
+		Timer timer = new Timer(50, new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				currentEnvironment.update();
