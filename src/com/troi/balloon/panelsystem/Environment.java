@@ -14,8 +14,6 @@ public class Environment extends JPanel {
 	
 	public Environment() {
 		panelList = new ArrayList<Panel>();
-		this.add(new Panel());
-		this.add(new Panel());
 	}
 	
 	@Override
@@ -34,9 +32,17 @@ public class Environment extends JPanel {
 	}
 	
 	public void update() {
-		for(Panel panel : panelList) {
+		for(int i = 0; i < panelList.size(); i++) {
+			Panel panel = panelList.get(i);
 			if(panel.getDimension().getHeight() != this.getHeight()) {
 				panel.getDimension().setSize(panel.getDimension().getWidth(), this.getHeight());
+				panel.requestRepaint();
+			}
+			if(i == panelList.size() - 1 && panel.getDimension().getWidth() == 100) {
+				panel.getDimension().setSize(this.getWidth() - (i * 100), panel.getDimension().getHeight());
+				panel.requestRepaint();
+			} else if(i < panelList.size() - 1 && panel.getDimension().getWidth() != 100) {
+				panel.getDimension().setSize(100, panel.getDimension().getHeight());
 				panel.requestRepaint();
 			}
 			panel.update();

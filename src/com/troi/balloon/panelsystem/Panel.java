@@ -15,10 +15,6 @@ public class Panel {
 		buttonList = new ArrayList<Button>();
 		requestedRepaint = false;
 		bounds = new Dimension(100, 100);
-		this.add(new Button());
-		this.add(new Button());
-		this.add(new Button());
-		this.add(new Button());
 	}
 	
 	public void paint(Graphics2D render) {
@@ -34,7 +30,7 @@ public class Panel {
 	public void update() {
 		for(Button button : buttonList) {
 			if(button.getDimension().getWidth() != getDimension().getWidth()) {
-				button.getDimension().setSize(button.getDimension().getWidth(), getDimension().getWidth());
+				button.getDimension().setSize(getDimension().getWidth(), button.getDimension().getHeight());
 				button.requestRepaint();
 			}
 			button.update();
