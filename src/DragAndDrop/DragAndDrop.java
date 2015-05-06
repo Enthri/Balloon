@@ -79,7 +79,7 @@ public class DragAndDrop{
 	}
 	public Panel getMainViewer()
 	{
-		return currentPanels.get(2);
+		return (Panel)currentPanels.get(2);
 	}
 	
 	public Panel getToolViewer()

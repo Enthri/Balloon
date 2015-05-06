@@ -21,7 +21,6 @@ public class UiManager{
 	TextEditer textEditor;
 	DragAndDrop guiEditor;
 	GraphicsComponent gComponent;
-	DragAndDrop guiEditer;
 	Button buttonInUse = null;
 	boolean mouseInUse;
 	
@@ -103,29 +102,29 @@ public class UiManager{
 	{
 		if(e.getPoint().getX() > getMainDimension().getX())
 		{
-			for(int x = 0;x <= guiEditer.getMainViewer().getButtonList().size()-1;x++)
+			for(int x = 0;x <= guiEditor.getMainViewer().getButtonList().size()-1;x++)
 				
-				if (checkButtonLocation(guiEditer.getMainViewer().getButtonList().get(x),e.getPoint()) == true)
+				if (checkButtonLocation(guiEditor.getMainViewer().getButtonList().get(x),e.getPoint()) == true)
 				{
-					buttonInUse = guiEditer.getMainViewer().getButtonList().get(x);
+					buttonInUse = guiEditor.getMainViewer().getButtonList().get(x);
 				}
 		}
 		else if(e.getPoint().getX() > getToolDimension().getX())
 		{
-			for(int x = 0;x <= guiEditer.getToolViewer().getButtonList().size()-1;x++)
+			for(int x = 0;x <= guiEditor.getToolViewer().getButtonList().size()-1;x++)
 				
-				if (checkButtonLocation(guiEditer.getToolViewer().getButtonList().get(x),e.getPoint()) == true)
+				if (checkButtonLocation(guiEditor.getToolViewer().getButtonList().get(x),e.getPoint()) == true)
 				{
-					buttonInUse = guiEditer.getToolViewer().getButtonList().get(x);
+					buttonInUse = guiEditor.getToolViewer().getButtonList().get(x);
 				}
 		}
 		else if (e.getPoint().getX() > getFileDimension().getX())
 		{
-			for(int x = 0;x <= guiEditer.getFileViewer().getButtonList().size()-1;x++)
+			for(int x = 0;x <= guiEditor.getFileViewer().getButtonList().size()-1;x++)
 				
-				if (checkButtonLocation(guiEditer.getFileViewer().getButtonList().get(x),e.getPoint()) == true)
+				if (checkButtonLocation(guiEditor.getFileViewer().getButtonList().get(x),e.getPoint()) == true)
 				{
-					buttonInUse = guiEditer.getFileViewer().getButtonList().get(x);
+					buttonInUse = guiEditor.getFileViewer().getButtonList().get(x);
 				}
 		}
 		
@@ -141,14 +140,16 @@ public class UiManager{
 		@Override
 		public void mousePressed(MouseEvent e) {
 			mouseInUse = true;
-			if (buttonInUse == null)
+			checkButtonInUse(e);
+			/*if (buttonInUse == null)
 			{
 				checkButtonInUse(e);
 			}
 			else 
 			{
 				buttonInUse.getContainer().paintPanel(gComponent.getGraphics2D());
-			}
+			}*/
+			
 		}
 
 		@Override
