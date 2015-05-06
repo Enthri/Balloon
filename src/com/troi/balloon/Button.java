@@ -47,7 +47,7 @@ public class Button {
 	public Button(Panel p,String size)
 	{
 		try{
-		button = ImageIO.read(new File("src/resources/gray-fade.png"));
+			button = ImageIO.read(new File("resources/gray-fade.png"));
 		}catch(IOException e){
 			button = null;
 		}
@@ -67,9 +67,14 @@ public class Button {
 	}
 	
 	public void paint(Graphics2D render) {
+<<<<<<< HEAD
 		//render.drawImage(button.getScaledInstance(dimension.getWidth(), dimension.getHeight(), Image.SCALE_FAST), dimension.getX(), dimension.getY(), null);
 		render.setColor(Color.WHITE);
 		render.fillRect(dimension.getX(), dimension.getY(),100,100);
+=======
+		render.drawImage(button.getScaledInstance(dimension.getWidth(), dimension.getHeight(), Image.SCALE_FAST), dimension.getX(), dimension.getY(), null);
+		render.fillRect(10,10,10,10);
+>>>>>>> origin/master
 	}
 	
 	public panelDimension getSize()
