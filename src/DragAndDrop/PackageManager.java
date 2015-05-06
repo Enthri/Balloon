@@ -10,5 +10,6 @@ public class PackageManager extends ObjectManager {
 		super(dimension, state);
 		this.addButton(new Button(this, "Small"));
 	}
-
+	
+	
 }
