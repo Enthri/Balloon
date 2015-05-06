@@ -1,13 +1,15 @@
 package com.troi.balloon;
 
-import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
+import com.troi.balloon.panelsystem.Environment;
+
 public class Balloon implements Runnable {
-	UiManager manager;
+	
 	private JFrame frame;
+	private Environment currentEnvironment;
 	
 	public static void main(String[] args) {
 		
@@ -17,14 +19,12 @@ public class Balloon implements Runnable {
 
 	@Override
 	public void run() {
-		//JCompiler.init();
 		frame = new JFrame("Test");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setPreferredSize(new Dimension(800, 600));
 		frame.pack();
-		//manager = new UiManager(frame);
-		//frame.add(new ButtonComponent(20, 20, 20, 20, Color.BLACK));
 		frame.setVisible(true);
+		this.setCurrentEnvironment(new Environment());
 //		frame.pack();
 //        final RSyntaxTextArea textArea = new RSyntaxTextArea(20, 60);
 //        textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA);
@@ -35,5 +35,14 @@ public class Balloon implements Runnable {
 //        System.setProperty("java.home", "C:\\Program Files\\Java\\jdk1.7.0_71");
 //        final JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
 		//hello
+	}
+	
+	public void setCurrentEnvironment(Environment environment) {
+		currentEnvironment = environment;
+		frame.setContentPane(currentEnvironment);
+	}
+	
+	public Environment getCurrentEnvironment() {
+		return currentEnvironment;
 	}
 }
