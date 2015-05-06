@@ -112,7 +112,7 @@ public class DragAndDrop{
 		}
 		else
 		{
-			currentPanels.set(2, new Panel(manager.getFileDimension()));
+			currentPanels.set(2, new Panel(manager.getFileDimension(),"FileManager"));
 		}
 	}
 	
