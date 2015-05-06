@@ -12,13 +12,13 @@ public class Environment extends JPanel {
 		
 	}
 	
-	/*@Override
+	@Override
 	public void paintComponent(Graphics g) {
-		//super.paintComponent(g);
+		super.paintComponent(g);
 		this.paint((Graphics2D)g);
 	}
 	
 	public void paint(Graphics2D render) {
 		
-	}*/
+	}
 }
