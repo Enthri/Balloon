@@ -33,6 +33,7 @@ public class Balloon implements Runnable {
 				currentEnvironment.update();
 			}
 		});
+		timer.start();
 		this.setCurrentEnvironment(new Environment());
 //		frame.pack();
 //        final RSyntaxTextArea textArea = new RSyntaxTextArea(20, 60);
