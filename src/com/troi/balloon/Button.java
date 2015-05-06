@@ -2,6 +2,7 @@ package com.troi.balloon;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -67,14 +68,8 @@ public class Button {
 	}
 	
 	public void paint(Graphics2D render) {
-<<<<<<< HEAD
-		//render.drawImage(button.getScaledInstance(dimension.getWidth(), dimension.getHeight(), Image.SCALE_FAST), dimension.getX(), dimension.getY(), null);
-		render.setColor(Color.WHITE);
-		render.fillRect(dimension.getX(), dimension.getY(),100,100);
-=======
 		render.drawImage(button.getScaledInstance(dimension.getWidth(), dimension.getHeight(), Image.SCALE_FAST), dimension.getX(), dimension.getY(), null);
 		render.fillRect(10,10,10,10);
->>>>>>> origin/master
 	}
 	
 	public panelDimension getSize()
