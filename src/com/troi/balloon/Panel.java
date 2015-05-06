@@ -23,10 +23,9 @@ public class Panel {
 		System.out.println("ERROR: NO GIVEN DIMESION");
 	}*/
 	
-	public Panel(panelDimension dimension)
-
+	public Panel(panelDimension dimension,String state)
 	{
-		type = "panel";
+		type = state;
 		if (this instanceof Tools)
 		{
 			color = new Color(41,50,20);
@@ -35,19 +34,7 @@ public class Panel {
 			dimension = new panelDimension((int)background.getX(), (int)background.getY(), (int) background.getWidth(), (int) background.getHeight());
 			setDefualtRepaintValue(true);
 		}
-		else
-		{
-			color = new Color(100,200,20);
-			background = new Rectangle(dimension.getX(),0,(dimension.getWidth()),dimension.getHeight());
-			buttons = new ArrayList<Button>();
-			dimension = new panelDimension((int)background.getX(), (int)background.getY(), (int) background.getWidth(), (int) background.getHeight());
-			setDefualtRepaintValue(true);
-		}
-	}
-	public Panel(panelDimension dimension,String state)
-	{
-		type = state;
-		if (this instanceof ObjectManager)
+		else if (this instanceof ObjectManager)
 		{
 			color = new Color(50,90,200);
 				background = new Rectangle(dimension.getX(),0,(dimension.getWidth()),dimension.getHeight());
