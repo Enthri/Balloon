@@ -16,6 +16,9 @@ public class Panel {
 		requestedRepaint = false;
 		bounds = new Dimension(100, 100);
 		this.add(new Button());
+		this.add(new Button());
+		this.add(new Button());
+		this.add(new Button());
 	}
 	
 	public void paint(Graphics2D render) {

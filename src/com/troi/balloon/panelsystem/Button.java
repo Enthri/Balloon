@@ -16,6 +16,7 @@ public class Button {
 	public void paint(Graphics2D render) {
 		render.setColor(Color.WHITE);
 		render.fillRect(0, 0, (int)bounds.getWidth(), (int)bounds.getHeight());
+		render.setColor(Color.BLACK);
 	}
 	
 	public void update() {
