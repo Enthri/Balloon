@@ -2,10 +2,12 @@ package com.troi.balloon;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
+
+import DragAndDrop.ObjectManager;
+import DragAndDrop.Tools;
 
 public class GraphicsComponent extends JPanel {
 
@@ -32,10 +34,32 @@ public class GraphicsComponent extends JPanel {
 	}
 
 	public void paintPanel(Panel panel) {
-		panels.add(panel);
-		this.repaint();
-	}
+		if (panel instanceof Tools)
+		{
+			if ( panels.get(1) != null);
+			{
+				panels.set(1, panel);
+				this.repaint();
+			}
+		}
+		else if (panel instanceof ObjectManager)
+		{
+		
+					if (panel.getType().equals("MainViewer"))
+							{
+								panels.set(2, panel);
+							}
+					else panels.set(0,panel);
+					this.repaint();
+		}
 	
+	}
+	public void initiate()
+	{
+		panels.add(null);
+		panels.add(null);
+		panels.add(null);
+	}
 	public void paintButton(Panel panel)
 	{
 		

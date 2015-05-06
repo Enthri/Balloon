@@ -34,6 +34,7 @@ public class UiManager{
 		gComponent = new GraphicsComponent(); 
 		textEditor = new TextEditer();
 		guiEditor = new DragAndDrop(frame,this);
+		gComponent.initiate();
 		frame.setContentPane(gComponent);
 		frame.addMouseListener(new ButtonsListener());
 		//Panel panel = new Panel((panelDimension) Dimensions.get("MainManager"));
