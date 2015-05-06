@@ -6,8 +6,6 @@ import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.HashMap;
-import java.util.TreeMap;
-
 import javax.swing.JFrame;
 
 import util.panelDimension;
