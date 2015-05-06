@@ -14,38 +14,46 @@ import util.panelDimension;
 public class Button {
 
 	panelDimension dimension;
-	Image imageButton;
+	BufferedImage button;
 	Panel panel;
 	String state;
 	public Button(panelDimension panelDimension){
-		initImage();
+		try{
+			button = ImageIO.read(new File("resources/gray-fade.png"));
+		}catch(IOException e){
+			button = null;
+		}
 	}
 	
 	public Button(panelDimension panelDimension, Panel p){
+		try{
+			button = ImageIO.read(new File("resources/gray-fade.png"));
+		}catch(IOException e){
+			button = null;
+		}
 		panel = p;
-		initImage();
 	}
 	
 	public Button(panelDimension panelDimension, Panel p, String s, String size){
+		try{
+			button = ImageIO.read(new File("resources/gray-fade.png"));
+		}catch(IOException e){
+			button = null;
+		}
 		panel = p;
 		state = s;
 		setSize(size);
-		initImage();
-	}
+		}
 	
 	public Button(Panel p,String size)
 	{
+		try{
+			button = ImageIO.read(new File("resources/gray-fade.png"));
+		}catch(IOException e){
+			button = null;
+		}
 		setSize(size);
 		panel = p;
-		initImage();
-	}
-	
-	private void initImage() {
-		try{
-			imageButton = ImageIO.read(new File("resources/gray-fade.png")).getScaledInstance(dimension.getWidth(), dimension.getHeight(), Image.SCALE_FAST);
-		}catch(IOException e){
-			imageButton = null;
-		}
 	}
 	
 	public void setSize(String size) {
@@ -60,7 +68,7 @@ public class Button {
 	}
 	
 	public void paint(Graphics2D render) {
-		render.drawImage(imageButton, dimension.getX(), dimension.getY(), null);
+		render.drawImage(button.getScaledInstance(dimension.getWidth(), dimension.getHeight(), Image.SCALE_FAST), dimension.getX(), dimension.getY(), null);
 		render.fillRect(10,10,10,10);
 	}
 	

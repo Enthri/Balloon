@@ -102,7 +102,7 @@ public class UiManager{
 	{
 		if(e.getPoint().getX() > getMainDimension().getX())
 		{
-			for(int x = 0;x < guiEditer.map.get("MainManagerButtons").buttons.size()-1;x++)
+			for(int x = 0;x <= guiEditer.map.get("MainManagerButtons").buttons.size()-1;x++)
 				
 				if (checkButtonLocation(guiEditer.map.get("MainManagerButtons").buttons.get(x),e.getPoint()) == true)
 				{
@@ -111,7 +111,7 @@ public class UiManager{
 		}
 		else if(e.getPoint().getX() > getToolDimension().getX())
 		{
-			for(int x = 0;x < guiEditer.map.get("ToolManagerButtons").buttons.size()-1;x++)
+			for(int x = 0;x <= guiEditer.map.get("ToolManagerButtons").buttons.size()-1;x++)
 				
 				if (checkButtonLocation(guiEditer.map.get("ToolManagerButtons").buttons.get(x),e.getPoint()) == true)
 				{
@@ -120,7 +120,7 @@ public class UiManager{
 		}
 		else if (e.getPoint().getX() > getFileDimension().getX())
 		{
-			for(int x = 0;x < guiEditer.map.get("FileManagerButtons").buttons.size()-1;x++)
+			for(int x = 0;x <= guiEditer.map.get("FileManagerButtons").buttons.size()-1;x++)4
 				
 				if (checkButtonLocation(guiEditer.map.get("FileManagerButtons").buttons.get(x),e.getPoint()) == true)
 				{
