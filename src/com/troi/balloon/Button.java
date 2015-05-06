@@ -48,7 +48,7 @@ public class Button {
 	public Button(Panel p,String size)
 	{
 		try{
-		button = ImageIO.read(new File("src/resources/gray-fade.png"));
+			button = ImageIO.read(new File("resources/gray-fade.png"));
 		}catch(IOException e){
 			button = null;
 		}
