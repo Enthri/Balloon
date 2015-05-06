@@ -15,15 +15,15 @@ import DragAndDrop.DragAndDrop;
 
 
 public class UiManager{
-	HashMap<String,panelDimension> Dimensions;
-	JFrame frame;
-	Graphics2D paint;
-	TextEditer textEditor;
-	DragAndDrop guiEditor;
-	GraphicsComponent gComponent;
-	DragAndDrop guiEditer;
-	Button buttonInUse = null;
-	boolean mouseInUse;
+	public HashMap<String,panelDimension> Dimensions;
+	public JFrame frame;
+	public Graphics2D paint;
+	public TextEditer textEditor;
+	public DragAndDrop guiEditor;
+	public GraphicsComponent gComponent;
+	public DragAndDrop guiEditer;
+	public Button buttonInUse = null;
+	public boolean mouseInUse;
 	
 	public UiManager(JFrame frame)
 	{
@@ -64,7 +64,7 @@ public class UiManager{
 	}
 	public void paintPanels(DragAndDrop editer)
 	{
-		for (int x = 0; x <= editer.currentPanels.size()-1; x++)
+		for (int x = 0; x < editer.currentPanels.size(); x++)
 		{
 			gComponent.paintPanel(editer.currentPanels.get(x));
 		} 
@@ -102,7 +102,7 @@ public class UiManager{
 	{
 		if(e.getPoint().getX() > getMainDimension().getX())
 		{
-			for(int x = 0;x <= guiEditer.getMainViewer().getButtonList().size()-1;x++)
+			for(int x = 0;x < guiEditer.getMainViewer().getButtonList().size();x++)
 				
 				if (checkButtonLocation(guiEditer.getMainViewer().getButtonList().get(x),e.getPoint()) == true)
 				{
@@ -111,7 +111,7 @@ public class UiManager{
 		}
 		else if(e.getPoint().getX() > getToolDimension().getX())
 		{
-			for(int x = 0;x <= guiEditer.getToolViewer().getButtonList().size()-1;x++)
+			for(int x = 0;x < guiEditer.getToolViewer().getButtonList().size();x++)
 				
 				if (checkButtonLocation(guiEditer.getToolViewer().getButtonList().get(x),e.getPoint()) == true)
 				{
@@ -120,7 +120,7 @@ public class UiManager{
 		}
 		else if (e.getPoint().getX() > getFileDimension().getX())
 		{
-			for(int x = 0;x <= guiEditer.getFileViewer().getButtonList().size()-1;x++)
+			for(int x = 0;x < guiEditer.getFileViewer().getButtonList().size();x++)
 				
 				if (checkButtonLocation(guiEditer.getFileViewer().getButtonList().get(x),e.getPoint()) == true)
 				{
