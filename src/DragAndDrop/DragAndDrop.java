@@ -33,6 +33,7 @@ public class DragAndDrop{
 	public TreeMap<String,Panel> setButtons()
 	{
 		
+		map = new TreeMap<String,Panel>();
 		map.put("FileManagerButtons", currentPanels.get(0));
 		map.put("ToolManagerButtons", currentPanels.get(1));
 		map.put("MainManagerButtons", currentPanels.get(2));
