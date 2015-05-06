@@ -1,8 +1,11 @@
 package com.troi.balloon;
 
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
+import javax.swing.Timer;
 
 import com.troi.balloon.panelsystem.Environment;
 
@@ -24,6 +27,12 @@ public class Balloon implements Runnable {
 		frame.setPreferredSize(new Dimension(800, 600));
 		frame.pack();
 		frame.setVisible(true);
+		Timer timer = new Timer(20, new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				currentEnvironment.update();
+			}
+		});
 		this.setCurrentEnvironment(new Environment());
 //		frame.pack();
 //        final RSyntaxTextArea textArea = new RSyntaxTextArea(20, 60);

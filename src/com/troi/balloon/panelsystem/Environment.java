@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class Environment extends JPanel {
 	
-	protected ArrayList<Panel> panelList = new ArrayList<Panel>();
+	private ArrayList<Panel> panelList = new ArrayList<Panel>();
 	
 	public Environment() {
 		
@@ -25,5 +25,17 @@ public class Environment extends JPanel {
 		for(Panel panel : panelList) {
 			panel.paint(render);
 		}
+	}
+	
+	public void update() {
+		for(Panel panel : panelList) {
+			panel.update();
+			if(panel.needsRepaint()) this.repaint();
+		}
+	}
+	
+	public void add(Panel panel) {
+		panelList.add(panel);
+		this.repaint();
 	}
 }
