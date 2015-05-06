@@ -42,7 +42,11 @@ public class Button {
 	
 	private void initImage() {
 		try{
+<<<<<<< HEAD
 			imageButton = ImageIO.read(new File("resources/gray-fade.png")).getScaledInstance(dimension.getWidth(), dimension.getHeight(), Image.SCALE_FAST);
+=======
+		button = ImageIO.read(new File("resources/gray-fade.png"));
+>>>>>>> origin/master
 		}catch(IOException e){
 			imageButton = null;
 		}
