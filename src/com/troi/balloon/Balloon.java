@@ -35,7 +35,9 @@ public class Balloon implements Runnable {
 		});
 		timer.start();
 		this.setCurrentEnvironment(new Environment());
-		currentEnvironment.add(new com.troi.balloon.panelsystem.Panel());
+		com.troi.balloon.panelsystem.Panel panel = new com.troi.balloon.panelsystem.Panel();
+		panel.add(new com.troi.balloon.panelsystem.Button());
+		currentEnvironment.add(panel);
 		currentEnvironment.add(new com.troi.balloon.panelsystem.Panel());
 		currentEnvironment.add(new com.troi.balloon.panelsystem.Panel());
 		currentEnvironment.add(new com.troi.balloon.panelsystem.Panel());
