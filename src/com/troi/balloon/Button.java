@@ -22,7 +22,7 @@ public class Button {
 		}catch(IOException e){
 			button = null;
 		}
-		dimension = new panelDimension((p.returnDimension().getX()+panel.width/2), (p.getDimension().getHeight()/3),20 ,20);
+		dimension = new panelDimension((p.returnDimension().getX()+p.returnDimension().getWidth()/2), (p.getDimension().getHeight()/5),20 ,20);
 	}
 	public Button(panelDimension panelDimension, Panel p, String type){
 		try{
@@ -47,10 +47,10 @@ public class Button {
 	
 	public void paint(Graphics2D render) {
 		render.drawImage(button.getScaledInstance(dimension.getWidth(), dimension.getHeight(), Image.SCALE_FAST), dimension.getX(), dimension.getY(), null);
-		render.fillRect(10,10,10,10);
+	//	render.fillRect(10,10,10,10);
 	}
 	
-	public String getSize()
+	public panelDimension getSize()
 	{
 		return dimension;
 	}

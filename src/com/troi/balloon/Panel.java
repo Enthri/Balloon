@@ -33,6 +33,7 @@ public class Panel {
 			buttons = new ArrayList<Button>();
 			dimension = new panelDimension((int)background.getX(), (int)background.getY(), (int) background.getWidth(), (int) background.getHeight());
 			setDefualtRepaintValue(true);
+			buttons.add(new Button(this));
 		}
 		else if (this instanceof ObjectManager)
 		{
