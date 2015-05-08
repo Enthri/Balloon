@@ -8,6 +8,14 @@ public class PackageManager extends ObjectManager {
 
 	public PackageManager(panelDimension dimension, String state) {
 		super(dimension, state);
+		addButton(new Button(this));
+		addButton(new Button(this));
+		addButton(new Button(this));
+		addButton(new Button(this));
+		addButton(new Button(this));
+		addButton(new Button(this));
+		addButton(new Button(this));
+		addButton(new Button(this));
 	}
 	
 	

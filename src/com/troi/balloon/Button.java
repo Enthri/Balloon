@@ -22,7 +22,8 @@ public class Button {
 		}catch(IOException e){
 			button = null;
 		}
-		dimension = new panelDimension((p.returnDimension().getX()+p.returnDimension().getWidth()/2), (p.getDimension().getHeight()/5),20 ,20);
+	//	System.out.println("")
+		dimension = new panelDimension((p.returnDimension().getX() + p.returnDimension().getWidth()/2), (p.getDimension().getHeight()/10 * (p.getButtonList().size()+1)),100 ,(p.getDimension().getWidth()/2 + 5));
 	}
 	public Button(panelDimension panelDimension, Panel p, String type){
 		try{
@@ -32,13 +33,6 @@ public class Button {
 		}
 		panel = p;
 		state = type;
-		}
-	
-	public void setSize(String size) {
-		// TODO Auto-generated method stub
-		if(size.equals("Small")){
-			setDimension(new panelDimension(100, 10, 10, 10));
-		}
 	}
 
 	public Panel getContainer(){

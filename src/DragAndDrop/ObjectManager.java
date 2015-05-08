@@ -11,7 +11,6 @@ public class ObjectManager extends Panel {
 	public ObjectManager(panelDimension dimension,String state) {
 		super(dimension,state);
 		this.currentState = state;
-		this.addButton(new Button(this));
 	}
 	
 	public String getState()
