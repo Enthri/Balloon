@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 public class Environment extends JPanel {
 	
 	private ArrayList<Panel> panelList;
+	private boolean requestedRepaint;
 	
 	public Environment() {
 		panelList = new ArrayList<Panel>();
@@ -38,7 +39,7 @@ public class Environment extends JPanel {
 				panel.getDimension().setSize(panel.getDimension().getWidth(), this.getHeight());
 				panel.requestRepaint();
 			}
-			if(i == panelList.size() - 1 && panel.getDimension().getWidth() == 100) {
+			if(i == panelList.size() - 1 && panel.getDimension().getWidth() + (i * 100) != this.getWidth()) {
 				panel.getDimension().setSize(this.getWidth() - (i * 100), panel.getDimension().getHeight());
 				panel.requestRepaint();
 			} else if(i < panelList.size() - 1 && panel.getDimension().getWidth() != 100) {
@@ -46,12 +47,24 @@ public class Environment extends JPanel {
 				panel.requestRepaint();
 			}
 			panel.update();
-			if(panel.needsRepaint()) this.repaint();
+			if(panel.checkRepaint()) this.repaint();
 		}
+		if(this.checkRepaint()) this.repaint();
 	}
 	
 	public void add(Panel panel) {
 		panelList.add(panel);
-		this.repaint();
+		this.requestRepaint();
+	}
+	
+	public void requestRepaint() {
+		requestedRepaint = true;
+	}
+	
+	public boolean checkRepaint() {
+		if(requestedRepaint) {
+			requestedRepaint = false;
+			return true;
+		} else return false;
 	}
 }

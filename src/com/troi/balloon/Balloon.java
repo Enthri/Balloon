@@ -35,6 +35,11 @@ public class Balloon implements Runnable {
 		});
 		timer.start();
 		this.setCurrentEnvironment(new Environment());
+		currentEnvironment.add(new com.troi.balloon.panelsystem.Panel());
+		currentEnvironment.add(new com.troi.balloon.panelsystem.Panel());
+		currentEnvironment.add(new com.troi.balloon.panelsystem.Panel());
+		currentEnvironment.add(new com.troi.balloon.panelsystem.Panel());
+		currentEnvironment.add(new com.troi.balloon.panelsystem.Panel());
 //		frame.pack();
 //        final RSyntaxTextArea textArea = new RSyntaxTextArea(20, 60);
 //        textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA);

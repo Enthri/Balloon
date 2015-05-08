@@ -19,6 +19,7 @@ public class Panel {
 	
 	public void paint(Graphics2D render) {
 		render.fillRect(0, 0, (int)bounds.getWidth(), (int)bounds.getHeight());
+		render.setColor(render.getColor().darker());
 		AffineTransform oldTransform = render.getTransform();
 		for(Button button : buttonList) {
 			button.paint(render);
@@ -34,7 +35,7 @@ public class Panel {
 				button.requestRepaint();
 			}
 			button.update();
-			if(button.needsRepaint()) this.requestRepaint();
+			if(button.checkRepaint()) this.requestRepaint();
 		}
 	}
 	
@@ -47,8 +48,11 @@ public class Panel {
 		requestedRepaint = true;
 	}
 	
-	public boolean needsRepaint() {
-		return requestedRepaint;
+	public boolean checkRepaint() {
+		if(requestedRepaint) {
+			requestedRepaint = false;
+			return true;
+		} else return false;
 	}
 	
 	public Dimension getDimension() {
