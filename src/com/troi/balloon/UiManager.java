@@ -90,6 +90,20 @@ public class UiManager{
 	{
 		return (panelDimension) Dimensions.get(name);
 	}
+	
+	public void updateButtonLocation(Button button)
+	{
+		for (int x = 0; x < guiEditor.getCurrentPanels().size()-1;x++)
+		{
+			if (button.withIn(button.getContainer()) == false)
+			{
+				if (button.withIn(guiEditor.getCurrentPanels().get(x))== true);
+				{
+					button.getContainer().moveButtonPanel(guiEditor.getCurrentPanels().get(x), button);
+				}
+			}
+		}
+	}
 	public boolean checkButtonLocation(Button button, Point point)
 	{
 		if (button.getSize().getX() < point.getX() && button.getSize().getY() < point.getY() && (button.getSize().getX() + button.getSize().getWidth()) > point.getX() && (button.getSize().getY() + button.getSize().getHeight()) > point.getY())
@@ -140,7 +154,9 @@ public class UiManager{
 		@Override
 		public void mouseDragged(MouseEvent e) {
 			if(buttonInUse == null) return;
+			
 			buttonInUse.setDimension(new panelDimension(e.getX(),e.getY(), buttonInUse.getSize().getWidth(), buttonInUse.getSize().getHeight()));
+			
 			gComponent.repaint();
 		}
 		
@@ -151,6 +167,7 @@ public class UiManager{
 
 		@Override
 		public void mouseReleased(MouseEvent e) {
+			updateButtonLocation(buttonInUse);
 			buttonInUse = null;
 		}
 		
