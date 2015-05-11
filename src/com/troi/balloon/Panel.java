@@ -11,8 +11,8 @@ import DragAndDrop.Tools;
 public class Panel {
 	protected boolean repaintValue = false,buttonInUse = false;
 	protected ArrayList<Button> buttons;
-	protected int sizeOfMap,x,y,width,hieght;
 	protected panelDimension dimension;
+	protected panelDimension test;
 	protected Rectangle background;
 	protected String type;
 	protected Color color;
@@ -31,7 +31,7 @@ public class Panel {
 			color = new Color(41,50,20);
 			background = new Rectangle(dimension.getX(),0,(dimension.getWidth()),dimension.getHeight());
 			buttons = new ArrayList<Button>();
-			dimension = new panelDimension((int)background.getX(), (int)background.getY(), (int) background.getWidth(), (int) background.getHeight());
+			this.dimension = new panelDimension((int)background.getX(), (int)background.getY(), (int) background.getWidth(), (int) background.getHeight());
 			setDefualtRepaintValue(true);
 		}
 		else if (this instanceof ObjectManager)
@@ -39,7 +39,7 @@ public class Panel {
 			color = new Color(50,90,200);
 				background = new Rectangle(dimension.getX(),0,(dimension.getWidth()),dimension.getHeight());
 				buttons = new ArrayList<Button>();
-			dimension = new panelDimension((int)background.getX(), (int)background.getY(), (int) background.getWidth(), (int) background.getHeight());
+				this.dimension = new panelDimension((int)background.getX(), (int)background.getY(), (int) background.getWidth(), (int) background.getHeight());
 
 			setDefualtRepaintValue(true);
 		}
@@ -49,6 +49,7 @@ public class Panel {
 	{
 		
 		buttons.add(button);
+		button.setDimension(new panelDimension((this.getDimension().getX() + this.getDimension().getWidth()/2), ((this.getDimension().getY() + 120) * (this.getButtonList().size()+1)), 100,100));
 		
 	}
 	public void setDefualtRepaintValue(boolean setValue)
@@ -61,7 +62,6 @@ public class Panel {
 	}
 	public void paintPanel(Graphics2D paint)
 	{
-		sizeOfMap = buttons.size();
 		paint.fill(background);
 		for (Button button: buttons)
 		{
@@ -76,10 +76,6 @@ public class Panel {
 //	{
 //		((Button) buttons.get(buttons)).paint(paint);
 //	}
-	public void repaintButton(Button button,Graphics2D paint)
-	{
-		((Button) buttons.get(x)).paint(paint);
-	}
 	
 	public ArrayList<Button> getButtonList()
 	{
@@ -97,11 +93,6 @@ public class Panel {
 	public void removeButton(Button button)
 	{
 		buttons.remove(button);
-	}
-	public panelDimension returnDimension()
-	{
-		dimension = new panelDimension(x,y,width,hieght);
-		return dimension;
 	}
 	
 	public panelDimension getDimension()

@@ -62,9 +62,9 @@ public class UiManager{
 	}
 	public void paintPanels(DragAndDrop editer)
 	{
-		for (int x = 0; x <= editer.currentPanels.size()-1; x++)
+		for (int x = 0; x <= editer.getCurrentPanels().size()-1; x++)
 		{
-			gComponent.paintPanel(editer.currentPanels.get(x));
+			gComponent.paintPanel(editer.getCurrentPanels().get(x));
 		} 
 	}
 	public panelDimension getFileDimension()

@@ -22,8 +22,8 @@ public class Button {
 		}catch(IOException e){
 			button = null;
 		}
+		panel = p;
 	//	System.out.println("")
-		dimension = new panelDimension((p.returnDimension().getX() + p.returnDimension().getWidth()/2), (p.getDimension().getHeight()/10 * (p.getButtonList().size()+1)),100 ,(p.getDimension().getWidth()/2 + 5));
 	}
 	public Button(panelDimension panelDimension, Panel p, String type){
 		try{

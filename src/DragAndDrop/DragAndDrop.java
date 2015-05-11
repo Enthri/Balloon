@@ -8,7 +8,7 @@ import com.troi.balloon.UiManager;
 
 
 public class DragAndDrop{
-	public ArrayList<Panel> currentPanels = new ArrayList<Panel>();
+	ArrayList<Panel> currentPanels = new ArrayList<Panel>();
 	UiManager manager;
 	JFrame frame;
 	public DragAndDrop(JFrame frame, UiManager manager)
@@ -73,6 +73,10 @@ public class DragAndDrop{
 			addNewTool();
 		}
 		
+	}
+	public ArrayList<Panel> getCurrentPanels()
+	{
+		return currentPanels;
 	}
 	public Panel getMainViewer()
 	{
