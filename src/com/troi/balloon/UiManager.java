@@ -136,7 +136,7 @@ public class UiManager{
 		public void mouseDragged(MouseEvent e) {
 			 checkButtonInUse(e);
 			buttonInUse.setDimension(new panelDimension(e.getX(),e.getY(), buttonInUse.getSize().getWidth(), buttonInUse.getSize().getHeight()));
-			while(buttonInUse.withIn(buttonInUse.getContainer()) == true)
+			if(buttonInUse.withIn(buttonInUse.getContainer()))
 			{
 				 gComponent.repaint();
 			
