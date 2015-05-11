@@ -63,10 +63,7 @@ public class Panel {
 	public void paintPanel(Graphics2D paint)
 	{
 		paint.fill(background);
-		for (Button button: buttons)
-		{
-			button.paint(paint);
-		}
+		
 	}
 	public void setSize(panelDimension size)
 	{
@@ -80,6 +77,13 @@ public class Panel {
 	public ArrayList<Button> getButtonList()
 	{
 		return buttons;
+	}
+	public void repaintButton(Graphics2D paint)
+	{
+		for (Button button: buttons)
+		{
+			button.paint(paint);
+		}
 	}
 	public void moveButtonPanel(Panel panel, Button button)
 	{

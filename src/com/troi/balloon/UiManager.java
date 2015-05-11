@@ -5,7 +5,9 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.util.HashMap;
+
 import javax.swing.JFrame;
 
 import util.panelDimension;
@@ -33,7 +35,7 @@ public class UiManager{
 		guiEditor = new DragAndDrop(frame,this);
 		gComponent.initiate();
 		frame.setContentPane(gComponent);
-		frame.addMouseListener(new ButtonsListener());
+		frame.addMouseMotionListener(new ButtonsListener());
 		//Panel panel = new Panel((panelDimension) Dimensions.get("MainManager"));
 		//guiEditer = new DragAndDrop(frame,this);
 		paintPanels(guiEditor);
@@ -127,55 +129,27 @@ public class UiManager{
 		}
 		
 	}
-	public class ButtonsListener implements MouseListener
+	public class ButtonsListener implements MouseMotionListener
 	{
 
 		@Override
-		public void mouseClicked(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-		@Override
-		public void mousePressed(MouseEvent e) {
-			if (mouseInUse = true)
+		public void mouseDragged(MouseEvent e) {
+			 checkButtonInUse(e);
+			buttonInUse.setDimension(new panelDimension(e.getX(),e.getY(), buttonInUse.getSize().getWidth(), buttonInUse.getSize().getHeight()));
+			while(buttonInUse.withIn(buttonInUse.getContainer()) == true)
 			{
-				if (buttonInUse == null)
-				{
-					checkButtonInUse(e);
-				}
-				else if (buttonInUse != null)
-				{
-					buttonInUse.setDimension(new panelDimension(e.getX(),e.getY(), buttonInUse.getSize().getWidth(), buttonInUse.getSize().getHeight()));
-					while(buttonInUse.withIn(buttonInUse.getContainer()) == true)
-					{
-					buttonInUse.getContainer().paintPanel(gComponent.getGraphics2D());
-					
-					}
-					 gComponent.repaint();
-					
-				}
+				 gComponent.repaint();
+			
 			}
 			
 			
 		}
 
 		@Override
-		public void mouseReleased(MouseEvent e) {
-			mouseInUse = false;
-			
-		}
-
-		@Override
-		public void mouseEntered(MouseEvent e) {
+		public void mouseMoved(MouseEvent e) {
 			// TODO Auto-generated method stub
 			
 		}
 
-		@Override
-		public void mouseExited(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-		
 	}
 }

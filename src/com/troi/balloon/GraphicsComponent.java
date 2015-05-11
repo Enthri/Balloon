@@ -19,12 +19,12 @@ public class GraphicsComponent extends JPanel {
 		for (int x = 0; x < 3; x++)
 		{
 			
-			if (panels.get(x).checkRepaint() == true)
-			{
-			
 				paint.setColor(panels.get(x).getColor());
 				panels.get(x).paintPanel(paint);
-			}
+		}
+		for (int x = 0; x< 3; x++)
+		{
+			panels.get(x).repaintButton(paint);
 		}
 		
 	}

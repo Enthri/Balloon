@@ -23,5 +23,9 @@ public class ObjectManager extends Panel {
 		currentState = state;
 		this.setSize(dimension);
 	}
+	public void adjustForType(String type)
+	{
+		
+	}
 	
 }
