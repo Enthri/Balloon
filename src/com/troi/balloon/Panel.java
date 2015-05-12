@@ -49,7 +49,8 @@ public class Panel {
 	{
 		
 		buttons.add(button);
-		button.setDimension(new panelDimension((this.getDimension().getX() + this.getDimension().getWidth()/2), ((this.getDimension().getY() + 120) * (this.getButtonList().size()+1)), 100,100));
+		button.setDimension(new panelDimension((this.getDimension().getX() + this.getDimension().getWidth()/4), (30 * (this.getButtonList().size())),50 ,20));
+		
 		
 	}
 	public void addButton(Button button)

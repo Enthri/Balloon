@@ -11,16 +11,15 @@ import DragAndDrop.Tools;
 
 public class GraphicsComponent extends JPanel {
 
-	public ArrayList<Panel> panels = new ArrayList<Panel>();
+	ArrayList<Panel> panels = new ArrayList<Panel>();
 	
 	@Override
 	public void paintComponent(Graphics g) {
 		Graphics2D paint = (Graphics2D) g;
 		for (int x = 0; x < 3; x++)
 		{
-			
-				paint.setColor(panels.get(x).getColor());
-				panels.get(x).paintPanel(paint);
+			paint.setColor(panels.get(x).getColor());
+			panels.get(x).paintPanel(paint);
 		}
 		for (int x = 0; x< 3; x++)
 		{
@@ -36,21 +35,19 @@ public class GraphicsComponent extends JPanel {
 	public void paintPanel(Panel panel) {
 		if (panel instanceof Tools)
 		{
-			if ( panels.get(1) != null);
-			{
-				panels.set(1, panel);
-				this.repaint();
-			}
+			panels.set(1, panel);
+			this.repaint();
+
 		}
 		else if (panel instanceof ObjectManager)
 		{
-		
-					if (panel.getType().equals("MainViewer"))
-							{
-								panels.set(2, panel);
-							}
-					else panels.set(0,panel);
-					this.repaint();
+	
+			if (panel.getType().equals("MainViewer"))
+					{
+						panels.set(2, panel);
+					}
+			else panels.set(0,panel);
+			this.repaint();
 		}
 	
 	}

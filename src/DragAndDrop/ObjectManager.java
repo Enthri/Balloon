@@ -25,7 +25,10 @@ public class ObjectManager extends Panel {
 	}
 	public void adjustForType(String type)
 	{
-		
+		if (type.equals("MainViewer"))
+		{
+			
+		}
 	}
 	
 }
