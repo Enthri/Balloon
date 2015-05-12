@@ -41,7 +41,6 @@ public class Button {
 	
 	public void paint(Graphics2D render) {
 		render.drawImage(button.getScaledInstance(dimension.getWidth(), dimension.getHeight(), Image.SCALE_FAST), dimension.getX(), dimension.getY(), null);
-	//	render.fillRect(10,10,10,10);
 	}
 	
 	public panelDimension getSize()
@@ -62,7 +61,7 @@ public class Button {
 	
 	public boolean withIn(Panel panel)
 	{
-		if (panel.getDimension().getX() < this.getSize().getX() && panel.getDimension().getY() < this.getSize().getY() && (this.getSize().getWidth() +this.getSize().getX()) < (panel.getDimension().getX() + panel.getDimension().getX()))
+		if (panel.getDimension().getX() < this.getSize().getX() && (this.getSize().getWidth() +this.getSize().getX()) < (panel.getDimension().getX() + panel.getDimension().getWidth()))
 		{
 			return true;
 		}

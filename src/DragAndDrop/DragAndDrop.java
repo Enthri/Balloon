@@ -17,7 +17,6 @@ public class DragAndDrop{
 		this.manager = manager;
 		this.frame = frame;
 		initializeEditer();
-		System.out.println(currentPanels.get(2).getType());
 		
 	}
 	

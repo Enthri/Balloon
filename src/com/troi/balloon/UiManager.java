@@ -108,6 +108,7 @@ public class UiManager{
 	{
 		if (button.getSize().getX() < point.getX() && button.getSize().getY() < point.getY() && (button.getSize().getX() + button.getSize().getWidth()) > point.getX() && (button.getSize().getY() + button.getSize().getHeight()) > point.getY())
 		{
+			
 			return true;
 		}
 		
@@ -118,33 +119,36 @@ public class UiManager{
 	{
 		if(e.getX() > getMainDimension().getX())
 		{
-			for(int x = 0;x < guiEditor.getMainViewer().getButtonList().size();x++)
-				
-				if (checkButtonLocation(guiEditor.getMainViewer().getButtonList().get(x),e.getPoint()))
+			for(int x = 0;x <= guiEditor.getMainViewer().getButtonList().size()-1;x++)
+			{
+				if (checkButtonLocation(guiEditor.getMainViewer().getButtonList().get(x),e.getPoint())== true)
 				{
 					buttonInUse = guiEditor.getMainViewer().getButtonList().get(x);
 					break;
 				}
+			}
 		}
 		else if(e.getX() > getToolDimension().getX())
 		{
-			for(int x = 0;x < guiEditor.getToolViewer().getButtonList().size();x++)
-				
-				if (checkButtonLocation(guiEditor.getToolViewer().getButtonList().get(x),e.getPoint()))
+			for(int x = 0;x <= guiEditor.getToolViewer().getButtonList().size()-1;x++)
+			{
+				if (checkButtonLocation(guiEditor.getToolViewer().getButtonList().get(x),e.getPoint())== true)
 				{
 					buttonInUse = guiEditor.getToolViewer().getButtonList().get(x);
 					break;
 				}
+			}
 		}
 		else if (e.getX() > getFileDimension().getX())
 		{
-			for(int x = 0;x < guiEditor.getFileViewer().getButtonList().size();x++)
-				
-				if (checkButtonLocation(guiEditor.getFileViewer().getButtonList().get(x),e.getPoint()))
+			for(int x = 0;x <= guiEditor.getFileViewer().getButtonList().size()-1;x++)
+			{
+				if (checkButtonLocation(guiEditor.getFileViewer().getButtonList().get(x),e.getPoint()) == true)
 				{
 					buttonInUse = guiEditor.getFileViewer().getButtonList().get(x);
 					break;
 				}
+			}
 		}
 		
 	}

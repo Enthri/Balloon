@@ -101,7 +101,12 @@ public class Panel {
 	}
 	public void removeButton(Button button)
 	{
-		buttons.remove(button);
+		for (int x = 0; x <= buttons.size()-1;x++)
+			if (buttons.get(x)== button)
+			{
+				buttons.remove(x);
+			}
+		
 	}
 	
 	public panelDimension getDimension()
