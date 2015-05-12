@@ -11,7 +11,11 @@ import java.util.HashMap;
 import javax.swing.JFrame;
 
 import util.panelDimension;
+import DragAndDrop.ClassTools;
+import DragAndDrop.CommandTools;
 import DragAndDrop.DragAndDrop;
+import DragAndDrop.MethodTools;
+import DragAndDrop.PackageTools;
 
 
 public class UiManager{
@@ -153,6 +157,25 @@ public class UiManager{
 		}
 		
 	}
+	public void checkInstanceOf(Button button)
+	{
+		if (guiEditor.getCurrentPanels().get(1) instanceof PackageTools && button.withIn(guiEditor.getCurrentPanels().get(1)))
+		{
+			
+		}
+		if (guiEditor.getCurrentPanels().get(1) instanceof ClassTools && button.withIn(guiEditor.getCurrentPanels().get(1)))
+		{
+			
+		}
+		if (guiEditor.getCurrentPanels().get(1) instanceof MethodTools && button.withIn(guiEditor.getCurrentPanels().get(1)))
+		{
+			
+		}
+		if (guiEditor.getCurrentPanels().get(1) instanceof CommandTools && button.withIn(guiEditor.getCurrentPanels().get(1)))
+		{
+			
+		}
+	}
 	public class ButtonsListener implements MouseListener, MouseMotionListener
 	{
 
@@ -168,6 +191,8 @@ public class UiManager{
 		@Override
 		public void mousePressed(MouseEvent e) {
 			 checkButtonInUse(e);
+			 checkInstanceOf(buttonInUse);
+			 
 		}
 
 		@Override

@@ -93,8 +93,14 @@ public class Panel {
 	}
 	public void moveButtonPanel(Panel panel, Button button)
 	{
-		panel.addButton(button);
-		this.removeButton(button);
+		for (int x= 0; x < buttons.size()-1;x++)
+		{
+			if (buttons.get(x)== button)
+			{
+				panel.addButton(button);
+			}
+		}
+
 	}
 	public String getType()
 	{
