@@ -22,7 +22,7 @@ public class DragAndDrop{
 	
 	public void initializeEditer()
 	{
-		currentPanels.add(new PackageManager(manager.getFileDimension(),"FileViewer"));
+		currentPanels.add(new ClassManager(manager.getFileDimension(),"FileViewer"));
 		currentPanels.add(new PackageTools(manager.getToolDimension(),"ToolViewer"));
 		currentPanels.add(new PackageManager(manager.getMainDimension(),"MainViewer"));
 	}
