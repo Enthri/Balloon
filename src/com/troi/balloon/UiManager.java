@@ -167,6 +167,7 @@ public class UiManager{
 
 		@Override
 		public void mouseReleased(MouseEvent e) {
+			if(buttonInUse == null) return;
 			updateButtonLocation(buttonInUse);
 			buttonInUse = null;
 		}
