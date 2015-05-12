@@ -39,6 +39,10 @@ public class Button {
 		return panel;
 	}
 	
+	public void changeContainer(Panel panel)
+	{
+		this.panel = panel;
+	}
 	public void paint(Graphics2D render) {
 		render.drawImage(button.getScaledInstance(dimension.getWidth(), dimension.getHeight(), Image.SCALE_FAST), dimension.getX(), dimension.getY(), null);
 	}

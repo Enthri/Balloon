@@ -93,14 +93,16 @@ public class UiManager{
 	
 	public void updateButtonLocation(Button button)
 	{
-		for (int x = 0; x < guiEditor.getCurrentPanels().size()-1;x++)
+		if (button.withIn(button.getContainer()) == false)
 		{
-			if (button.withIn(button.getContainer()) == false)
+			for (int x = 0; x < guiEditor.getCurrentPanels().size();x++)
 			{
+				
 				if (button.withIn(guiEditor.getCurrentPanels().get(x))== true);
 				{
 					button.getContainer().moveButtonPanel(guiEditor.getCurrentPanels().get(x), button);
 				}
+				
 			}
 		}
 	}

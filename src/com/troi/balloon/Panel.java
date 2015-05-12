@@ -56,6 +56,7 @@ public class Panel {
 	public void addButton(Button button)
 	{
 		buttons.add(button);
+
 	}
 	public void setDefualtRepaintValue(boolean setValue)
 	{
