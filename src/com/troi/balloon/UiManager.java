@@ -36,8 +36,9 @@ public class UiManager{
 		gComponent.initiate();
 		frame.setContentPane(gComponent);
 		ButtonsListener listener = new ButtonsListener();
-		frame.addMouseMotionListener(listener);
-		frame.addMouseListener(listener);
+		gComponent.addMouseListener(listener);
+		gComponent.addMouseMotionListener(listener);
+	
 		//Panel panel = new Panel((panelDimension) Dimensions.get("MainManager"));
 		//guiEditer = new DragAndDrop(frame,this);
 		paintPanels(guiEditor);
@@ -93,18 +94,20 @@ public class UiManager{
 	
 	public void updateButtonLocation(Button button)
 	{
-		if (button.withIn(button.getContainer()) == false)
+		if (buttonInUse.withIn(buttonInUse.getContainer()) == false)
 		{
-			for (int x = 0; x < guiEditor.getCurrentPanels().size();x++)
+			for (int x = 2; x >= 0;x--)
 			{
 				
-				if (button.withIn(guiEditor.getCurrentPanels().get(x))== true);
+				if (button.withIn(guiEditor.getCurrentPanels().get(x)));
 				{
 					button.getContainer().moveButtonPanel(guiEditor.getCurrentPanels().get(x), button);
+					return;
 				}
-				
 			}
 		}
+				
+			
 	}
 	public boolean checkButtonLocation(Button button, Point point)
 	{
@@ -151,6 +154,11 @@ public class UiManager{
 				}
 			}
 		}
+		else System.out.println("something is wrong");
+		
+	}
+	public void checkButtonInstance(Button button)
+	{
 		
 	}
 	public class ButtonsListener implements MouseListener, MouseMotionListener
@@ -168,6 +176,7 @@ public class UiManager{
 		@Override
 		public void mousePressed(MouseEvent e) {
 			 checkButtonInUse(e);
+		
 		}
 
 		@Override

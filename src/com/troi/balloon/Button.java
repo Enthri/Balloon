@@ -15,7 +15,7 @@ public class Button {
 	panelDimension dimension;
 	BufferedImage button;
 	Panel panel;
-	String state;
+	
 	public Button(Panel p){
 		try{
 			button = ImageIO.read(new File("resources/gray-fade.png"));
@@ -25,14 +25,14 @@ public class Button {
 		panel = p;
 	//	System.out.println("")
 	}
-	public Button(panelDimension panelDimension, Panel p, String type){
+	public Button(panelDimension panelDimension, Panel p){
 		try{
 			button = ImageIO.read(new File("resources/gray-fade.png"));
 		}catch(IOException e){
 			button = null;
 		}
+		dimension = panelDimension;
 		panel = p;
-		state = type;
 	}
 
 	public Panel getContainer(){
@@ -65,10 +65,13 @@ public class Button {
 	
 	public boolean withIn(Panel panel)
 	{
-		if (panel.getDimension().getX() < this.getSize().getX() && (this.getSize().getWidth() +this.getSize().getX()) < (panel.getDimension().getX() + panel.getDimension().getWidth()))
-		{
-			return true;
-		}
-		else return false;
+		panelDimension pane = panel.getDimension();
+		panelDimension button = this.getSize();
+		return button.getX() + button.getWidth() < pane.getX() + pane.getWidth() && button.getX() > pane.getX() && button.getY() + button.getHeight() < pane.getY() + pane.getHeight() && button.getY() > pane.getY();
+	}
+	
+	@Override
+	public Object clone() {
+		return new Button(dimension, panel);
 	}
 }
