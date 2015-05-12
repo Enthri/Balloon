@@ -99,7 +99,7 @@ public class UiManager{
 			for (int x = 2; x >= 0;x--)
 			{
 				
-				if (button.withIn(guiEditor.getCurrentPanels().get(x)));
+				if (button.withIn(guiEditor.getCurrentPanels().get(x)) == true)
 				{
 					button.getContainer().moveButtonPanel(guiEditor.getCurrentPanels().get(x), button);
 					return;
