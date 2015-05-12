@@ -159,19 +159,23 @@ public class UiManager{
 	}
 	public void checkInstanceOf(Button button)
 	{
-		if (guiEditor.getCurrentPanels().get(1) instanceof PackageTools && button.withIn(guiEditor.getCurrentPanels().get(1)))
+		if (button instanceof Button)
+		{
+			buttonInUse = new Button(buttonInUse.getSize());
+		}
+		else if (guiEditor.getCurrentPanels().get(1) instanceof PackageTools && button.withIn(guiEditor.getCurrentPanels().get(1)))
 		{
 			
 		}
-		if (guiEditor.getCurrentPanels().get(1) instanceof ClassTools && button.withIn(guiEditor.getCurrentPanels().get(1)))
+		else if (guiEditor.getCurrentPanels().get(1) instanceof ClassTools && button.withIn(guiEditor.getCurrentPanels().get(1)))
 		{
 			
 		}
-		if (guiEditor.getCurrentPanels().get(1) instanceof MethodTools && button.withIn(guiEditor.getCurrentPanels().get(1)))
+		else if (guiEditor.getCurrentPanels().get(1) instanceof MethodTools && button.withIn(guiEditor.getCurrentPanels().get(1)))
 		{
 			
 		}
-		if (guiEditor.getCurrentPanels().get(1) instanceof CommandTools && button.withIn(guiEditor.getCurrentPanels().get(1)))
+		else if (guiEditor.getCurrentPanels().get(1) instanceof CommandTools && button.withIn(guiEditor.getCurrentPanels().get(1)))
 		{
 			
 		}

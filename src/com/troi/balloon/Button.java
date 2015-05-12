@@ -25,14 +25,12 @@ public class Button {
 		}
 		panel = p;
 	}
-	public Button(panelDimension panelDimension, Panel p, String type){
+	public Button(panelDimension panelDimension){
 		try{
 			button = ImageIO.read(new File("resources/gray-fade.png"));
 		}catch(IOException e){
 			button = null;
 		}
-		panel = p;
-		state = type;
 	}
 
 	public Panel getContainer(){
