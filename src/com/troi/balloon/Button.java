@@ -15,12 +15,6 @@ public class Button {
 	panelDimension dimension;
 	BufferedImage button;
 	Panel panel;
-<<<<<<< HEAD
-	String state;
-	Button buttonType;
-=======
-	
->>>>>>> origin/master
 	public Button(Panel p){
 		try{
 			button = ImageIO.read(new File("resources/gray-fade.png"));
@@ -29,21 +23,14 @@ public class Button {
 		}
 		panel = p;
 	}
-<<<<<<< HEAD
-	public Button(panelDimension panelDimension){
-=======
 	public Button(panelDimension panelDimension, Panel p){
->>>>>>> origin/master
 		try{
 			button = ImageIO.read(new File("resources/gray-fade.png"));
 		}catch(IOException e){
 			button = null;
 		}
-<<<<<<< HEAD
-=======
 		dimension = panelDimension;
 		panel = p;
->>>>>>> origin/master
 	}
 
 	public Panel getContainer(){

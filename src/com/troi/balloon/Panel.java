@@ -93,22 +93,11 @@ public class Panel {
 	}
 	public void moveButtonPanel(Panel panel, Button button)
 	{
-<<<<<<< HEAD
-		for (int x= 0; x < buttons.size()-1;x++)
-		{
-			if (buttons.get(x)== button)
-			{
-				panel.addButton(button);
-			}
-		}
-
-=======
 		button.changeContainer(panel);
 		panel.addButton(button);
 		System.out.println("this is being added to new panel");
 		this.removeButton(button);
 		System.out.println("this is being removed from old panel");
->>>>>>> origin/master
 	}
 	public String getType()
 	{

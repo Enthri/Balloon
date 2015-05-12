@@ -161,34 +161,11 @@ public class UiManager{
 		else System.out.println("something is wrong");
 		
 	}
-<<<<<<< HEAD
-	public void checkInstanceOf(Button button)
-	{
-		if (button instanceof Button)
-		{
-			buttonInUse = new Button(buttonInUse.getSize());
-		}
-		else if (guiEditor.getCurrentPanels().get(1) instanceof PackageTools && button.withIn(guiEditor.getCurrentPanels().get(1)))
-		{
-			
-		}
-		else if (guiEditor.getCurrentPanels().get(1) instanceof ClassTools && button.withIn(guiEditor.getCurrentPanels().get(1)))
-		{
-			
-		}
-		else if (guiEditor.getCurrentPanels().get(1) instanceof MethodTools && button.withIn(guiEditor.getCurrentPanels().get(1)))
-		{
-			
-		}
-		else if (guiEditor.getCurrentPanels().get(1) instanceof CommandTools && button.withIn(guiEditor.getCurrentPanels().get(1)))
-		{
-			
-		}
-=======
+
+
 	public void checkButtonInstance(Button button)
 	{
 		
->>>>>>> origin/master
 	}
 	public class ButtonsListener implements MouseListener, MouseMotionListener
 	{
@@ -205,12 +182,6 @@ public class UiManager{
 		@Override
 		public void mousePressed(MouseEvent e) {
 			 checkButtonInUse(e);
-<<<<<<< HEAD
-			 checkInstanceOf(buttonInUse);
-			 
-=======
-		
->>>>>>> origin/master
 		}
 
 		@Override
