@@ -106,7 +106,11 @@ public class UiManager{
 	}
 	public boolean checkButtonLocation(Button button, Point point)
 	{
-		if (button.getSize().getX() < point.getX() && button.getSize().getY() < point.getY() && (button.getSize().getX() + button.getSize().getWidth()) > point.getX() && (button.getSize().getY() + button.getSize().getHeight()) > point.getY())
+		int x = button.getSize().getX();
+		int y = button.getSize().getY();
+		int width = button.getSize().getWidth();
+		int height = button.getSize().getHeight();
+		if (point.getX() < x + width && point.getY() < y + height && point.getX() > x && point.getY() > y)
 		{
 			return true;
 		}
