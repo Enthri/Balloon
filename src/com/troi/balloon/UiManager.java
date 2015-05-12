@@ -120,7 +120,7 @@ public class UiManager{
 		{
 			for(int x = 0;x <= guiEditor.getMainViewer().getButtonList().size()-1;x++)
 			{
-				if (checkButtonLocation(guiEditor.getMainViewer().getButtonList().get(x),e.getPoint())== true)
+				if (checkButtonLocation(guiEditor.getMainViewer().getButtonList().get(x),e.getPoint()) == true)
 				{
 					buttonInUse = guiEditor.getMainViewer().getButtonList().get(x);
 					break;
