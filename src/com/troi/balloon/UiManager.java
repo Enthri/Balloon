@@ -1,6 +1,7 @@
 
 package com.troi.balloon;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
@@ -11,11 +12,7 @@ import java.util.HashMap;
 import javax.swing.JFrame;
 
 import util.panelDimension;
-import DragAndDrop.ClassTools;
-import DragAndDrop.CommandTools;
 import DragAndDrop.DragAndDrop;
-import DragAndDrop.MethodTools;
-import DragAndDrop.PackageTools;
 
 
 public class UiManager{
@@ -167,6 +164,20 @@ public class UiManager{
 	{
 		
 	}
+	
+	public void checkSwitchState(MouseEvent e)
+	{
+
+		if (e.getX() > guiEditor.getCurrentPanels().get(0).getDimension().getX() && e.getX() < (guiEditor.getCurrentPanels().get(0).getDimension().getX() +guiEditor.getCurrentPanels().get(0).getDimension().getWidth())) 
+		{
+			guiEditor.changeEditer(guiEditor.getCurrentPanels().get(0));
+			guiEditor.getCurrentPanels().get(2).resetButtonLocation();
+			
+			System.out.println("switch complete");
+			gComponent.setNewPanels(guiEditor.getCurrentPanels());
+			gComponent.repaint();
+		}
+	}
 	public class ButtonsListener implements MouseListener, MouseMotionListener
 	{
 
@@ -199,6 +210,9 @@ public class UiManager{
 
 		@Override
 		public void mouseClicked(MouseEvent e) {
+			checkSwitchState(e);
+			
+			
 		}
 
 		@Override

@@ -22,9 +22,49 @@ public class DragAndDrop{
 	
 	public void initializeEditer()
 	{
-		currentPanels.add(new ClassManager(manager.getFileDimension(),"FileViewer"));
-		currentPanels.add(new PackageTools(manager.getToolDimension(),"ToolViewer"));
-		currentPanels.add(new PackageManager(manager.getMainDimension(),"MainViewer"));
+		currentPanels.add(new PackageManager(manager.getFileDimension(),"FileViewer"));
+		currentPanels.add(new ClassTools(manager.getToolDimension(),"ToolViewer"));
+		
+		currentPanels.add(new ClassManager(manager.getMainDimension(),"MainViewer"));
+	}
+	public void changeEditer(Panel panel)
+	{
+			currentPanels.set(2, panel);
+			currentPanels.get(2).setSize(manager.getMainDimension());
+			currentPanels.get(2).resetButtonLocation();
+			currentPanels.get(2).setType("MainViewer");
+
+			if (currentPanels.get(2) instanceof PackageManager)
+			{
+				currentPanels.set(1, new PackageTools(manager.getToolDimension(),"ToolViewer"));
+			//	currentPanels.set(0, new FileSettings(manager.getToolDimension(),"ToolViewer"));
+				currentPanels.set(0, new Panel(manager.getFileDimension(),"FileViewer"));
+			}
+			else if (currentPanels.get(2) instanceof ClassManager)
+			{
+				currentPanels.set(1, new ClassTools(manager.getToolDimension(),"ToolViewer"));
+				currentPanels.set(0, new PackageManager(manager.getFileDimension(),"FileViewer"));
+			}
+			else if (currentPanels.get(2) instanceof MethodManager)
+			{
+				currentPanels.set(1, new MethodTools(manager.getToolDimension(),"ToolViewer"));
+				currentPanels.set(0, new ClassManager(manager.getFileDimension(),"FileViewer"));
+			}
+			else if (currentPanels.get(2) instanceof CommandManager)
+			{
+				currentPanels.set(1, new CommandTools(manager.getToolDimension(),"ToolViewer"));
+				currentPanels.set(0, new MethodManager(manager.getFileDimension(),"FileViewer"));
+			}
+	}
+	
+	public void changeTool (Panel panel)
+	{
+		currentPanels.set(1, panel);
+	}
+	
+	public void changeFileViewer(Panel panel)
+	{
+		currentPanels.set(0,panel);
 	}
 	public void addNewTool()
 	{
@@ -50,13 +90,7 @@ public class DragAndDrop{
 	
 	public void addNewEditer()
 	{
-		
-		if (currentPanels.get(0) instanceof PackageManager)
-		{
-			currentPanels.set(2, new PackageManager(manager.getMainDimension(),"MainViewer"));
-			addNewTool();
-		}
-		else if (currentPanels.get(0) instanceof ClassManager)
+		if (currentPanels.get(0) instanceof ClassManager)
 		{
 			currentPanels.set(2, new MethodManager(manager.getMainDimension(),"MainViewer"));
 			addNewTool();
@@ -66,9 +100,9 @@ public class DragAndDrop{
 			currentPanels.set(2, new CommandManager(manager.getMainDimension(),"MainViewer"));
 			addNewTool();
 		}
-		else
+		else if (currentPanels.get(0) instanceof PackageManager )
 		{
-			currentPanels.set(2, new PackageManager(manager.getToolDimension(),"MainViewer"));
+			currentPanels.set(2, new ClassManager(manager.getToolDimension(),"MainViewer"));
 			addNewTool();
 		}
 		
@@ -93,12 +127,7 @@ public class DragAndDrop{
 	}
 	public void addNewFileManager()
 	{
-
-		if (currentPanels.get(2) instanceof PackageManager)
-		{
-			
-		}
-		else if (currentPanels.get(2) instanceof ClassManager)
+		 if (currentPanels.get(2) instanceof ClassManager)
 		{
 			currentPanels.set(1, new PackageManager(manager.getFileDimension(),"FileManager"));
 		}
@@ -110,10 +139,7 @@ public class DragAndDrop{
 		{
 			currentPanels.set(1, new MethodManager(manager.getFileDimension(),"FileManager"));
 		}
-		else
-		{
-			currentPanels.set(2, new Panel(manager.getFileDimension(),"FileManager"));
-		}
+		else System.out.println("no File manager matchable");
 	}
 	
 	public String getPanel(int index)

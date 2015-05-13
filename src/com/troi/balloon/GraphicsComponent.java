@@ -16,6 +16,7 @@ public class GraphicsComponent extends JPanel {
 	@Override
 	public void paintComponent(Graphics g) {
 		Graphics2D paint = (Graphics2D) g;
+		
 		for (int x = 0; x < 3; x++)
 		{
 			paint.setColor(panels.get(x).getColor());
@@ -50,6 +51,10 @@ public class GraphicsComponent extends JPanel {
 			this.repaint();
 		}
 	
+	}
+	public void setNewPanels(ArrayList<Panel> panels)
+	{
+		this.panels = panels;
 	}
 	public void initiate()
 	{

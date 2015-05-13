@@ -28,7 +28,7 @@ public class Panel {
 		type = state;
 		if (this instanceof Tools)
 		{
-			color = new Color(41,50,20);
+			color = new Color(57,57,57);
 			background = new Rectangle(dimension.getX(),0,(dimension.getWidth()),dimension.getHeight());
 			buttons = new ArrayList<Button>();
 			this.dimension = new panelDimension((int)background.getX(), (int)background.getY(), (int) background.getWidth(), (int) background.getHeight());
@@ -36,7 +36,7 @@ public class Panel {
 		}
 		else if (this instanceof ObjectManager)
 		{
-			color = new Color(50,90,200);
+			color = new Color(80,80,80);
 				background = new Rectangle(dimension.getX(),0,(dimension.getWidth()),dimension.getHeight());
 				buttons = new ArrayList<Button>();
 				this.dimension = new panelDimension((int)background.getX(), (int)background.getY(), (int) background.getWidth(), (int) background.getHeight());
@@ -113,6 +113,11 @@ public class Panel {
 		
 	}
 	
+	public void setType(String string)
+	{
+		type = string;
+	}
+	
 	public panelDimension getDimension()
 	{
 		return dimension;
@@ -125,6 +130,13 @@ public class Panel {
 	public void SetColor(Color color)
 	{
 		this.color = color;
+	}
+	public void resetButtonLocation()
+	{
+		for (int x = 0; x < buttons.size()-1;x++)
+		{
+			buttons.get(x).setDimension(new panelDimension((this.getDimension().getX() + this.getDimension().getWidth()/4), (30 * x),50 ,20));
+		}
 	}
 
 }

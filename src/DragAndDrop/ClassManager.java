@@ -9,6 +9,7 @@ public class ClassManager extends ObjectManager {
 	public ClassManager(panelDimension dimension, String state) {
 		super(dimension, state);
 		addNewButton(new Button(this));
+		addNewButton(new Button(this));
 	}
 
 }
