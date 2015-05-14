@@ -66,7 +66,7 @@ public class Button {
 	}
 	
 	public void paint(Graphics2D render) {
-		button.setRGB(dimension.getX(), startY, w, h, rgbArray, offset, scansize);
+		//button.setRGB(dimension.getX(), startY, w, h, rgbArray, offset, scansize);
 		render.setColor(customColor);
 		render.drawImage(button.getScaledInstance(dimension.getWidth(), dimension.getHeight(), Image.SCALE_FAST), dimension.getX(), dimension.getY(), null);
 		render.setColor(Color.WHITE);
