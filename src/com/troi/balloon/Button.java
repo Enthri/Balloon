@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.awt.image.ImageFilter;
 import java.io.File;
 import java.io.IOException;
 
@@ -16,7 +17,7 @@ public class Button {
 	private panelDimension dimension;
 	private BufferedImage button;
 	private Panel panel;
-	
+	private Color customColor = new Color(10, 15, 55, 150);
 	//Troi's
 	private boolean requestedRepaint;
 	
@@ -65,6 +66,8 @@ public class Button {
 	}
 	
 	public void paint(Graphics2D render) {
+		button.setRGB(dimension.getX(), startY, w, h, rgbArray, offset, scansize);
+		render.setColor(customColor);
 		render.drawImage(button.getScaledInstance(dimension.getWidth(), dimension.getHeight(), Image.SCALE_FAST), dimension.getX(), dimension.getY(), null);
 		render.setColor(Color.WHITE);
 		render.drawString(panel.getType(), dimension.getX(), dimension.getY() + 10);
