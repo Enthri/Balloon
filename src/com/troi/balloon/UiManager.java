@@ -179,7 +179,7 @@ public class UiManager{
 			
 			buttonInUse.setDimension(new panelDimension(e.getX(),e.getY(), buttonInUse.getSize().getWidth(), buttonInUse.getSize().getHeight()));
 			
-			gComponent.requestRepaint();
+			gComponent.repaint();
 		}
 		
 		@Override
