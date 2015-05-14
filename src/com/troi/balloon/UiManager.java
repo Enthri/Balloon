@@ -41,7 +41,7 @@ public class UiManager{
 		ButtonsListener listener = new ButtonsListener();
 		gComponent.addMouseListener(listener);
 		gComponent.addMouseMotionListener(listener);
-		Timer timerVar = new Timer(50, new ActionListener(){
+		Timer timerVar = new Timer(16, new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(gComponent == null) return;
@@ -179,8 +179,7 @@ public class UiManager{
 			if(buttonInUse == null) return;
 			
 			buttonInUse.setDimension(new panelDimension(e.getX(),e.getY(), buttonInUse.getSize().getWidth(), buttonInUse.getSize().getHeight()));
-			
-			gComponent.repaint();
+			gComponent.requestRepaint();
 		}
 		
 		@Override
