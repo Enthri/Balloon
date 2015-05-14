@@ -24,7 +24,6 @@ public class DragAndDrop{
 	{
 		currentPanels.add(new ClassManager(manager.getFileDimension(),"FileViewer"));
 		currentPanels.add(new MethodTools(manager.getToolDimension(),"ToolViewer"));
-		
 		currentPanels.add(new MethodManager(manager.getMainDimension(),"MainViewer"));
 	}
 	
@@ -36,6 +35,7 @@ public class DragAndDrop{
 			currentPanels.get(2).setType("MainViewer");
 			if (currentPanels.get(2) instanceof PackageManager)
 			{
+				currentPanels.set(0, new PackageTools(manager.getToolDimension(),"ToolViewer"));
 				currentPanels.set(1, new PackageTools(manager.getToolDimension(),"ToolViewer"));
 			}
 			else if (currentPanels.get(2) instanceof ClassManager)
