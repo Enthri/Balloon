@@ -44,6 +44,7 @@ public class UiManager{
 		Timer timerVar = new Timer(50, new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if(gComponent == null) return;
 				gComponent.update();
 			}
 		});

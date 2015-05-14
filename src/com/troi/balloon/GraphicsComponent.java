@@ -29,6 +29,7 @@ public class GraphicsComponent extends JPanel {
 	}
 	
 	public void update() {
+		if(panels == null) return;
 		for (int x = 0; x < panels.size(); x++) {
 			panels.get(x).update();
 			if(panels.get(x).checkRepaint()) this.requestRepaint();
@@ -41,12 +42,13 @@ public class GraphicsComponent extends JPanel {
 	public void paintComponent(Graphics g) {
 		Graphics2D paint = (Graphics2D) g;
 		
-		for (int x = 0; x < 3; x++) {
+		if(panels == null) return;
+		for (int x = 0; x < panels.size(); x++) {
 			paint.setColor(panels.get(x).getColor());
 			panels.get(x).paint(paint);
 		}
 		
-		for (int x = 0; x < 3; x++) {
+		for (int x = 0; x < panels.size(); x++) {
 			panels.get(x).paintButtons(paint);
 		}
 	}

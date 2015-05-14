@@ -31,6 +31,7 @@ public class Panel {
 	}
 	
 	public void update() {
+		if(buttons == null) return;
 		for (int x = 0; x < buttons.size(); x++) {
 			buttons.get(x).update();
 			if(buttons.get(x).checkRepaint()) this.requestRepaint();
