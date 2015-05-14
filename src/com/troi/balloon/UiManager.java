@@ -171,8 +171,6 @@ public class UiManager{
 		if (e.getX() > guiEditor.getCurrentPanels().get(0).getDimension().getX() && e.getX() < (guiEditor.getCurrentPanels().get(0).getDimension().getX() +guiEditor.getCurrentPanels().get(0).getDimension().getWidth())) 
 		{
 			guiEditor.changeEditer(guiEditor.getCurrentPanels().get(0));
-			guiEditor.addNewFileManager();
-			guiEditor.addNewTool();
 			gComponent.setNewPanels(guiEditor.getCurrentPanels());
 			gComponent.repaint();
 		}
