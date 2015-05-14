@@ -53,10 +53,6 @@ public class UiManager{
 		//guiEditer = new DragAndDrop(frame,this);
 		gComponent.setNewPanels(guiEditor.getCurrentPanels());
 	}
-	public void resetEnviroment()
-	{
-		
-	}
 	
 	public void setCustomDimension(String key , panelDimension object)
 	{

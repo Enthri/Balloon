@@ -25,7 +25,7 @@ public class Panel {
 	
 	public boolean checkRepaint() {
 		if(requestedRepaint) {
-			requestedRepaint = false;
+			requestedRepaint = true;
 			return true;
 		} else return false;
 	}

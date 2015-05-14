@@ -18,6 +18,7 @@ public class Button {
 	private BufferedImage button;
 	private Panel panel;
 	private Color customColor = new Color(10, 15, 55, 150);
+	private Panel value;
 	//Troi's
 	private boolean requestedRepaint;
 	
@@ -30,6 +31,7 @@ public class Button {
 			requestedRepaint = false;
 			return true;
 		} else return false;
+		
 	}
 	
 	public void update() {
@@ -37,13 +39,14 @@ public class Button {
 	}
 	//End Troi's
 	
-	public Button(Panel p){
+	public Button(Panel container, Panel pointTo){
 		try{
 			button = ImageIO.read(new File("resources/gray-fade.png"));
 		}catch(IOException e){
 			button = null;
 		}
-		panel = p;
+		panel = container;
+		value = pointTo;
 	}
 	
 	public Button(panelDimension panelDimension, Panel p){
@@ -59,7 +62,14 @@ public class Button {
 	public Panel getContainer(){
 		return panel;
 	}
-	
+	public void setValue(Panel panel)
+	{
+		value = panel;
+	}
+	public Panel getValue()
+	{
+		return value;
+	}
 	public void changeContainer(Panel panel)
 	{
 		this.panel = panel;
