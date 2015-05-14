@@ -31,6 +31,7 @@ public class GraphicsComponent extends JPanel {
 	public void update() {
 		if(panels == null) return;
 		for (int x = 0; x < panels.size(); x++) {
+			if(panels.get(x) == null) continue;
 			panels.get(x).update();
 			if(panels.get(x).checkRepaint()) this.requestRepaint();
 		}
