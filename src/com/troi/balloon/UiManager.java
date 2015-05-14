@@ -51,7 +51,7 @@ public class UiManager{
 		timerVar.start();
 		//Panel panel = new Panel((panelDimension) Dimensions.get("MainManager"));
 		//guiEditer = new DragAndDrop(frame,this);
-		addPanels(guiEditor);
+		gComponent.setNewPanels(guiEditor.getCurrentPanels());
 	}
 	public void resetEnviroment()
 	{
