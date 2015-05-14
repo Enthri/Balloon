@@ -34,7 +34,7 @@ public class GraphicsComponent extends JPanel {
 			panels.get(x).update();
 			if(panels.get(x).checkRepaint()) this.requestRepaint();
 		}
-		if(this.checkRepaint()) this.repaint();
+		if(this.checkRepaint()) this.getParent().repaint();
 	}
 	//End Troi's
 	
