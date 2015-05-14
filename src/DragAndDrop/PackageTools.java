@@ -10,6 +10,7 @@ public class PackageTools extends Tools{
 		super(dimension,string);
 		addNewButton(new Button(this));
 		addNewButton(new Button(this));
+		addNewButton(new Button(this));
 	}
 
 }

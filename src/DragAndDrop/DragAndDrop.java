@@ -34,10 +34,26 @@ public class DragAndDrop{
 			currentPanels.get(2).setSize(manager.getMainDimension());
 			currentPanels.get(2).resetButtonLocation();
 			currentPanels.get(2).setType("MainViewer");
-
-			currentPanels.set(1, new ClassTools(manager.getToolDimension(),"ToolViewer"));
-			currentPanels.set(0, new PackageManager(manager.getFileDimension(), "FileViewer"));
-			System.out.println("it's working");
+			if (currentPanels.get(2) instanceof PackageManager)
+			{
+				currentPanels.set(1, new PackageTools(manager.getToolDimension(),"ToolViewer"));
+			}
+			else if (currentPanels.get(2) instanceof ClassManager)
+			{
+				currentPanels.set(1, new ClassTools(manager.getToolDimension(),"ToolViewer"));
+				currentPanels.set(1, new PackageManager(manager.getFileDimension(),"FileManager"));
+			}
+			else if (currentPanels.get(2) instanceof MethodManager)
+			{
+				currentPanels.set(1, new MethodTools(manager.getToolDimension(),"ToolViewer"));
+				currentPanels.set(1, new ClassManager(manager.getFileDimension(),"FileManager"));
+			}
+			else if (currentPanels.get(2) instanceof CommandManager)
+			{
+				currentPanels.set(1, new CommandTools(manager.getToolDimension(),"ToolViewer"));
+				currentPanels.set(1, new MethodManager(manager.getFileDimension(),"FileManager"));
+			}
+			else System.out.println("it's working");
 			
 	}
 	
