@@ -166,14 +166,6 @@ public class UiManager{
 		if (e.getX() > guiEditor.getCurrentPanels().get(0).getDimension().getX() && e.getX() < (guiEditor.getCurrentPanels().get(0).getDimension().getX() +guiEditor.getCurrentPanels().get(0).getDimension().getWidth())) 
 		{
 			guiEditor.changeEditer(guiEditor.getCurrentPanels().get(0));
-<<<<<<< HEAD
-			guiEditor.getCurrentPanels().get(2).resetButtonLocation();
-			guiEditor.changeFileViewer(new ClassManager(this.getFileDimension(),"FileViewer"));
-			guiEditor.changeTool(new MethodTools(this.getToolDimension(),"ToolViewer"));
-			
-			System.out.println("switch complete");
-=======
->>>>>>> origin/master
 			gComponent.setNewPanels(guiEditor.getCurrentPanels());
 			gComponent.requestRepaint();
 		}
