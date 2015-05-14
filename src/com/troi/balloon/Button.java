@@ -1,5 +1,6 @@
 package com.troi.balloon;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -65,6 +66,8 @@ public class Button {
 	
 	public void paint(Graphics2D render) {
 		render.drawImage(button.getScaledInstance(dimension.getWidth(), dimension.getHeight(), Image.SCALE_FAST), dimension.getX(), dimension.getY(), null);
+		render.setColor(Color.WHITE);
+		render.drawString(panel.getType(), dimension.getX(), dimension.getY() + 10);
 	}
 	
 	public panelDimension getSize()

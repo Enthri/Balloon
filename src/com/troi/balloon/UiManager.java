@@ -99,6 +99,7 @@ public class UiManager{
 				if (button.withIn(guiEditor.getCurrentPanels().get(x)) == true)
 				{
 					button.getContainer().moveButtonPanel(guiEditor.getCurrentPanels().get(x), button);
+					button.requestRepaint();
 					return;
 				}
 			}
