@@ -22,11 +22,6 @@ public class GraphicsComponent extends JPanel {
 			paint.setColor(panels.get(x).getColor());
 			panels.get(x).paintPanel(paint);
 		}
-		for (int x = 0; x< 3; x++)
-		{
-			panels.get(x).repaintButton(paint);
-		}
-		
 	}
 	
 	public Graphics2D getGraphics2D() {
