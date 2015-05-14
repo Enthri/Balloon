@@ -1,7 +1,6 @@
 
 package com.troi.balloon;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
@@ -12,7 +11,9 @@ import java.util.HashMap;
 import javax.swing.JFrame;
 
 import util.panelDimension;
+import DragAndDrop.ClassManager;
 import DragAndDrop.DragAndDrop;
+import DragAndDrop.MethodTools;
 
 
 public class UiManager{
@@ -172,6 +173,8 @@ public class UiManager{
 		{
 			guiEditor.changeEditer(guiEditor.getCurrentPanels().get(0));
 			guiEditor.getCurrentPanels().get(2).resetButtonLocation();
+			guiEditor.changeFileViewer(new ClassManager(this.getFileDimension(),"FileViewer"));
+			guiEditor.changeTool(new MethodTools(this.getToolDimension(),"ToolViewer"));
 			
 			System.out.println("switch complete");
 			gComponent.setNewPanels(guiEditor.getCurrentPanels());
