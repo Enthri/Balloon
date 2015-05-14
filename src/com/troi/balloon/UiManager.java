@@ -3,12 +3,15 @@ package com.troi.balloon;
 
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.HashMap;
 
 import javax.swing.JFrame;
+import javax.swing.Timer;
 
 import util.panelDimension;
 import DragAndDrop.ClassManager;
@@ -40,38 +43,28 @@ public class UiManager{
 		ButtonsListener listener = new ButtonsListener();
 		gComponent.addMouseListener(listener);
 		gComponent.addMouseMotionListener(listener);
-	
+		Timer timerVar = new Timer(16, new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(gComponent == null) return;
+				gComponent.update();
+			}
+		});
+		timerVar.start();
 		//Panel panel = new Panel((panelDimension) Dimensions.get("MainManager"));
 		//guiEditer = new DragAndDrop(frame,this);
-		paintPanels(guiEditor);
+		gComponent.setNewPanels(guiEditor.getCurrentPanels());
 	}
-	public void resetEnviroment()
-	{
-		
-	}
-	
-//	public void setCurrentEnviroment(Object panel)
-//	{
-//		if (panel instanceof TextEditer)
-//		{
-//			textInUse = true;
-//		}
-//		else if (panel instanceof DragAndDrop)
-//		{
-//			textInUse = false;
-//		}
-//		
-//	}
 	
 	public void setCustomDimension(String key , panelDimension object)
 	{
 		Dimensions.put(key, object);
 	}
-	public void paintPanels(DragAndDrop editer)
+	public void addPanels(DragAndDrop editer)
 	{
 		for (int x = 0; x <= editer.getCurrentPanels().size()-1; x++)
 		{
-			gComponent.paintPanel(editer.getCurrentPanels().get(x));
+			gComponent.addPanel(editer.getCurrentPanels().get(x));
 		} 
 	}
 	public panelDimension getFileDimension()
@@ -104,6 +97,7 @@ public class UiManager{
 				if (button.withIn(guiEditor.getCurrentPanels().get(x)) == true)
 				{
 					button.getContainer().moveButtonPanel(guiEditor.getCurrentPanels().get(x), button);
+					button.requestRepaint();
 					return;
 				}
 			}
@@ -172,13 +166,16 @@ public class UiManager{
 		if (e.getX() > guiEditor.getCurrentPanels().get(0).getDimension().getX() && e.getX() < (guiEditor.getCurrentPanels().get(0).getDimension().getX() +guiEditor.getCurrentPanels().get(0).getDimension().getWidth())) 
 		{
 			guiEditor.changeEditer(guiEditor.getCurrentPanels().get(0));
+<<<<<<< HEAD
 			guiEditor.getCurrentPanels().get(2).resetButtonLocation();
 			guiEditor.changeFileViewer(new ClassManager(this.getFileDimension(),"FileViewer"));
 			guiEditor.changeTool(new MethodTools(this.getToolDimension(),"ToolViewer"));
 			
 			System.out.println("switch complete");
+=======
+>>>>>>> origin/master
 			gComponent.setNewPanels(guiEditor.getCurrentPanels());
-			gComponent.repaint();
+			gComponent.requestRepaint();
 		}
 	}
 	public class ButtonsListener implements MouseListener, MouseMotionListener
@@ -189,8 +186,7 @@ public class UiManager{
 			if(buttonInUse == null) return;
 			
 			buttonInUse.setDimension(new panelDimension(e.getX(),e.getY(), buttonInUse.getSize().getWidth(), buttonInUse.getSize().getHeight()));
-			
-			gComponent.repaint();
+			gComponent.requestRepaint();
 		}
 		
 		@Override

@@ -1,6 +1,8 @@
 package DragAndDrop;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import javax.swing.JFrame;
 
 import com.troi.balloon.Panel;
@@ -9,6 +11,7 @@ import com.troi.balloon.UiManager;
 
 public class DragAndDrop{
 	ArrayList<Panel> currentPanels = new ArrayList<Panel>();
+	HashMap<String, Panel> Instances;
 	UiManager manager;
 	JFrame frame;
 	public DragAndDrop(JFrame frame, UiManager manager)
@@ -22,39 +25,41 @@ public class DragAndDrop{
 	
 	public void initializeEditer()
 	{
-		currentPanels.add(new PackageManager(manager.getFileDimension(),"FileViewer"));
-		currentPanels.add(new ClassTools(manager.getToolDimension(),"ToolViewer"));
 		
-		currentPanels.add(new ClassManager(manager.getMainDimension(),"MainViewer"));
+		currentPanels.add(new MethodManager(manager.getFileDimension(),"FileViewer"));
+		
+		currentPanels.add(new CommandTools(manager.getToolDimension(),"ToolViewer"));
+		currentPanels.add(new CommandManager(manager.getMainDimension(),"MainViewer"));
 	}
+	
 	public void changeEditer(Panel panel)
 	{
-			currentPanels.set(2, panel);
-			currentPanels.get(2).setSize(manager.getMainDimension());
-			currentPanels.get(2).resetButtonLocation();
-			currentPanels.get(2).setType("MainViewer");
-
-			if (currentPanels.get(2) instanceof PackageManager)
+			if (panel instanceof PackageManager)
 			{
+				currentPanels.set(2, new PackageManager(manager.getMainDimension(),"MainViewer"));
+				currentPanels.set(0, new Panel(manager.getFileDimension(),"FileManager"));
 				currentPanels.set(1, new PackageTools(manager.getToolDimension(),"ToolViewer"));
-			//	currentPanels.set(0, new FileSettings(manager.getToolDimension(),"ToolViewer"));
-				currentPanels.set(0, new Panel(manager.getFileDimension(),"FileViewer"));
 			}
-			else if (currentPanels.get(2) instanceof ClassManager)
+			else if (panel instanceof ClassManager)
 			{
+				currentPanels.set(2, new ClassManager(manager.getMainDimension(),"MainViewer"));
 				currentPanels.set(1, new ClassTools(manager.getToolDimension(),"ToolViewer"));
-				currentPanels.set(0, new PackageManager(manager.getFileDimension(),"FileViewer"));
+				currentPanels.set(0, new PackageManager(manager.getFileDimension(),"FileManager"));
 			}
-			else if (currentPanels.get(2) instanceof MethodManager)
+			else if (panel instanceof MethodManager)
 			{
+				currentPanels.set(2, new MethodManager(manager.getMainDimension(),"MainViewer"));
 				currentPanels.set(1, new MethodTools(manager.getToolDimension(),"ToolViewer"));
-				currentPanels.set(0, new ClassManager(manager.getFileDimension(),"FileViewer"));
+				currentPanels.set(0, new ClassManager(manager.getFileDimension(),"FileManager"));
 			}
-			else if (currentPanels.get(2) instanceof CommandManager)
+			else if (panel instanceof CommandManager)
 			{
+				currentPanels.set(2, new CommandManager(manager.getMainDimension(),"MainViewer"));
 				currentPanels.set(1, new CommandTools(manager.getToolDimension(),"ToolViewer"));
-				currentPanels.set(0, new MethodManager(manager.getFileDimension(),"FileViewer"));
+				currentPanels.set(0, new MethodManager(manager.getFileDimension(),"FileManager"));
 			}
+			else System.out.println("it's working");
+			
 	}
 	
 	public void changeTool (Panel panel)

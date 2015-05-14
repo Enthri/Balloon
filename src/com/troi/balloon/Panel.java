@@ -9,19 +9,35 @@ import util.panelDimension;
 import DragAndDrop.ObjectManager;
 import DragAndDrop.Tools;
 public class Panel {
-	protected boolean repaintValue = false,buttonInUse = false;
-	protected ArrayList<Button> buttons;
-	protected panelDimension dimension;
-	protected panelDimension test;
-	protected Rectangle background;
-	protected String type;
-	protected Color color;
-	protected Button redrawButton;
 	
-	/*public Panel()
-	{
-		System.out.println("ERROR: NO GIVEN DIMENSION");
-	}*/
+	private ArrayList<Button> buttons;
+	private panelDimension dimension;
+	private Rectangle background;
+	private String type;
+	private Color color;
+	
+	//Troi's
+	private boolean requestedRepaint;
+	
+	public void requestRepaint() {
+		requestedRepaint = true;
+	}
+	
+	public boolean checkRepaint() {
+		if(requestedRepaint) {
+			requestedRepaint = true;
+			return true;
+		} else return false;
+	}
+	
+	public void update() {
+		if(buttons == null) return;
+		for (int x = 0; x < buttons.size(); x++) {
+			buttons.get(x).update();
+			if(buttons.get(x).checkRepaint()) this.requestRepaint();
+		}
+	}
+	//End Troi's
 	
 	public Panel(panelDimension dimension,String state)
 	{
@@ -32,7 +48,6 @@ public class Panel {
 			background = new Rectangle(dimension.getX(),0,(dimension.getWidth()),dimension.getHeight());
 			buttons = new ArrayList<Button>();
 			this.dimension = new panelDimension((int)background.getX(), (int)background.getY(), (int) background.getWidth(), (int) background.getHeight());
-			setDefualtRepaintValue(true);
 		}
 		else if (this instanceof ObjectManager)
 		{
@@ -40,57 +55,47 @@ public class Panel {
 				background = new Rectangle(dimension.getX(),0,(dimension.getWidth()),dimension.getHeight());
 				buttons = new ArrayList<Button>();
 				this.dimension = new panelDimension((int)background.getX(), (int)background.getY(), (int) background.getWidth(), (int) background.getHeight());
-
-			setDefualtRepaintValue(true);
 		}
 		
 	}
+	
 	public void addNewButton(Button button)
 	{
-		
 		buttons.add(button);
 		button.setDimension(new panelDimension((this.getDimension().getX() + this.getDimension().getWidth()/4), (30 * (this.getButtonList().size())),50 ,20));
-		
-		
 	}
+	
 	public void addButton(Button button)
 	{
 		buttons.add(button);
 
 	}
-	public void setDefualtRepaintValue(boolean setValue)
-	{
-		this.repaintValue = setValue;
-	}
-	public boolean checkRepaint()
-	{
-		return repaintValue;
-	}
-	public void paintPanel(Graphics2D paint)
+	
+	public void paint(Graphics2D paint)
 	{
 		paint.fill(background);
-		
+		paint.setColor(Color.RED);
+		paint.drawString(this.getType(), dimension.getX(), dimension.getY() + 10);
 	}
+	
+	public void paintButtons(Graphics2D paint)
+	{
+		for (Button button : buttons)
+		{
+			button.paint(paint);
+		}
+	}
+	
 	public void setSize(panelDimension size)
 	{
 		background.setFrame(size.getX(), size.getY(), size.getWidth(), background.getHeight());
 	}
-//	public void repaintButton(Button button)
-//	{
-//		((Button) buttons.get(buttons)).paint(paint);
-//	}
 	
 	public ArrayList<Button> getButtonList()
 	{
 		return buttons;
 	}
-	public void repaintButton(Graphics2D paint)
-	{
-		for (Button button: buttons)
-		{
-			button.paint(paint);
-		}
-	}
+	
 	public void moveButtonPanel(Panel panel, Button button)
 	{
 		button.changeContainer(panel);
@@ -99,10 +104,12 @@ public class Panel {
 		this.removeButton(button);
 		System.out.println("this is being removed from old panel");
 	}
+	
 	public String getType()
 	{
 		return type;
 	}
+	
 	public void removeButton(Button button)
 	{
 		for (int x = 0; x <= buttons.size()-1;x++)
@@ -127,10 +134,12 @@ public class Panel {
 	{
 		return color;
 	}
+	
 	public void SetColor(Color color)
 	{
 		this.color = color;
 	}
+	
 	public void resetButtonLocation()
 	{
 		for (int x = 0; x < buttons.size()-1;x++)

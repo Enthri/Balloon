@@ -1,8 +1,10 @@
 package com.troi.balloon;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.awt.image.ImageFilter;
 import java.io.File;
 import java.io.IOException;
 
@@ -12,17 +14,41 @@ import util.panelDimension;
 
 public class Button {
 
-	panelDimension dimension;
-	BufferedImage button;
-	Panel panel;
-	public Button(Panel p){
+	private panelDimension dimension;
+	private BufferedImage button;
+	private Panel panel;
+	private Color customColor = new Color(10, 15, 55, 150);
+	private Panel value;
+	//Troi's
+	private boolean requestedRepaint;
+	
+	public void requestRepaint() {
+		requestedRepaint = true;
+	}
+	
+	public boolean checkRepaint() {
+		if(requestedRepaint) {
+			requestedRepaint = false;
+			return true;
+		} else return false;
+		
+	}
+	
+	public void update() {
+		
+	}
+	//End Troi's
+	
+	public Button(Panel container, Panel pointTo){
 		try{
 			button = ImageIO.read(new File("resources/gray-fade.png"));
 		}catch(IOException e){
 			button = null;
 		}
-		panel = p;
+		panel = container;
+		value = pointTo;
 	}
+	
 	public Button(panelDimension panelDimension, Panel p){
 		try{
 			button = ImageIO.read(new File("resources/gray-fade.png"));
@@ -36,25 +62,31 @@ public class Button {
 	public Panel getContainer(){
 		return panel;
 	}
-	
+	public void setValue(Panel panel)
+	{
+		value = panel;
+	}
+	public Panel getValue()
+	{
+		return value;
+	}
 	public void changeContainer(Panel panel)
 	{
 		this.panel = panel;
 	}
+	
 	public void paint(Graphics2D render) {
+		//button.setRGB(dimension.getX(), startY, w, h, rgbArray, offset, scansize);
+		render.setColor(customColor);
 		render.drawImage(button.getScaledInstance(dimension.getWidth(), dimension.getHeight(), Image.SCALE_FAST), dimension.getX(), dimension.getY(), null);
+		render.setColor(Color.RED);
+		render.drawString(panel.getType(), dimension.getX(), dimension.getY() + 10);
 	}
 	
 	public panelDimension getSize()
 	{
 		return dimension;
 	}
-	
-	//check in use -- checks to see if the button currently being dragged
-	
-	//toggle dragsable
-	
-	//
 	
 	public void setDimension(panelDimension dimension)
 	{
@@ -66,10 +98,5 @@ public class Button {
 		panelDimension pane = panel.getDimension();
 		panelDimension button = this.getSize();
 		return button.getX() + button.getWidth() < pane.getX() + pane.getWidth() && button.getX() > pane.getX() && button.getY() + button.getHeight() < pane.getY() + pane.getHeight() && button.getY() > pane.getY();
-	}
-	
-	@Override
-	public Object clone() {
-		return new Button(dimension, panel);
 	}
 }
