@@ -74,7 +74,7 @@ public class Panel {
 	public void paint(Graphics2D paint)
 	{
 		paint.fill(background);
-		paint.setColor(Color.WHITE);
+		paint.setColor(Color.RED);
 		paint.drawString(this.getType(), dimension.getX(), dimension.getY() + 10);
 	}
 	

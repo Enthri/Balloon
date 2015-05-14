@@ -69,7 +69,7 @@ public class Button {
 		//button.setRGB(dimension.getX(), startY, w, h, rgbArray, offset, scansize);
 		render.setColor(customColor);
 		render.drawImage(button.getScaledInstance(dimension.getWidth(), dimension.getHeight(), Image.SCALE_FAST), dimension.getX(), dimension.getY(), null);
-		render.setColor(Color.WHITE);
+		render.setColor(Color.RED);
 		render.drawString(panel.getType(), dimension.getX(), dimension.getY() + 10);
 	}
 	
