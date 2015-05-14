@@ -9,19 +9,12 @@ import util.panelDimension;
 import DragAndDrop.ObjectManager;
 import DragAndDrop.Tools;
 public class Panel {
-	protected boolean buttonInUse = false;
-	protected ArrayList<Button> buttons;
-	protected panelDimension dimension;
-	protected panelDimension test;
-	protected Rectangle background;
-	protected String type;
-	protected Color color;
-	protected Button redrawButton;
 	
-	/*public Panel()
-	{
-		System.out.println("ERROR: NO GIVEN DIMENSION");
-	}*/
+	private ArrayList<Button> buttons;
+	private panelDimension dimension;
+	private Rectangle background;
+	private String type;
+	private Color color;
 	
 	public Panel(panelDimension dimension,String state)
 	{
@@ -42,20 +35,26 @@ public class Panel {
 		}
 		
 	}
+	
 	public void addNewButton(Button button)
 	{
 		buttons.add(button);
 		button.setDimension(new panelDimension((this.getDimension().getX() + this.getDimension().getWidth()/4), (30 * (this.getButtonList().size())),50 ,20));
 	}
+	
 	public void addButton(Button button)
 	{
 		buttons.add(button);
 
 	}
 	
-	public void paintPanel(Graphics2D paint)
+	public void paint(Graphics2D paint)
 	{
 		paint.fill(background);
+	}
+	
+	public void paintButtons(Graphics2D paint)
+	{
 		for (Button button: buttons)
 		{
 			button.paint(paint);

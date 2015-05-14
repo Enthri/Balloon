@@ -1,15 +1,17 @@
 
 package com.troi.balloon;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.HashMap;
 
 import javax.swing.JFrame;
+import javax.swing.Timer;
 
 import util.panelDimension;
 import DragAndDrop.DragAndDrop;
@@ -39,38 +41,30 @@ public class UiManager{
 		ButtonsListener listener = new ButtonsListener();
 		gComponent.addMouseListener(listener);
 		gComponent.addMouseMotionListener(listener);
-	
+		Timer timerVar = new Timer(50, new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		//Panel panel = new Panel((panelDimension) Dimensions.get("MainManager"));
 		//guiEditer = new DragAndDrop(frame,this);
-		paintPanels(guiEditor);
+		addPanels(guiEditor);
 	}
 	public void resetEnviroment()
 	{
 		
 	}
 	
-//	public void setCurrentEnviroment(Object panel)
-//	{
-//		if (panel instanceof TextEditer)
-//		{
-//			textInUse = true;
-//		}
-//		else if (panel instanceof DragAndDrop)
-//		{
-//			textInUse = false;
-//		}
-//		
-//	}
-	
 	public void setCustomDimension(String key , panelDimension object)
 	{
 		Dimensions.put(key, object);
 	}
-	public void paintPanels(DragAndDrop editer)
+	public void addPanels(DragAndDrop editer)
 	{
 		for (int x = 0; x <= editer.getCurrentPanels().size()-1; x++)
 		{
-			gComponent.paintPanel(editer.getCurrentPanels().get(x));
+			gComponent.addPanel(editer.getCurrentPanels().get(x));
 		} 
 	}
 	public panelDimension getFileDimension()

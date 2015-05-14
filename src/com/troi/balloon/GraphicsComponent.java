@@ -9,26 +9,26 @@ import javax.swing.JPanel;
 import DragAndDrop.ObjectManager;
 import DragAndDrop.Tools;
 
+@SuppressWarnings("serial")
 public class GraphicsComponent extends JPanel {
-
-	ArrayList<Panel> panels = new ArrayList<Panel>();
+	
+	private ArrayList<Panel> panels = new ArrayList<Panel>();
 	
 	@Override
 	public void paintComponent(Graphics g) {
 		Graphics2D paint = (Graphics2D) g;
 		
-		for (int x = 0; x < 3; x++)
-		{
+		for (int x = 0; x < 3; x++) {
 			paint.setColor(panels.get(x).getColor());
-			panels.get(x).paintPanel(paint);
+			panels.get(x).paint(paint);
+		}
+		
+		for (int x = 0; x < 3; x++) {
+			panels.get(x).paintButtons(paint);
 		}
 	}
-	
-	public Graphics2D getGraphics2D() {
-		return (Graphics2D) this.getGraphics();
-	}
 
-	public void paintPanel(Panel panel) {
+	public void addPanel(Panel panel) {
 		if (panel instanceof Tools)
 		{
 			panels.set(1, panel);
@@ -47,16 +47,19 @@ public class GraphicsComponent extends JPanel {
 		}
 	
 	}
+	
 	public void setNewPanels(ArrayList<Panel> panels)
 	{
 		this.panels = panels;
 	}
+	
 	public void initiate()
 	{
 		panels.add(null);
 		panels.add(null);
 		panels.add(null);
 	}
+	
 	public void paintButton(Panel panel)
 	{
 		

@@ -3,6 +3,7 @@ package com.troi.balloon;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
+import javax.swing.Timer;
 
 public class Balloon implements Runnable {
 	UiManager manager;

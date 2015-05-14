@@ -27,6 +27,7 @@ public class DragAndDrop{
 		
 		currentPanels.add(new ClassManager(manager.getMainDimension(),"MainViewer"));
 	}
+	
 	public void changeEditer(Panel panel)
 	{
 			currentPanels.set(2, panel);

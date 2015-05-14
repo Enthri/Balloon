@@ -12,9 +12,10 @@ import util.panelDimension;
 
 public class Button {
 
-	panelDimension dimension;
-	BufferedImage button;
-	Panel panel;
+	private panelDimension dimension;
+	private BufferedImage button;
+	private Panel panel;
+	
 	public Button(Panel p){
 		try{
 			button = ImageIO.read(new File("resources/gray-fade.png"));
@@ -23,6 +24,7 @@ public class Button {
 		}
 		panel = p;
 	}
+	
 	public Button(panelDimension panelDimension, Panel p){
 		try{
 			button = ImageIO.read(new File("resources/gray-fade.png"));
@@ -41,6 +43,7 @@ public class Button {
 	{
 		this.panel = panel;
 	}
+	
 	public void paint(Graphics2D render) {
 		render.drawImage(button.getScaledInstance(dimension.getWidth(), dimension.getHeight(), Image.SCALE_FAST), dimension.getX(), dimension.getY(), null);
 	}
@@ -49,12 +52,6 @@ public class Button {
 	{
 		return dimension;
 	}
-	
-	//check in use -- checks to see if the button currently being dragged
-	
-	//toggle dragsable
-	
-	//
 	
 	public void setDimension(panelDimension dimension)
 	{
@@ -66,10 +63,5 @@ public class Button {
 		panelDimension pane = panel.getDimension();
 		panelDimension button = this.getSize();
 		return button.getX() + button.getWidth() < pane.getX() + pane.getWidth() && button.getX() > pane.getX() && button.getY() + button.getHeight() < pane.getY() + pane.getHeight() && button.getY() > pane.getY();
-	}
-	
-	@Override
-	public Object clone() {
-		return new Button(dimension, panel);
 	}
 }
