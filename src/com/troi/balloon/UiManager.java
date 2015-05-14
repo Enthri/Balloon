@@ -44,9 +44,10 @@ public class UiManager{
 		Timer timerVar = new Timer(50, new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				gComponent.update();
 			}
 		});
+		timerVar.start();
 		//Panel panel = new Panel((panelDimension) Dimensions.get("MainManager"));
 		//guiEditer = new DragAndDrop(frame,this);
 		addPanels(guiEditor);
@@ -166,7 +167,7 @@ public class UiManager{
 		{
 			guiEditor.changeEditer(guiEditor.getCurrentPanels().get(0));
 			gComponent.setNewPanels(guiEditor.getCurrentPanels());
-			gComponent.repaint();
+			gComponent.requestRepaint();
 		}
 	}
 	public class ButtonsListener implements MouseListener, MouseMotionListener
@@ -178,7 +179,7 @@ public class UiManager{
 			
 			buttonInUse.setDimension(new panelDimension(e.getX(),e.getY(), buttonInUse.getSize().getWidth(), buttonInUse.getSize().getHeight()));
 			
-			gComponent.repaint();
+			gComponent.requestRepaint();
 		}
 		
 		@Override

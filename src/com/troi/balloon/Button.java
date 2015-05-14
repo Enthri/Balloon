@@ -16,6 +16,25 @@ public class Button {
 	private BufferedImage button;
 	private Panel panel;
 	
+	//Troi's
+	private boolean requestedRepaint;
+	
+	public void requestRepaint() {
+		requestedRepaint = true;
+	}
+	
+	public boolean checkRepaint() {
+		if(requestedRepaint) {
+			requestedRepaint = false;
+			return true;
+		} else return false;
+	}
+	
+	public void update() {
+		
+	}
+	//End Troi's
+	
 	public Button(Panel p){
 		try{
 			button = ImageIO.read(new File("resources/gray-fade.png"));

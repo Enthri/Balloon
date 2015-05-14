@@ -14,6 +14,29 @@ public class GraphicsComponent extends JPanel {
 	
 	private ArrayList<Panel> panels = new ArrayList<Panel>();
 	
+	//Troi's
+	private boolean requestedRepaint;
+	
+	public void requestRepaint() {
+		requestedRepaint = true;
+	}
+	
+	public boolean checkRepaint() {
+		if(requestedRepaint) {
+			requestedRepaint = false;
+			return true;
+		} else return false;
+	}
+	
+	public void update() {
+		for (int x = 0; x < panels.size(); x++) {
+			panels.get(x).update();
+			if(panels.get(x).checkRepaint()) this.requestRepaint();
+		}
+		if(this.checkRepaint()) this.repaint();
+	}
+	//End Troi's
+	
 	@Override
 	public void paintComponent(Graphics g) {
 		Graphics2D paint = (Graphics2D) g;
@@ -32,7 +55,7 @@ public class GraphicsComponent extends JPanel {
 		if (panel instanceof Tools)
 		{
 			panels.set(1, panel);
-			this.repaint();
+			this.requestRepaint();
 
 		}
 		else if (panel instanceof ObjectManager)
@@ -43,7 +66,7 @@ public class GraphicsComponent extends JPanel {
 						panels.set(2, panel);
 					}
 			else panels.set(0,panel);
-			this.repaint();
+			this.requestRepaint();
 		}
 	
 	}

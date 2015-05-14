@@ -16,6 +16,28 @@ public class Panel {
 	private String type;
 	private Color color;
 	
+	//Troi's
+	private boolean requestedRepaint;
+	
+	public void requestRepaint() {
+		requestedRepaint = true;
+	}
+	
+	public boolean checkRepaint() {
+		if(requestedRepaint) {
+			requestedRepaint = false;
+			return true;
+		} else return false;
+	}
+	
+	public void update() {
+		for (int x = 0; x < buttons.size(); x++) {
+			buttons.get(x).update();
+			if(buttons.get(x).checkRepaint()) this.requestRepaint();
+		}
+	}
+	//End Troi's
+	
 	public Panel(panelDimension dimension,String state)
 	{
 		type = state;
@@ -55,7 +77,7 @@ public class Panel {
 	
 	public void paintButtons(Graphics2D paint)
 	{
-		for (Button button: buttons)
+		for (Button button : buttons)
 		{
 			button.paint(paint);
 		}
