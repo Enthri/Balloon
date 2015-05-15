@@ -15,6 +15,7 @@ public class Panel {
 	private Rectangle background;
 	private String type;
 	private Color color;
+	private Button referenceBy;
 	
 	//Troi's
 	private boolean requestedRepaint;
@@ -70,7 +71,15 @@ public class Panel {
 		buttons.add(button);
 
 	}
-	
+	public void setReference(Button button)
+	{
+		referenceBy = button;
+	}
+	public Button getReference()
+	{
+		return referenceBy;
+		
+	}
 	public void paint(Graphics2D paint)
 	{
 		paint.fill(background);

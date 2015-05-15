@@ -26,10 +26,9 @@ public class DragAndDrop{
 	public void initializeEditer()
 	{
 		
-		currentPanels.add(new MethodManager(manager.getFileDimension(),"FileViewer"));
-		
-		currentPanels.add(new CommandTools(manager.getToolDimension(),"ToolViewer"));
-		currentPanels.add(new CommandManager(manager.getMainDimension(),"MainViewer"));
+		currentPanels.add(new PackageTools(manager.getFileDimension(),"FileViewer"));
+		currentPanels.add(new PackageTools(manager.getToolDimension(),"ToolViewer"));
+		currentPanels.add(new PackageManager(manager.getMainDimension(),"MainViewer"));
 	}
 	
 	public void changeEditer(Panel panel)

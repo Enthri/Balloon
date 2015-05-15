@@ -14,9 +14,8 @@ import javax.swing.JFrame;
 import javax.swing.Timer;
 
 import util.panelDimension;
-import DragAndDrop.ClassManager;
 import DragAndDrop.DragAndDrop;
-import DragAndDrop.MethodTools;
+import DragAndDrop.PackageManager;
 
 
 public class UiManager{
@@ -160,21 +159,57 @@ public class UiManager{
 		
 	}
 	
-	public boolean checkSwitchState(MouseEvent e)
+	public void checkSwitchState(MouseEvent e)
 	{
 
 		if (e.getX() > guiEditor.getCurrentPanels().get(0).getDimension().getX() && e.getX() < (guiEditor.getCurrentPanels().get(0).getDimension().getX() +guiEditor.getCurrentPanels().get(0).getDimension().getWidth())) 
 		{
-			guiEditor.changeEditer(guiEditor.getCurrentPanels().get(0));
-			gComponent.setNewPanels(guiEditor.getCurrentPanels());
-			gComponent.requestRepaint();
-			return true;
+			guiEditor.changeEditer(guiEditor.getCurrentPanels().get(0).getPointingButton().getContainer());
+			if (guiEditor.getCurrentPanels().get(0).getPointingButton().getContainer() instanceof PackageManager)
+			{
+				gComponent.setNewPanels(guiEditor.getCurrentPanels());
+				gComponent.requestRepaint();
+			}
+			else {
+				guiEditor.getCurrentPanels().get(0).getPointingButton().getContainer().getPointingButton().getContainer();
+				gComponent.setNewPanels(guiEditor.getCurrentPanels());
+				gComponent.requestRepaint();
+			}
 		}
 	}
 	
-	public void checkButtonClicked(MouseEvent e)
+	public boolean checkButtonClicked(MouseEvent e)
 	{
-		if (e.getX() >)
+
+		if(e.getX() > getMainDimension().getX())
+		{
+			for(int x = 0;x <= guiEditor.getMainViewer().getButtonList().size()-1;x++)
+			{
+				if (checkButtonLocation(guiEditor.getMainViewer().getButtonList().get(x),e.getPoint()) == true)
+				{
+					guiEditor.changeFileViewer(guiEditor.getMainViewer());
+					guiEditor.changeEditer(guiEditor.getMainViewer().getButtonList().get(x).getValue());
+					return true;
+				}
+			}
+		}
+		else if(e.getX() > getToolDimension().getX())
+		{
+			return false;
+		}
+		else if (e.getX() > getFileDimension().getX())
+		{
+			for(int x = 0;x <= guiEditor.getFileViewer().getButtonList().size()-1;x++)
+			{
+				if (checkButtonLocation(guiEditor.getFileViewer().getButtonList().get(x),e.getPoint()) == true)
+				{
+					guiEditor.changeEditer(guiEditor.getMainViewer().getButtonList().get(x).getValue());
+					return true;
+				}
+			}
+		}
+		else return false;
+		return false;
 	}
 	public class ButtonsListener implements MouseListener, MouseMotionListener
 	{
@@ -182,7 +217,6 @@ public class UiManager{
 		@Override
 		public void mouseDragged(MouseEvent e) {
 			if(buttonInUse == null) return;
-			
 			buttonInUse.setDimension(new panelDimension(e.getX(),e.getY(), buttonInUse.getSize().getWidth(), buttonInUse.getSize().getHeight()));
 			gComponent.requestRepaint();
 		}
@@ -206,12 +240,12 @@ public class UiManager{
 		}
 
 		@Override
-		public void mouseClicked(MouseEvent e) {
-			if (checkSwitchState(e) == false)
+		public void mouseClicked(MouseEvent e) 
+		{
+			if (checkButtonClicked(e) == false)
 			{
-			checkButtonClicked(e);
+			checkSwitchState(e);
 			}
-			
 			
 		}
 
