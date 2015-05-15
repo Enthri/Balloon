@@ -160,7 +160,7 @@ public class UiManager{
 		
 	}
 	
-	public void checkSwitchState(MouseEvent e)
+	public boolean checkSwitchState(MouseEvent e)
 	{
 
 		if (e.getX() > guiEditor.getCurrentPanels().get(0).getDimension().getX() && e.getX() < (guiEditor.getCurrentPanels().get(0).getDimension().getX() +guiEditor.getCurrentPanels().get(0).getDimension().getWidth())) 
@@ -168,7 +168,13 @@ public class UiManager{
 			guiEditor.changeEditer(guiEditor.getCurrentPanels().get(0));
 			gComponent.setNewPanels(guiEditor.getCurrentPanels());
 			gComponent.requestRepaint();
+			return true;
 		}
+	}
+	
+	public void checkButtonClicked(MouseEvent e)
+	{
+		if (e.getX() >)
 	}
 	public class ButtonsListener implements MouseListener, MouseMotionListener
 	{
@@ -201,7 +207,10 @@ public class UiManager{
 
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			checkSwitchState(e);
+			if (checkSwitchState(e) == false)
+			{
+			checkButtonClicked(e);
+			}
 			
 			
 		}

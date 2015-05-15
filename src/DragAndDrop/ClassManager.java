@@ -10,6 +10,7 @@ public class ClassManager extends ObjectManager {
 
 	public ClassManager(panelDimension dimension, String state) {
 		super(dimension, state);
+		this.setType("ClassManager");
 	}
 
 }

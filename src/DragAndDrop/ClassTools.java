@@ -13,6 +13,8 @@ public class ClassTools extends Tools {
 	public ClassTools(panelDimension dimension, String string) {
 		super(dimension,string);
 		addNewButton(new NewClassButton(this, new MethodManager(dimension,string)));
+		addNewButton(new NewClassButton(this, new MethodManager(dimension,string)));
+		this.setType("ClassTools");
 	}
 
 
