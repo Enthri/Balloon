@@ -47,6 +47,7 @@ public class Button {
 		}
 		panel = container;
 		value = pointTo;
+		container.setReference(this);
 	}
 	
 	public Button(panelDimension panelDimension, Panel p){

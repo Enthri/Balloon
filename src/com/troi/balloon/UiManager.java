@@ -164,14 +164,14 @@ public class UiManager{
 
 		if (e.getX() > guiEditor.getCurrentPanels().get(0).getDimension().getX() && e.getX() < (guiEditor.getCurrentPanels().get(0).getDimension().getX() +guiEditor.getCurrentPanels().get(0).getDimension().getWidth())) 
 		{
-			guiEditor.changeEditer(guiEditor.getCurrentPanels().get(0).getPointingButton().getContainer());
-			if (guiEditor.getCurrentPanels().get(0).getPointingButton().getContainer() instanceof PackageManager)
+			guiEditor.changeEditer(guiEditor.getCurrentPanels().get(0).getReference().getContainer());
+			if (guiEditor.getCurrentPanels().get(0).getReference().getContainer() instanceof PackageManager)
 			{
 				gComponent.setNewPanels(guiEditor.getCurrentPanels());
 				gComponent.requestRepaint();
 			}
 			else {
-				guiEditor.getCurrentPanels().get(0).getPointingButton().getContainer().getPointingButton().getContainer();
+				guiEditor.getCurrentPanels().get(0).getReference().getContainer().getReference().getContainer();
 				gComponent.setNewPanels(guiEditor.getCurrentPanels());
 				gComponent.requestRepaint();
 			}
