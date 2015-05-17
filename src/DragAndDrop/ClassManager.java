@@ -14,7 +14,7 @@ public class ClassManager extends ObjectManager {
 	}
 	public void newPanel()
 	{
-		
+		this.getPanels().add(new MethodManager(this,this.getDimension(),"MainViewer"));
 	}
 
 }

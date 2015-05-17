@@ -124,6 +124,7 @@ public class Panel {
 	
 	public void setSize(panelDimension size)
 	{
+		dimension = size;
 		background.setFrame(size.getX(), size.getY(), size.getWidth(), background.getHeight());
 	}
 	

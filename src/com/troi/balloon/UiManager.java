@@ -34,7 +34,7 @@ public class UiManager{
 		Dimensions = new HashMap<String,panelDimension>();
 		Dimensions.put("FileManager", new panelDimension(0,0,(frame.getWidth() / 5),frame.getHeight()));
 		Dimensions.put("ToolManager",new panelDimension(((panelDimension)Dimensions.get("FileManager")).getWidth(),0,(frame.getWidth() / 5),frame.getHeight()));
-		Dimensions.put("MainManager", new panelDimension((((panelDimension)Dimensions.get("FileManager")).getWidth() * 2),1000,(frame.getWidth() - (((panelDimension)Dimensions.get("FileManager")).getWidth() * 2)), frame.getHeight()));
+		Dimensions.put("MainManager", new panelDimension((((panelDimension)Dimensions.get("FileManager")).getWidth() * 2),0,(frame.getWidth() - (((panelDimension)Dimensions.get("FileManager")).getWidth() * 2)), frame.getHeight()));
 		gComponent = new GraphicsComponent(); 
 		textEditor = new TextEditer();
 		guiEditor = new DragAndDrop(frame,this);
@@ -97,8 +97,7 @@ public class UiManager{
 				if (button.withIn(guiEditor.getCurrentPanels().get(x)) == true)
 				{
 					System.out.println(button.getContainer().getType());
-					button.getContainer().moveButtonPanel(guiEditor.getCurrentPanels().get(x), button);
-					System.out.println(button.getContainer().getType());
+					moveButtonPanel(guiEditor.getCurrentPanels().get(x), button);
 					button.requestRepaint();
 					System.out.println(button.getContainer().getPanels().size());
 					System.out.println(button.getID());
@@ -108,6 +107,16 @@ public class UiManager{
 		}
 				
 			
+	}
+	public void moveButtonPanel(Panel panel, Button button)
+	{
+		button.getContainer().removeButton(button);
+		System.out.println("this has been removed from old panel");
+		button.setContainer(panel);
+		System.out.println("this has been added to new panel");
+		panel.newPanel();
+		button.setID(panel.getPanels().size()-1);
+		panel.addButton(button);
 	}
 	public boolean checkButtonLocation(Button button, Point point)
 	{
@@ -192,7 +201,7 @@ public class UiManager{
 				{
 					//guiEditor.changeFileViewer(guiEditor.getMainViewer());
 					guiEditor.changeEditer(guiEditor.getMainViewer().getPanels().get(guiEditor.getMainViewer().getButtonList().get(x).getID()));
-					guiEditor.getCurrentPanels().get(0).resetButtonLocation();
+					gComponent.setNewPanels(guiEditor.getCurrentPanels());
 					gComponent.requestRepaint();
 					return true;
 				}

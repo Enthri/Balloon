@@ -5,6 +5,8 @@ import java.util.HashMap;
 
 import javax.swing.JFrame;
 
+import util.panelDimension;
+
 import com.troi.balloon.Panel;
 import com.troi.balloon.UiManager;
 
@@ -42,25 +44,32 @@ public class DragAndDrop{
 			}
 			else if (panel instanceof ClassManager)
 			{
-				currentPanels.set(2, panel);
-				currentPanels.get(2).setSize(manager.getMainDimension());
+				
+				
 				currentPanels.set(1, new ClassTools(manager.getToolDimension(),"ToolViewer"));
 				currentPanels.set(0, panel.stepUp());
 				currentPanels.get(0).setSize(manager.getFileDimension());
+				panel.setSize(manager.getMainDimension());
+				System.out.println(panel.getDimension().getX());
+				currentPanels.set(2, panel);
 			}
 			else if (panel instanceof MethodManager)
 			{
-				currentPanels.set(2, panel);
-				currentPanels.get(2).setSize(manager.getMainDimension());
 				currentPanels.set(1, new MethodTools(manager.getToolDimension(),"ToolViewer"));
 				currentPanels.set(0, panel.stepUp());
+				currentPanels.get(0).setSize(manager.getFileDimension());
+				panel.setSize(manager.getMainDimension());
+				System.out.println(panel.getDimension().getX());
+				currentPanels.set(2, panel);
 			}
 			else if (panel instanceof CommandManager)
 			{
-				currentPanels.set(2, panel);
-				currentPanels.get(2).setSize(manager.getMainDimension());
 				currentPanels.set(1, new CommandTools(manager.getToolDimension(),"ToolViewer"));
 				currentPanels.set(0, panel.stepUp());
+				currentPanels.get(0).setSize(manager.getFileDimension());
+				panel.setSize(manager.getMainDimension());
+				System.out.println(panel.getDimension().getX());
+				currentPanels.set(2, panel);
 			}
 			else System.out.println("it's working");
 			

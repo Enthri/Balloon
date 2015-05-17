@@ -9,7 +9,7 @@ public class CommandManager extends ObjectManager {
 
 	public CommandManager(Panel container,panelDimension dimension, String state) {
 		super(container,dimension, state);
-		this.setType("MethodManager");
+		this.setType("Command Manager");
 	}
 	public void newPanel()
 	{
