@@ -10,7 +10,7 @@ import com.troi.balloon.UiManager;
 
 
 public class DragAndDrop{
-	ArrayList<Panel> currentPanels = new ArrayList<Panel>();
+	public ArrayList<Panel> currentPanels = new ArrayList<Panel>();
 	HashMap<String, Panel> Instances;
 	UiManager manager;
 	JFrame frame;
