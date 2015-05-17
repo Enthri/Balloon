@@ -144,7 +144,7 @@ public class UiManager{
 			}
 			else 
 			{
-				buttonInUse.getContainer().paintPanel(gComponent.getGraphics2D());
+				buttonInUse.getContainer().paint(gComponent.getGraphics());
 			}
 		}
 
