@@ -16,9 +16,9 @@ public class Button {
 
 	private panelDimension dimension;
 	private BufferedImage button;
-	private Panel panel;
+	private Panel container;
 	private Color customColor = new Color(10, 15, 55, 150);
-	private Panel value;
+	private Panel pointTo;
 	//Troi's
 	private boolean requestedRepaint;
 	
@@ -45,8 +45,8 @@ public class Button {
 		}catch(IOException e){
 			button = null;
 		}
-		panel = container;
-		value = pointTo;
+		this.container = container;
+		this.pointTo = pointTo;
 		container.setReference(this);
 	}
 	
@@ -57,23 +57,23 @@ public class Button {
 			button = null;
 		}
 		dimension = panelDimension;
-		panel = p;
+		container = p;
 	}
 
 	public Panel getContainer(){
-		return panel;
+		return container;
 	}
 	public void setValue(Panel panel)
 	{
-		value = panel;
+		pointTo = panel;
 	}
 	public Panel getValue()
 	{
-		return value;
+		return pointTo;
 	}
 	public void setContainer(Panel panel)
 	{
-		this.panel = panel;
+		this.container = panel;
 	}
 	
 	public void paint(Graphics2D render) {
@@ -81,7 +81,7 @@ public class Button {
 		render.setColor(customColor);
 		render.drawImage(button.getScaledInstance(dimension.getWidth(), dimension.getHeight(), Image.SCALE_FAST), dimension.getX(), dimension.getY(), null);
 		render.setColor(Color.RED);
-		render.drawString(panel.getType(), dimension.getX(), dimension.getY() + 10);
+		render.drawString(container.getType(), dimension.getX(), dimension.getY() + 10);
 	}
 	
 	public panelDimension getSize()
