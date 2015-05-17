@@ -8,8 +8,8 @@ import com.troi.balloon.Panel;
 public class ObjectManager extends Panel {
 	protected String currentState;
 	
-	public ObjectManager(panelDimension dimension,String state) {
-		super(dimension,state);
+	public ObjectManager(Panel container,panelDimension dimension,String state) {
+		super(container,dimension,state);
 		this.currentState = state;
 	}
 	

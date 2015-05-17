@@ -10,12 +10,13 @@ import DragAndDrop.ObjectManager;
 import DragAndDrop.Tools;
 public class Panel {
 	
-	private ArrayList<Button> buttons;
-	private panelDimension dimension;
-	private Rectangle background;
-	private String type;
-	private Color color;
-	private Button referenceBy;
+	protected ArrayList<Button> buttons;
+	protected ArrayList<Panel> panels;
+	protected panelDimension dimension;
+	protected Rectangle background;
+	protected String type;
+	protected Color color;
+	protected Panel container;
 	
 	//Troi's
 	private boolean requestedRepaint;
@@ -39,6 +40,27 @@ public class Panel {
 		}
 	}
 	//End Troi's
+	public Panel(Panel container ,panelDimension dimension,String state)
+	{
+		type = state;
+		if (this instanceof Tools)
+		{
+			color = new Color(57,57,57);
+			background = new Rectangle(dimension.getX(),0,(dimension.getWidth()),dimension.getHeight());
+			buttons = new ArrayList<Button>();
+			this.dimension = new panelDimension((int)background.getX(), (int)background.getY(), (int) background.getWidth(), (int) background.getHeight());
+		}
+		else if (this instanceof ObjectManager)
+		{
+			color = new Color(80,80,80);
+				background = new Rectangle(dimension.getX(),0,(dimension.getWidth()),dimension.getHeight());
+				buttons = new ArrayList<Button>();
+				this.dimension = new panelDimension((int)background.getX(), (int)background.getY(), (int) background.getWidth(), (int) background.getHeight());
+				this.container = container;
+				panels = new ArrayList<Panel>();
+		}
+		
+	}
 	
 	public Panel(panelDimension dimension,String state)
 	{
@@ -56,6 +78,7 @@ public class Panel {
 				background = new Rectangle(dimension.getX(),0,(dimension.getWidth()),dimension.getHeight());
 				buttons = new ArrayList<Button>();
 				this.dimension = new panelDimension((int)background.getX(), (int)background.getY(), (int) background.getWidth(), (int) background.getHeight());
+				panels = new ArrayList<Panel>();
 		}
 		
 	}
@@ -71,13 +94,17 @@ public class Panel {
 		buttons.add(button);
 
 	}
-	public void setReference(Button button)
+	public void Container(Panel panel)
 	{
-		referenceBy = button;
+		container = panel;
 	}
-	public Button getReference()
+	public Panel stepUp()
 	{
-		return referenceBy;
+		if (container == null)
+		{
+			return null;
+		}
+		else return container;
 		
 	}
 	public void paint(Graphics2D paint)
@@ -108,10 +135,12 @@ public class Panel {
 	public void moveButtonPanel(Panel panel, Button button)
 	{
 		button.setContainer(panel);
-		panel.addButton(button);
 		System.out.println("this is being added to new panel");
 		this.removeButton(button);
 		System.out.println("this is being removed from old panel");
+		panel.newPanel();
+		button.setID(panel.getPanels().size()-1);
+		panel.addButton(button);
 	}
 	
 	public String getType()
@@ -127,6 +156,14 @@ public class Panel {
 				buttons.remove(x);
 			}
 		
+	}
+	public ArrayList<Panel> getPanels()
+	{
+		return panels;
+	}
+	public void newPanel()
+	{
+		panels.add(new Panel(null,null));
 	}
 	
 	public void setType(String string)

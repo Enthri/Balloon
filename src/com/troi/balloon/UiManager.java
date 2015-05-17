@@ -100,6 +100,8 @@ public class UiManager{
 					button.getContainer().moveButtonPanel(guiEditor.getCurrentPanels().get(x), button);
 					System.out.println(button.getContainer().getType());
 					button.requestRepaint();
+					System.out.println(button.getContainer().getPanels().size());
+					System.out.println(button.getID());
 					return;
 				}
 			}
@@ -189,7 +191,7 @@ public class UiManager{
 				if (checkButtonLocation(guiEditor.getMainViewer().getButtonList().get(x),e.getPoint()) == true)
 				{
 					//guiEditor.changeFileViewer(guiEditor.getMainViewer());
-					guiEditor.changeEditer(guiEditor.getMainViewer().getButtonList().get(x).getValue());
+					guiEditor.changeEditer(guiEditor.getMainViewer().getPanels().get(guiEditor.getMainViewer().getButtonList().get(x).getID()));
 					guiEditor.getCurrentPanels().get(0).resetButtonLocation();
 					gComponent.requestRepaint();
 					return true;
@@ -206,7 +208,7 @@ public class UiManager{
 			{
 				if (checkButtonLocation(guiEditor.getFileViewer().getButtonList().get(x),e.getPoint()) == true)
 				{
-					guiEditor.changeEditer(guiEditor.getMainViewer().getButtonList().get(x).getValue());
+					guiEditor.changeEditer(guiEditor.getFileViewer().getPanels().get(guiEditor.getFileViewer().getButtonList().get(x).getID()));
 					gComponent.requestRepaint();
 					return true;
 				}
