@@ -45,6 +45,8 @@ public class DragAndDrop{
 				currentPanels.set(2, panel);
 				currentPanels.get(2).setSize(manager.getMainDimension());
 				currentPanels.set(1, new ClassTools(manager.getToolDimension(),"ToolViewer"));
+				System.out.println(panel.getReference().getSize().getX());
+				panel.getReference().getContainer().getReference().setContainer(new MethodManager(manager.getFileDimension(),"fileViewer"));
 				currentPanels.set(0, panel.getReference().getContainer());
 				currentPanels.get(0).setSize(manager.getFileDimension());
 			}
