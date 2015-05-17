@@ -1,10 +1,11 @@
 package com.troi.balloon;
 
+import java.awt.AlphaComposite;
 import java.awt.Color;
+import java.awt.Composite;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
-import java.awt.image.ImageFilter;
 import java.io.File;
 import java.io.IOException;
 
@@ -77,9 +78,12 @@ public class Button {
 	}
 	
 	public void paint(Graphics2D render) {
-		//button.setRGB(dimension.getX(), startY, w, h, rgbArray, offset, scansize);
+		Composite oldComposite = render.getComposite();
 		render.setColor(customColor);
+		render.fillRect(dimension.getX(), dimension.getY(), dimension.getWidth(), dimension.getHeight());
+		render.setComposite(AlphaComposite.DstIn);
 		render.drawImage(button.getScaledInstance(dimension.getWidth(), dimension.getHeight(), Image.SCALE_FAST), dimension.getX(), dimension.getY(), null);
+		render.setComposite(oldComposite);
 		render.setColor(Color.RED);
 		render.drawString(container.getType(), dimension.getX(), dimension.getY() + 10);
 	}
