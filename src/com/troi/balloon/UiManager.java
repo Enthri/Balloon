@@ -16,6 +16,7 @@ import javax.swing.Timer;
 import util.panelDimension;
 import DragAndDrop.DragAndDrop;
 import DragAndDrop.PackageManager;
+import DragAndDrop.Settings;
 
 
 public class UiManager{
@@ -95,7 +96,9 @@ public class UiManager{
 				
 				if (button.withIn(guiEditor.getCurrentPanels().get(x)) == true)
 				{
+					System.out.println(button.getContainer().getType());
 					button.getContainer().moveButtonPanel(guiEditor.getCurrentPanels().get(x), button);
+					System.out.println(button.getContainer().getType());
 					button.requestRepaint();
 					return;
 				}
@@ -164,14 +167,12 @@ public class UiManager{
 
 		if (e.getX() > guiEditor.getCurrentPanels().get(0).getDimension().getX() && e.getX() < (guiEditor.getCurrentPanels().get(0).getDimension().getX() +guiEditor.getCurrentPanels().get(0).getDimension().getWidth())) 
 		{
-			guiEditor.changeEditer(guiEditor.getCurrentPanels().get(0).getReference().getContainer());
-			if (guiEditor.getCurrentPanels().get(0).getReference().getContainer() instanceof PackageManager)
+			if (guiEditor.getCurrentPanels().get(0) instanceof PackageManager)
 			{
-				gComponent.setNewPanels(guiEditor.getCurrentPanels());
-				gComponent.requestRepaint();
+				guiEditor.changeEditer(guiEditor.getCurrentPanels().get(0));
 			}
 			else {
-				guiEditor.getCurrentPanels().get(0).getReference().getContainer().getReference().getContainer();
+				guiEditor.changeEditer(guiEditor.getCurrentPanels().get(0));
 				gComponent.setNewPanels(guiEditor.getCurrentPanels());
 				gComponent.requestRepaint();
 			}
@@ -187,8 +188,9 @@ public class UiManager{
 			{
 				if (checkButtonLocation(guiEditor.getMainViewer().getButtonList().get(x),e.getPoint()) == true)
 				{
-					guiEditor.changeFileViewer(guiEditor.getMainViewer());
+					//guiEditor.changeFileViewer(guiEditor.getMainViewer());
 					guiEditor.changeEditer(guiEditor.getMainViewer().getButtonList().get(x).getValue());
+					guiEditor.getCurrentPanels().get(0).resetButtonLocation();
 					gComponent.requestRepaint();
 					return true;
 				}

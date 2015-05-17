@@ -107,7 +107,7 @@ public class Panel {
 	
 	public void moveButtonPanel(Panel panel, Button button)
 	{
-		button.changeContainer(panel);
+		button.setContainer(panel);
 		panel.addButton(button);
 		System.out.println("this is being added to new panel");
 		this.removeButton(button);

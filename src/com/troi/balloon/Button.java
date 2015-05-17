@@ -71,7 +71,7 @@ public class Button {
 	{
 		return value;
 	}
-	public void changeContainer(Panel panel)
+	public void setContainer(Panel panel)
 	{
 		this.panel = panel;
 	}
