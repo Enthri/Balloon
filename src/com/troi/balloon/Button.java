@@ -82,10 +82,11 @@ public class Button {
 		String text = container.getType();
 		FontMetrics fm = render.getFontMetrics();
 		Composite oldComposite = render.getComposite();
+		dimension.setWidth(fm.stringWidth(text));
 		render.setColor(customColor);
-		render.fillRect(dimension.getX(), dimension.getY(), fm.stringWidth(text), dimension.getHeight());
+		render.fillRect(dimension.getX(), dimension.getY(), dimension.getWidth(), dimension.getHeight());
 		render.setComposite(AlphaComposite.DstIn);
-		render.drawImage(button.getScaledInstance(fm.stringWidth(text), dimension.getHeight(), Image.SCALE_FAST), dimension.getX(), dimension.getY(), null);
+		render.drawImage(button.getScaledInstance(dimension.getWidth(), dimension.getHeight(), Image.SCALE_FAST), dimension.getX(), dimension.getY(), null);
 		render.setComposite(oldComposite);
 		render.setColor(new Color(255 - customColor.getRed(), 255 - customColor.getGreen(), 255 - customColor.getBlue()));
 		render.drawString(text, dimension.getX(), (dimension.getY() + 10) + dimension.getHeight() / 2 - fm.getHeight() / 2);
