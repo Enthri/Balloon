@@ -19,7 +19,7 @@ public class Button {
 	private panelDimension dimension;
 	private BufferedImage button;
 	private Panel container;
-	private Color customColor = new Color(200, 15, 55);
+	private Color customColor = new Color(255, 255, 255);
 	private int ID;
 	//Troi's
 	private boolean requestedRepaint;
