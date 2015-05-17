@@ -3,6 +3,7 @@ package com.troi.balloon;
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Composite;
+import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -18,7 +19,7 @@ public class Button {
 	private panelDimension dimension;
 	private BufferedImage button;
 	private Panel container;
-	private Color customColor = new Color(10, 15, 55, 150);
+	private Color customColor = new Color(200, 15, 55);
 	private int ID;
 	//Troi's
 	private boolean requestedRepaint;
@@ -78,14 +79,16 @@ public class Button {
 	}
 	
 	public void paint(Graphics2D render) {
+		String text = container.getType();
+		FontMetrics fm = render.getFontMetrics();
 		Composite oldComposite = render.getComposite();
 		render.setColor(customColor);
-		render.fillRect(dimension.getX(), dimension.getY(), dimension.getWidth(), dimension.getHeight());
+		render.fillRect(dimension.getX(), dimension.getY(), fm.stringWidth(text), dimension.getHeight());
 		render.setComposite(AlphaComposite.DstIn);
-		render.drawImage(button.getScaledInstance(dimension.getWidth(), dimension.getHeight(), Image.SCALE_FAST), dimension.getX(), dimension.getY(), null);
+		render.drawImage(button.getScaledInstance(fm.stringWidth(text), dimension.getHeight(), Image.SCALE_FAST), dimension.getX(), dimension.getY(), null);
 		render.setComposite(oldComposite);
-		render.setColor(Color.RED);
-		render.drawString(container.getType(), dimension.getX(), dimension.getY() + 10);
+		render.setColor(new Color(255 - customColor.getRed(), 255 - customColor.getGreen(), 255 - customColor.getBlue()));
+		render.drawString(text, dimension.getX(), (dimension.getY() + 10) + dimension.getHeight() / 2 - fm.getHeight() / 2);
 	}
 	
 	public panelDimension getSize()
