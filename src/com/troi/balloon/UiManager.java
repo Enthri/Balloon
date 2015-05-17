@@ -189,6 +189,7 @@ public class UiManager{
 				{
 					guiEditor.changeFileViewer(guiEditor.getMainViewer());
 					guiEditor.changeEditer(guiEditor.getMainViewer().getButtonList().get(x).getValue());
+					gComponent.requestRepaint();
 					return true;
 				}
 			}
@@ -204,6 +205,7 @@ public class UiManager{
 				if (checkButtonLocation(guiEditor.getFileViewer().getButtonList().get(x),e.getPoint()) == true)
 				{
 					guiEditor.changeEditer(guiEditor.getMainViewer().getButtonList().get(x).getValue());
+					gComponent.requestRepaint();
 					return true;
 				}
 			}
@@ -230,6 +232,7 @@ public class UiManager{
 		public void mouseReleased(MouseEvent e) {
 			if(buttonInUse == null) return;
 			updateButtonLocation(buttonInUse);
+			gComponent.requestRepaint();
 			buttonInUse = null;
 		}
 		
@@ -245,8 +248,9 @@ public class UiManager{
 			if (checkButtonClicked(e) == false)
 			{
 			checkSwitchState(e);
+			gComponent.requestRepaint();
 			}
-			
+			gComponent.requestRepaint();
 		}
 
 		@Override
