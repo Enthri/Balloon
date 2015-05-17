@@ -45,7 +45,7 @@ public class DragAndDrop{
 				currentPanels.set(2, panel);
 				currentPanels.get(2).setSize(manager.getMainDimension());
 				currentPanels.set(1, new ClassTools(manager.getToolDimension(),"ToolViewer"));
-				currentPanels.set(0, new PackageManager(manager.getFileDimension(), "FileViewer"));
+				currentPanels.set(0, panel.getReference().getContainer());
 				currentPanels.get(0).setSize(manager.getFileDimension());
 			}
 			else if (panel instanceof MethodManager)
@@ -53,13 +53,14 @@ public class DragAndDrop{
 				currentPanels.set(2, panel);
 				currentPanels.get(2).setSize(manager.getMainDimension());
 				currentPanels.set(1, new MethodTools(manager.getToolDimension(),"ToolViewer"));
-				currentPanels.set(0, new ClassManager(manager.getFileDimension(),"FileManager"));
+				currentPanels.set(0, panel.getReference().getContainer());
 			}
 			else if (panel instanceof CommandManager)
 			{
-				currentPanels.set(2, new CommandManager(manager.getMainDimension(),"MainViewer"));
+				currentPanels.set(2, panel);
+				currentPanels.get(2).setSize(manager.getMainDimension());
 				currentPanels.set(1, new CommandTools(manager.getToolDimension(),"ToolViewer"));
-				currentPanels.set(0, new MethodManager(manager.getFileDimension(),"FileManager"));
+				currentPanels.set(0, panel.getReference().getContainer());
 			}
 			else System.out.println("it's working");
 			
