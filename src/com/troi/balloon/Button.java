@@ -3,6 +3,7 @@ package com.troi.balloon;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.awt.image.ImageFilter;
 import java.io.File;
 import java.io.IOException;
 
@@ -12,16 +13,40 @@ import util.panelDimension;
 
 public class Button {
 
-	panelDimension dimension;
-	BufferedImage button;
-	Panel panel;
-	String state;
-	public Button(panelDimension panelDimension){
+	private panelDimension dimension;
+	private BufferedImage button;
+	private Panel container;
+	private Color customColor = new Color(10, 15, 55, 150);
+	private Panel pointTo;
+	//Troi's
+	private boolean requestedRepaint;
+	
+	public void requestRepaint() {
+		requestedRepaint = true;
+	}
+	
+	public boolean checkRepaint() {
+		if(requestedRepaint) {
+			requestedRepaint = false;
+			return true;
+		} else return false;
+		
+	}
+	
+	public void update() {
+		
+	}
+	//End Troi's
+	
+	public Button(Panel container, Panel pointTo){
 		try{
 			button = ImageIO.read(new File("resources/gray-fade.png"));
 		}catch(IOException e){
 			button = null;
 		}
+		this.container = container;
+		this.pointTo = pointTo;
+		container.setReference(this);
 	}
 	
 	public Button(panelDimension panelDimension, Panel p){
@@ -30,45 +55,32 @@ public class Button {
 		}catch(IOException e){
 			button = null;
 		}
-		panel = p;
-	}
-	
-	public Button(panelDimension panelDimension, Panel p, String s, String size){
-		try{
-			button = ImageIO.read(new File("resources/gray-fade.png"));
-		}catch(IOException e){
-			button = null;
-		}
-		panel = p;
-		state = s;
-		setSize(size);
-		}
-	
-	public Button(Panel p,String size)
-	{
-		try{
-			button = ImageIO.read(new File("resources/gray-fade.png"));
-		}catch(IOException e){
-			button = null;
-		}
-		setSize(size);
-		panel = p;
-	}
-	
-	public void setSize(String size) {
-		// TODO Auto-generated method stub
-		if(size.equals("Small")){
-			setDimension(new panelDimension(100, 10, 10, 10));
-		}
+		dimension = panelDimension;
+		container = p;
 	}
 
 	public Panel getContainer(){
-		return panel;
+		return container;
+	}
+	public void setValue(Panel panel)
+	{
+		pointTo = panel;
+	}
+	public Panel getValue()
+	{
+		return pointTo;
+	}
+	public void setContainer(Panel panel)
+	{
+		this.container = panel;
 	}
 	
 	public void paint(Graphics2D render) {
+		//button.setRGB(dimension.getX(), startY, w, h, rgbArray, offset, scansize);
+		render.setColor(customColor);
 		render.drawImage(button.getScaledInstance(dimension.getWidth(), dimension.getHeight(), Image.SCALE_FAST), dimension.getX(), dimension.getY(), null);
-		render.fillRect(10,10,10,10);
+		render.setColor(Color.RED);
+		render.drawString(container.getType(), dimension.getX(), dimension.getY() + 10);
 	}
 	
 	public panelDimension getSize()
@@ -76,14 +88,15 @@ public class Button {
 		return dimension;
 	}
 	
-	//check in use -- checks to see if the button currently being dragged
-	
-	//toggle draggable
-	
-	//
-	
 	public void setDimension(panelDimension dimension)
 	{
 		this.dimension = dimension;
+	}
+	
+	public boolean withIn(Panel panel)
+	{
+		panelDimension pane = panel.getDimension();
+		panelDimension button = this.getSize();
+		return button.getX() + button.getWidth() < pane.getX() + pane.getWidth() && button.getX() > pane.getX() && button.getY() + button.getHeight() < pane.getY() + pane.getHeight() && button.getY() > pane.getY();
 	}
 }
