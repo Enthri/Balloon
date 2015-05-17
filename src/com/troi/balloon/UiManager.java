@@ -3,31 +3,25 @@ package com.troi.balloon;
 
 import java.awt.Graphics2D;
 import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 import java.util.HashMap;
-
 import javax.swing.JFrame;
-import javax.swing.Timer;
 
 import util.panelDimension;
 import DragAndDrop.DragAndDrop;
-import DragAndDrop.PackageManager;
-import DragAndDrop.Settings;
 
 
 public class UiManager{
-	HashMap<String,panelDimension> Dimensions;
-	JFrame frame;
-	Graphics2D paint;
-	TextEditer textEditor;
-	DragAndDrop guiEditor;
-	GraphicsComponent gComponent;
-	Button buttonInUse = null;
-	boolean mouseInUse;
+	public HashMap<String,panelDimension> Dimensions;
+	public JFrame frame;
+	public Graphics2D paint;
+	public TextEditer textEditor;
+	public DragAndDrop guiEditor;
+	public GraphicsComponent gComponent;
+	public DragAndDrop guiEditer;
+	public Button buttonInUse = null;
+	public boolean mouseInUse;
 	
 	public UiManager(JFrame frame)
 	{
@@ -38,33 +32,39 @@ public class UiManager{
 		gComponent = new GraphicsComponent(); 
 		textEditor = new TextEditer();
 		guiEditor = new DragAndDrop(frame,this);
-		gComponent.initiate();
 		frame.setContentPane(gComponent);
-		ButtonsListener listener = new ButtonsListener();
-		gComponent.addMouseListener(listener);
-		gComponent.addMouseMotionListener(listener);
-		Timer timerVar = new Timer(16, new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if(gComponent == null) return;
-				gComponent.update();
-			}
-		});
-		timerVar.start();
+		frame.addMouseListener(new ButtonsListener());
 		//Panel panel = new Panel((panelDimension) Dimensions.get("MainManager"));
 		//guiEditer = new DragAndDrop(frame,this);
-		gComponent.setNewPanels(guiEditor.getCurrentPanels());
+		paintPanels(guiEditor);
 	}
+	public void resetEnviroment()
+	{
+		
+	}
+	
+//	public void setCurrentEnviroment(Object panel)
+//	{
+//		if (panel instanceof TextEditer)
+//		{
+//			textInUse = true;
+//		}
+//		else if (panel instanceof DragAndDrop)
+//		{
+//			textInUse = false;
+//		}
+//		
+//	}
 	
 	public void setCustomDimension(String key , panelDimension object)
 	{
 		Dimensions.put(key, object);
 	}
-	public void addPanels(DragAndDrop editer)
+	public void paintPanels(DragAndDrop editer)
 	{
-		for (int x = 0; x <= editer.getCurrentPanels().size()-1; x++)
+		for (int x = 0; x < editer.currentPanels.size(); x++)
 		{
-			gComponent.addPanel(editer.getCurrentPanels().get(x));
+			gComponent.paintPanel(editer.currentPanels.get(x));
 		} 
 	}
 	public panelDimension getFileDimension()
@@ -86,27 +86,6 @@ public class UiManager{
 	{
 		return (panelDimension) Dimensions.get(name);
 	}
-	
-	public void updateButtonLocation(Button button)
-	{
-		if (buttonInUse.withIn(buttonInUse.getContainer()) == false)
-		{
-			for (int x = 2; x >= 0;x--)
-			{
-				
-				if (button.withIn(guiEditor.getCurrentPanels().get(x)) == true)
-				{
-					System.out.println(button.getContainer().getType());
-					button.getContainer().moveButtonPanel(guiEditor.getCurrentPanels().get(x), button);
-					System.out.println(button.getContainer().getType());
-					button.requestRepaint();
-					return;
-				}
-			}
-		}
-				
-			
-	}
 	public boolean checkButtonLocation(Button button, Point point)
 	{
 		if (button.getSize().getX() < point.getX() && button.getSize().getY() < point.getY() && (button.getSize().getX() + button.getSize().getWidth()) > point.getX() && (button.getSize().getY() + button.getSize().getHeight()) > point.getY())
@@ -119,148 +98,73 @@ public class UiManager{
 	}
 	public void checkButtonInUse(MouseEvent e)
 	{
-		if(e.getX() > getMainDimension().getX())
+		if(e.getPoint().getX() > getMainDimension().getX())
 		{
-			for(int x = 0;x <= guiEditor.getMainViewer().getButtonList().size()-1;x++)
-			{
-				if (checkButtonLocation(guiEditor.getMainViewer().getButtonList().get(x),e.getPoint()) == true)
+			for(int x = 0;x < guiEditer.getMainViewer().getButtonList().size();x++)
+				
+				if (checkButtonLocation(guiEditer.getMainViewer().getButtonList().get(x),e.getPoint()) == true)
 				{
-					buttonInUse = guiEditor.getMainViewer().getButtonList().get(x);
-					break;
+					buttonInUse = guiEditer.getMainViewer().getButtonList().get(x);
 				}
-			}
 		}
-		else if(e.getX() > getToolDimension().getX())
+		else if(e.getPoint().getX() > getToolDimension().getX())
 		{
-			for(int x = 0;x <= guiEditor.getToolViewer().getButtonList().size()-1;x++)
-			{
-				if (checkButtonLocation(guiEditor.getToolViewer().getButtonList().get(x),e.getPoint())== true)
+			for(int x = 0;x < guiEditer.getToolViewer().getButtonList().size();x++)
+				
+				if (checkButtonLocation(guiEditer.getToolViewer().getButtonList().get(x),e.getPoint()) == true)
 				{
-					buttonInUse = guiEditor.getToolViewer().getButtonList().get(x);
-					break;
+					buttonInUse = guiEditer.getToolViewer().getButtonList().get(x);
 				}
-			}
 		}
-		else if (e.getX() > getFileDimension().getX())
+		else if (e.getPoint().getX() > getFileDimension().getX())
 		{
-			for(int x = 0;x <= guiEditor.getFileViewer().getButtonList().size()-1;x++)
-			{
-				if (checkButtonLocation(guiEditor.getFileViewer().getButtonList().get(x),e.getPoint()) == true)
+			for(int x = 0;x < guiEditer.getFileViewer().getButtonList().size();x++)
+				
+				if (checkButtonLocation(guiEditer.getFileViewer().getButtonList().get(x),e.getPoint()) == true)
 				{
-					buttonInUse = guiEditor.getFileViewer().getButtonList().get(x);
-					break;
+					buttonInUse = guiEditer.getFileViewer().getButtonList().get(x);
 				}
-			}
 		}
-		else System.out.println("something is wrong");
 		
 	}
-
-
-	public void checkButtonInstance(Button button)
-	{
-		
-	}
-	
-	public void checkSwitchState(MouseEvent e)
-	{
-
-		if (e.getX() > guiEditor.getCurrentPanels().get(0).getDimension().getX() && e.getX() < (guiEditor.getCurrentPanels().get(0).getDimension().getX() +guiEditor.getCurrentPanels().get(0).getDimension().getWidth())) 
-		{
-			if (guiEditor.getCurrentPanels().get(0) instanceof PackageManager)
-			{
-				guiEditor.changeEditer(guiEditor.getCurrentPanels().get(0));
-			}
-			else {
-				guiEditor.changeEditer(guiEditor.getCurrentPanels().get(0));
-				gComponent.setNewPanels(guiEditor.getCurrentPanels());
-				gComponent.requestRepaint();
-			}
-		}
-	}
-	
-	public boolean checkButtonClicked(MouseEvent e)
-	{
-
-		if(e.getX() > getMainDimension().getX())
-		{
-			for(int x = 0;x <= guiEditor.getMainViewer().getButtonList().size()-1;x++)
-			{
-				if (checkButtonLocation(guiEditor.getMainViewer().getButtonList().get(x),e.getPoint()) == true)
-				{
-					//guiEditor.changeFileViewer(guiEditor.getMainViewer());
-					guiEditor.changeEditer(guiEditor.getMainViewer().getButtonList().get(x).getValue());
-					guiEditor.getCurrentPanels().get(0).resetButtonLocation();
-					gComponent.requestRepaint();
-					return true;
-				}
-			}
-		}
-		else if(e.getX() > getToolDimension().getX())
-		{
-			return false;
-		}
-		else if (e.getX() > getFileDimension().getX())
-		{
-			for(int x = 0;x <= guiEditor.getFileViewer().getButtonList().size()-1;x++)
-			{
-				if (checkButtonLocation(guiEditor.getFileViewer().getButtonList().get(x),e.getPoint()) == true)
-				{
-					guiEditor.changeEditer(guiEditor.getMainViewer().getButtonList().get(x).getValue());
-					gComponent.requestRepaint();
-					return true;
-				}
-			}
-		}
-		else return false;
-		return false;
-	}
-	public class ButtonsListener implements MouseListener, MouseMotionListener
+	public class ButtonsListener implements MouseListener
 	{
 
 		@Override
-		public void mouseDragged(MouseEvent e) {
-			if(buttonInUse == null) return;
-			buttonInUse.setDimension(new panelDimension(e.getX(),e.getY(), buttonInUse.getSize().getWidth(), buttonInUse.getSize().getHeight()));
-			gComponent.requestRepaint();
+		public void mouseClicked(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
 		}
-		
 		@Override
 		public void mousePressed(MouseEvent e) {
-			 checkButtonInUse(e);
+			mouseInUse = true;
+			if (buttonInUse == null)
+			{
+				checkButtonInUse(e);
+			}
+			else 
+			{
+				buttonInUse.getContainer().paintPanel(gComponent.getGraphics2D());
+			}
 		}
 
 		@Override
 		public void mouseReleased(MouseEvent e) {
-			if(buttonInUse == null) return;
-			updateButtonLocation(buttonInUse);
-			gComponent.requestRepaint();
-			buttonInUse = null;
-		}
-		
-		//Useless, for now <3
-
-		@Override
-		public void mouseMoved(MouseEvent e) {
+			mouseInUse = false;
+			
 		}
 
 		@Override
-		public void mouseClicked(MouseEvent e) 
-		{
-			if (checkButtonClicked(e) == false)
-			{
-			checkSwitchState(e);
-			gComponent.requestRepaint();
-			}
-			gComponent.requestRepaint();
-		}
-
-		@Override
-		public void mouseEntered(MouseEvent arg0) {
+		public void mouseEntered(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
 		}
 
 		@Override
 		public void mouseExited(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
 		}
+		
 	}
 }
