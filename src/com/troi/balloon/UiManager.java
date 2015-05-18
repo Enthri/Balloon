@@ -48,6 +48,7 @@ public class UiManager{
 		menuBar.add(new JMenu("File"));
 		menuBar.add(new JMenu("Edit"));
 		menuBar.add(new JMenu("View"));
+		frame.setResizable(false);
 		frame.setJMenuBar(menuBar);
 		Timer timerVar = new Timer(16, new ActionListener(){
 			@Override
