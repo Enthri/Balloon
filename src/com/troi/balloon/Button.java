@@ -92,6 +92,7 @@ public class Button {
 	
 	public void setText(String text) {
 		this.text = text;
+		this.requestRepaint();
 	}
 
 	public Panel getContainer(){
@@ -143,5 +144,6 @@ public class Button {
 	
 	public void setColor(Color colorVar) {
 		customColor = colorVar;
+		this.requestRepaint();
 	}
 }
