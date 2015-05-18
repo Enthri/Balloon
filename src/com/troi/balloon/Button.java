@@ -53,6 +53,17 @@ public class Button {
 		text = "Button";
 	}
 	
+	public Button(Panel p, String text)
+	{
+		try{
+			button = ImageIO.read(new File("resources/gray-fade.png"));
+		}catch(IOException e){
+			button = null;
+		}
+		container = p;
+		this.text = text;
+	}
+	
 	public Button(panelDimension panelDimension, Panel p){
 		try{
 			button = ImageIO.read(new File("resources/gray-fade.png"));
@@ -62,6 +73,25 @@ public class Button {
 		dimension = panelDimension;
 		container = p;
 		text = "Button";
+	}
+	
+	public Button(panelDimension panelDimension, Panel p, String text){
+		try{
+			button = ImageIO.read(new File("resources/gray-fade.png"));
+		}catch(IOException e){
+			button = null;
+		}
+		dimension = panelDimension;
+		container = p;
+		this.text = text;
+	}
+	
+	public String getText() {
+		return text;
+	}
+	
+	public void setText(String text) {
+		this.text = text;
 	}
 
 	public Panel getContainer(){
