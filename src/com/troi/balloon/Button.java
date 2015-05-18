@@ -21,6 +21,8 @@ public class Button {
 	private Panel container;
 	private Color customColor = new Color(255, 255, 255);
 	private int ID;
+	private String text;
+	
 	//Troi's
 	private boolean requestedRepaint;
 	
@@ -48,7 +50,7 @@ public class Button {
 			button = null;
 		}
 		container = p;
-		
+		text = "Button";
 	}
 	
 	public Button(panelDimension panelDimension, Panel p){
@@ -59,6 +61,7 @@ public class Button {
 		}
 		dimension = panelDimension;
 		container = p;
+		text = "Button";
 	}
 
 	public Panel getContainer(){
@@ -79,7 +82,6 @@ public class Button {
 	}
 	
 	public void paint(Graphics2D render) {
-		String text = container.getType();
 		FontMetrics fm = render.getFontMetrics();
 		Composite oldComposite = render.getComposite();
 		dimension.setWidth(fm.stringWidth(text));
