@@ -11,12 +11,13 @@ import java.awt.event.MouseMotionListener;
 import java.util.HashMap;
 
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
 import javax.swing.Timer;
 
 import util.panelDimension;
 import DragAndDrop.DragAndDrop;
 import DragAndDrop.PackageManager;
-import DragAndDrop.Settings;
 
 
 public class UiManager{
@@ -43,6 +44,11 @@ public class UiManager{
 		ButtonsListener listener = new ButtonsListener();
 		gComponent.addMouseListener(listener);
 		gComponent.addMouseMotionListener(listener);
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.add(new JMenu("File"));
+		menuBar.add(new JMenu("Edit"));
+		menuBar.add(new JMenu("View"));
+		frame.setJMenuBar(menuBar);
 		Timer timerVar = new Timer(16, new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
