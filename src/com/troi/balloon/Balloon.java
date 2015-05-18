@@ -13,27 +13,27 @@ public class Balloon implements Runnable {
 	UiManager manager;
 	private JFrame frame;
 	
-	private Environment currentEnvironment;
+	private Environment currentEnvironment; //used for troi mode
 	
-	private final boolean troiMode = false;
+	private final boolean troiMode = false; //for troi mode, don't enable unless you are troi..
 	
 	public static void main(String[] args) {
 		
-		(new Thread(new Balloon())).start();
+		(new Thread(new Balloon())).start(); //start a thread of this class
 		
 	}
 
 	@Override
 	public void run() {
 		//JCompiler.init();
-		if(!troiMode) {
-			frame = new JFrame("Test");
-			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			frame.setPreferredSize(new Dimension(800, 600));
-			frame.pack();
-			manager = new UiManager(frame);
-			frame.setVisible(true);
-		} else {
+		if(!troiMode) { //if not troi mode
+			frame = new JFrame("Test"); //initialize a new jframe
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //kill java.exe plz
+			frame.setPreferredSize(new Dimension(800, 600)); //set the window's default size
+			frame.pack(); //actually make it the size
+			manager = new UiManager(frame); //initialize a uimanager?
+			frame.setVisible(true); //display the window 
+		} else { //ignore further below, THX! -troi
 			frame = new JFrame("Test");
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			frame.setPreferredSize(new Dimension(800, 600));

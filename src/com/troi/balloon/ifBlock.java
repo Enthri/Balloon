@@ -2,7 +2,7 @@ package com.troi.balloon;
 
 import java.awt.Color;
 
-public class ifBlock extends Block{
+public class ifBlock extends Block {
 
 	public ifBlock(Panel p) {
 		super(p);

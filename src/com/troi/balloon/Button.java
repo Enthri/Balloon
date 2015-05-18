@@ -16,21 +16,21 @@ import util.panelDimension;
 
 public class Button {
 
-	private panelDimension dimension;
-	private BufferedImage button;
-	private Panel container;
-	private Color customColor = new Color(255, 255, 255);
-	private int ID;
-	private String text;
+	private panelDimension dimension; //the dimensions and position of the button
+	private BufferedImage button; //the image of the butotn
+	private Panel container; //the container of the buttin
+	private Color customColor = new Color(255, 255, 255); //the color of the button, text color is the complementary color of this color
+	private int ID; //the id of the button?
+	private String text; //the text displayed inside of the button
 	
 	//Troi's
-	private boolean requestedRepaint;
+	private boolean requestedRepaint; //on my part, this is for efficiency sake -trs
 	
-	public void requestRepaint() {
+	public void requestRepaint() { //request a repaint
 		requestedRepaint = true;
 	}
 	
-	public boolean checkRepaint() {
+	public boolean checkRepaint() { //if it is checked, usually ONLY checked whenever it is updated by the timer
 		if(requestedRepaint) {
 			requestedRepaint = false;
 			return true;
@@ -38,19 +38,19 @@ public class Button {
 		
 	}
 	
-	public void update() {
+	public void update() { //called whenever the timer ticks
 		
 	}
 	//End Troi's
 	public Button(Panel p)
 	{
 		try{
-			button = ImageIO.read(new File("resources/gray-fade.png"));
+			button = ImageIO.read(new File("resources/gray-fade.png")); //when the button is constructed, automatically import the resource and make it an object
 		}catch(IOException e){
-			button = null;
+			button = null; //somehow if the resource is not found, just set it to null so the button is never displayed <3
 		}
-		container = p;
-		text = "Button";
+		container = p; //set the container of the button
+		text = "Button"; //set the text displayed within the button
 	}
 	
 	public Button(Panel p, String text)
@@ -87,17 +87,18 @@ public class Button {
 	}
 	
 	public String getText() {
-		return text;
+		return text; //return the text of the button
 	}
 	
 	public void setText(String text) {
-		this.text = text;
+		this.text = text; //set the text of the butotn and request a repaint
 		this.requestRepaint();
 	}
 
 	public Panel getContainer(){
 		return container;
 	}
+	
 	public int getID()
 	{
 		return ID;
@@ -107,22 +108,23 @@ public class Button {
 	{
 		ID = num;
 	}
+	
 	public void setContainer(Panel panel)
 	{
 		this.container = panel;
 	}
 	
 	public void paint(Graphics2D render) {
-		FontMetrics fm = render.getFontMetrics();
-		Composite oldComposite = render.getComposite();
-		dimension.setWidth(fm.stringWidth(text));
-		render.setColor(customColor);
-		render.fillRect(dimension.getX(), dimension.getY(), dimension.getWidth(), dimension.getHeight());
-		render.setComposite(AlphaComposite.DstIn);
-		render.drawImage(button.getScaledInstance(dimension.getWidth(), dimension.getHeight(), Image.SCALE_FAST), dimension.getX(), dimension.getY(), null);
-		render.setComposite(oldComposite);
-		render.setColor(new Color(255 - customColor.getRed(), 255 - customColor.getGreen(), 255 - customColor.getBlue()));
-		render.drawString(text, dimension.getX(), (dimension.getY() + 10) + dimension.getHeight() / 2 - fm.getHeight() / 2);
+		FontMetrics fm = render.getFontMetrics(); //get font metrics for measurements
+		Composite oldComposite = render.getComposite(); //get the current composite
+		dimension.setWidth(fm.stringWidth(text)); //set the width of the dimension to the current width of the text
+		render.setColor(customColor); //set the current paint of the g2d object to the custom color
+		render.fillRect(dimension.getX(), dimension.getY(), dimension.getWidth(), dimension.getHeight()); //fill a solid rectangle
+		render.setComposite(AlphaComposite.DstIn); //set the composite for blending
+		render.drawImage(button.getScaledInstance(dimension.getWidth(), dimension.getHeight(), Image.SCALE_FAST), dimension.getX(), dimension.getY(), null); //overlay the image on top of the color
+		render.setComposite(oldComposite); //set the current composite to the oldcomposite
+		render.setColor(new Color(255 - customColor.getRed(), 255 - customColor.getGreen(), 255 - customColor.getBlue())); //set the color to the opposite of the button's color
+		render.drawString(text, dimension.getX(), (dimension.getY() + 10) + dimension.getHeight() / 2 - fm.getHeight() / 2); //display the text at the center of the button
 	}
 	
 	public panelDimension getSize()
@@ -135,7 +137,7 @@ public class Button {
 		this.dimension = dimension;
 	}
 	
-	public boolean withIn(Panel panel)
+	public boolean withIn(Panel panel) //if this button is within the given panel then return true
 	{
 		panelDimension pane = panel.getDimension();
 		panelDimension button = this.getSize();
@@ -144,6 +146,6 @@ public class Button {
 	
 	public void setColor(Color colorVar) {
 		customColor = colorVar;
-		this.requestRepaint();
+		this.requestRepaint(); //request a repaint......
 	}
 }
