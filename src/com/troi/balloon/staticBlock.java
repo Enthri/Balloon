@@ -2,12 +2,11 @@ package com.troi.balloon;
 
 import java.awt.Color;
 
-public class ObjectBlock extends Block{
-
-	public ObjectBlock(Panel p) {
+public class staticBlock extends Block {
+	
+	public staticBlock(Panel p) {
 		super(p);
-		setText("Object");
+		setText("static ");
 		setColor(new Color(113, 152, 245));
 	}
-
 }

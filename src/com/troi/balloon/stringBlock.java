@@ -4,7 +4,7 @@ public class stringBlock extends ObjectBlock{
 
 	public stringBlock(Panel p) {
 		super(p);
-		setText("String");
+		setText("string ");
 	}
 
 }
