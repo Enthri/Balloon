@@ -10,7 +10,7 @@ public class ClassTools extends Tools {
 
 	public ClassTools(panelDimension dimension, String string) {
 		super(dimension,string);
-		addNewButton(new Button(this));
+		addNewButton(new Button(this, "For"));
 		this.setType("ClassTools");
 	}
 

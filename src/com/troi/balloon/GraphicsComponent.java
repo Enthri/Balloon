@@ -85,10 +85,4 @@ public class GraphicsComponent extends JPanel {
 		panels.add(null);
 		panels.add(null);
 	}
-	
-	public void paintButton(Panel panel)
-	{
-		
-	}
-
 }
