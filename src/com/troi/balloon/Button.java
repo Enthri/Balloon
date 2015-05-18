@@ -140,4 +140,8 @@ public class Button {
 		panelDimension button = this.getSize();
 		return button.getX() + button.getWidth() < pane.getX() + pane.getWidth() && button.getX() > pane.getX() && button.getY() + button.getHeight() < pane.getY() + pane.getHeight() && button.getY() > pane.getY();
 	}
+	
+	public void setColor(Color colorVar) {
+		customColor = colorVar;
+	}
 }
