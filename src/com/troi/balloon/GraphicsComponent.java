@@ -10,27 +10,27 @@ import DragAndDrop.ObjectManager;
 import DragAndDrop.Tools;
 
 @SuppressWarnings("serial")
-public class GraphicsComponent extends JPanel {
+public class GraphicsComponent extends JPanel {//inherits all of the methods + instance fields from JPanel obejct
 	
-	private ArrayList<Panel> panels = new ArrayList<Panel>();
+	private ArrayList<Panel> panels = new ArrayList<Panel>();//constructeed a new ArrayLIst that is fed into a private arrayList variabel
 	
 	//Troi's
 	private boolean requestedRepaint;
 	
-	public void requestRepaint() {
+	public void requestRepaint() {//mustauro method
 		requestedRepaint = true;
 	}
 	
-	public boolean checkRepaint() {
-		if(requestedRepaint) {
+	public boolean checkRepaint() {//returns boolean value
+		if(requestedRepaint) {//checks for conditon is met
 			requestedRepaint = false;
-			return true;
-		} else return false;
+			return true;//return true also steps out of method to methodcall
+		} else return false;//if none of the conditions above were met then run this code
 	}
 	
-	public void update() {
-		if(panels == null) return;
-		for (int x = 0; x < panels.size(); x++) {
+	public void update() {//mustator method
+		if(panels == null) return;//error catch exit
+		for (int x = 0; x < panels.size(); x++) {//for loop that runs for the amount of panels that lie inside of the panels arrayList
 			if(panels.get(x) == null) continue;
 			panels.get(x).update();
 			if(panels.get(x).checkRepaint()) this.requestRepaint();
@@ -40,7 +40,7 @@ public class GraphicsComponent extends JPanel {
 	//End Troi's
 	
 	@Override
-	public void paintComponent(Graphics g) {
+	public void paintComponent(Graphics g) {//listed  method that is called whenerver panel is being repaineted
 		Graphics2D paint = (Graphics2D) g;
 		
 		if(panels == null) return;

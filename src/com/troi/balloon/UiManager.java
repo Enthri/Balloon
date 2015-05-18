@@ -21,7 +21,7 @@ import DragAndDrop.PackageManager;
 
 
 public class UiManager{
-	HashMap<String,panelDimension> Dimensions;
+	HashMap<String,panelDimension> Dimensions;//Faster than an ArrayList
 	JFrame frame;
 	Graphics2D paint;
 	TextEditer textEditor;
@@ -30,53 +30,51 @@ public class UiManager{
 	Button buttonInUse = null;
 	boolean mouseInUse;
 	
-	public UiManager(JFrame frame)
+	public UiManager(JFrame frame)//CONSTRUCTOR
 	{
-		Dimensions = new HashMap<String,panelDimension>();
-		Dimensions.put("FileManager", new panelDimension(0,0,(frame.getWidth() / 5),frame.getHeight()));
+		Dimensions = new HashMap<String,panelDimension>();//contructes a new HashMap then assignes it to the DImensions variable
+		Dimensions.put("FileManager", new panelDimension(0,0,(frame.getWidth() / 5),frame.getHeight()));//invokes the put method withtin the HashMap, to the hashmap, then assigns a string and  an dew panelDimension
 		Dimensions.put("ToolManager",new panelDimension(((panelDimension)Dimensions.get("FileManager")).getWidth(),0,(frame.getWidth() / 5),frame.getHeight()));
 		Dimensions.put("MainManager", new panelDimension((((panelDimension)Dimensions.get("FileManager")).getWidth() * 2),0,(frame.getWidth() - (((panelDimension)Dimensions.get("FileManager")).getWidth() * 2)), frame.getHeight()));
-		gComponent = new GraphicsComponent(); 
+		gComponent = new GraphicsComponent(); //constructs a new Object of the Graphics component the assigns to the variable
 		textEditor = new TextEditer();
-		guiEditor = new DragAndDrop(frame,this);
-		gComponent.initiate();
+		guiEditor = new DragAndDrop(frame,this);//constructs a new DragAndDrop object feeds the value of fram and this object it les within
+		gComponent.initiate();//invokes a mutator method withtin pointer refernce location
 		frame.setContentPane(gComponent);
-		ButtonsListener listener = new ButtonsListener();
-		gComponent.addMouseListener(listener);
-		gComponent.addMouseMotionListener(listener);
+		ButtonsListener listener = new ButtonsListener();//new construction of the inner class buttonLIstener
+		gComponent.addMouseListener(listener);//this is adding the listener to the graphics component
+		gComponent.addMouseMotionListener(listener);//||
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.add(new JMenu("File"));
 		menuBar.add(new JMenu("Edit"));
 		menuBar.add(new JMenu("View"));
 		frame.setResizable(false);
 		frame.setJMenuBar(menuBar);
-		Timer timerVar = new Timer(16, new ActionListener(){
+		Timer timerVar = new Timer(16, new ActionListener(){//lists the action of the new actionLIstener
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) {//neede method!
 				if(gComponent == null) return;
-				gComponent.update();
+				gComponent.update();//invokes method withtin gComponent
 			}
 		});
-		timerVar.start();
-		//Panel panel = new Panel((panelDimension) Dimensions.get("MainManager"));
-		//guiEditer = new DragAndDrop(frame,this);
-		gComponent.setNewPanels(guiEditor.getCurrentPanels());
+		timerVar.start();//starts timer
+		gComponent.setNewPanels(guiEditor.getCurrentPanels());//assigns currentPanels arraylist to the panel arrayList within the 
 	}
 	
-	public void setCustomDimension(String key , panelDimension object)
+	public void setCustomDimension(String key , panelDimension object)//amutator method that takes in a string and a panelDimension
 	{
 		Dimensions.put(key, object);
 	}
 	public void addPanels(DragAndDrop editer)
 	{
-		for (int x = 0; x <= editer.getCurrentPanels().size()-1; x++)
+		for (int x = 0; x <= editer.getCurrentPanels().size()-1; x++)//for loop taht runs for the size of the arrayLsit of currentPanels within guiEditor
 		{
 			gComponent.addPanel(editer.getCurrentPanels().get(x));
 		} 
 	}
-	public panelDimension getFileDimension()
+	public panelDimension getFileDimension()//returns panelDImension
 	{
-		return (panelDimension) Dimensions.get("FileManager");
+		return (panelDimension) Dimensions.get("FileManager");//retrieves data from teh HashMap then returns it as it is casted to panelDimension
 	}
 	
 	public panelDimension getToolDimension()
@@ -96,26 +94,26 @@ public class UiManager{
 	
 	public void updateButtonLocation(Button button)
 	{
-		if (buttonInUse.withIn(buttonInUse.getContainer()) == false)
+		if (buttonInUse.withIn(buttonInUse.getContainer()) == false)//checks if the conditional is met
 		{
-			for (int x = 2; x >= 0;x--)
+			for (int x = 2; x >= 0;x--)//foo loop runs starting at index 2 then substracting after every loop
 			{
 				
-				if (button.withIn(guiEditor.getCurrentPanels().get(x)) == true)
+				if (button.withIn(guiEditor.getCurrentPanels().get(x)) == true)//checks to see if conditional is met
 				{
 					System.out.println(button.getContainer().getType());
 					moveButtonPanel(guiEditor.getCurrentPanels().get(x), button);
 					button.requestRepaint();
 					System.out.println(button.getContainer().getPanels().size());
 					System.out.println(button.getID());
-					return;
+					return;//method exit
 				}
 			}
 		}
 				
 			
 	}
-	public void moveButtonPanel(Panel panel, Button button)
+	public void moveButtonPanel(Panel panel, Button button)//contians the method 
 	{
 		button.getContainer().removeButton(button);
 		System.out.println("this has been removed from old panel");
@@ -197,7 +195,7 @@ public class UiManager{
 		}
 	}
 	
-	public boolean checkButtonClicked(MouseEvent e)
+	public boolean checkButtonClicked(MouseEvent e)//explicit parameters require a Mouseevent generated from the buttonListener calss
 	{
 
 		if(e.getX() > getMainDimension().getX())
@@ -233,7 +231,7 @@ public class UiManager{
 		else return false;
 		return false;
 	}
-	public class ButtonsListener implements MouseListener, MouseMotionListener
+	public class ButtonsListener implements MouseListener, MouseMotionListener//implemetns these two interfaces that require the listed methods below to be present
 	{
 
 		@Override

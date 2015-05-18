@@ -10,7 +10,7 @@ import DragAndDrop.ObjectManager;
 import DragAndDrop.Tools;
 public class Panel {
 	
-	protected ArrayList<Button> buttons;
+	protected ArrayList<Button> buttons;//ArrayLIst, listed as protected for inheritance
 	protected ArrayList<Panel> panels;
 	protected panelDimension dimension;
 	protected Rectangle background;
@@ -18,37 +18,36 @@ public class Panel {
 	protected Color color;
 	protected Panel container;
 	
-	//Troi's
-	private boolean requestedRepaint;
+
+	private boolean requestedRepaint;//variable set as private
 	
-	public void requestRepaint() {
-		requestedRepaint = true;
+	public void requestRepaint() {//mutator method
+		requestedRepaint = true;//assigned requiestedREpaint to true;
 	}
 	
-	public boolean checkRepaint() {
-		if(requestedRepaint) {
+	public boolean checkRepaint() {//returns a boolean value
+		if(requestedRepaint) {//if statement checks if value is true
 			requestedRepaint = true;
-			return true;
-		} else return false;
+			return true;//this returns true and steps out of this method
+		} else return false;//if the conditional before is not met this code will exacute
 	}
 	
 	public void update() {
-		if(buttons == null) return;
-		for (int x = 0; x < buttons.size(); x++) {
-			buttons.get(x).update();
+		if(buttons == null) return;//checks to see if the buttons object points to nothing
+		for (int x = 0; x < buttons.size(); x++) {//for loop that runs for as many buttons that are contained in a arrayList
+			buttons.get(x).update();//calls a mutator method that lies within a button Object inside of a Button arrayList
 			if(buttons.get(x).checkRepaint()) this.requestRepaint();
 		}
 	}
-	//End Troi's
-	public Panel(Panel container ,panelDimension dimension,String state)
+	public Panel(Panel container ,panelDimension dimension,String state)//CONTRUCTER
 	{
-		type = state;
-		if (this instanceof Tools)
+		type = state;//assisnges vaiable valur from object
+		if (this instanceof Tools)//checks if this object is of type Tools
 		{
-			color = new Color(57,57,57);
-			background = new Rectangle(dimension.getX(),0,(dimension.getWidth()),dimension.getHeight());
-			buttons = new ArrayList<Button>();
-			this.dimension = new panelDimension((int)background.getX(), (int)background.getY(), (int) background.getWidth(), (int) background.getHeight());
+			color = new Color(57,57,57);//contructs new Color object and feeds to the color varibale
+			background = new Rectangle(dimension.getX(),0,(dimension.getWidth()),dimension.getHeight());//construction of a new Object REctangle then feeds intovairbale rectagle
+			buttons = new ArrayList<Button>();// Constructed ArrayLIst that can only contain Button object then feeds the memory location to vaiable
+			this.dimension = new panelDimension((int)background.getX(), (int)background.getY(), (int) background.getWidth(), (int) background.getHeight());//new panelDimension contructed with proper explicit parameters then is fed into vaiabel that is of type panelDimension
 		}
 		else if (this instanceof ObjectManager)
 		{
@@ -62,7 +61,7 @@ public class Panel {
 		
 	}
 	
-	public Panel(panelDimension dimension,String state)
+	public Panel(panelDimension dimension,String state)//CONTRUCTER
 	{
 		type = state;
 		if (this instanceof Tools)
@@ -83,10 +82,10 @@ public class Panel {
 		
 	}
 	
-	public void addNewButton(Button button)
+	public void addNewButton(Button button)//mutator that explicit parameters take in a object Button
 	{
-		buttons.add(button);
-		button.setDimension(new panelDimension((this.getDimension().getX() + this.getDimension().getWidth()/4), (30 * (this.getButtonList().size())),50 ,20));
+		buttons.add(button);//Feeds button into the ArrayList as a new Object
+		button.setDimension(new panelDimension((this.getDimension().getX() + this.getDimension().getWidth()/4), (30 * (this.getButtonList().size())),50 ,20));//invokes method apon button, then feeds in a contructed version of panel
 	}
 	
 	public void addButton(Button button)
@@ -98,25 +97,25 @@ public class Panel {
 	{
 		container = panel;
 	}
-	public Panel stepUp()
+	public Panel stepUp()//returns Panel that is contained within a vairbale listed above
 	{
 		if (container == null)
 		{
-			return null;
+			return null;//error catching
 		}
 		else return container;
 		
 	}
 	public void paint(Graphics2D paint)
 	{
-		paint.fill(background);
+		paint.fill(background);//method invoked apon background fills the rectangle
 		paint.setColor(Color.RED);
 		paint.drawString(this.getType(), dimension.getX(), dimension.getY() + 10);
 	}
 	
 	public void paintButtons(Graphics2D paint)
 	{
-		for (Button button : buttons)
+		for (Button button : buttons)//generalized for loop that assins the objec to a vairbale as loops through the arrayLIst
 		{
 			button.paint(paint);
 		}
@@ -131,17 +130,6 @@ public class Panel {
 	public ArrayList<Button> getButtonList()
 	{
 		return buttons;
-	}
-	
-	public void moveButtonPanel(Panel panel, Button button)
-	{
-		button.setContainer(panel);
-		System.out.println("this is being added to new panel");
-		this.removeButton(button);
-		System.out.println("this is being removed from old panel");
-		panel.newPanel();
-		button.setID(panel.getPanels().size()-1);
-		panel.addButton(button);
 	}
 	
 	public String getType()

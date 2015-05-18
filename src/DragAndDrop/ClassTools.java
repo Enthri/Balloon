@@ -10,11 +10,11 @@ import com.troi.balloon.publicBlock;
 import com.troi.balloon.staticBlock;
 import com.troi.balloon.voidBlock;
 
-public class ClassTools extends Tools {
+public class ClassTools extends Tools {//inheritos all data from Tools class
 
 	public ClassTools(panelDimension dimension, String string) {
-		super(dimension,string);
-		addNewButton(new publicBlock(this));
+		super(dimension,string);//feeding data from the constructer explicit parameters into the superconstructor class constructor
+		addNewButton(new publicBlock(this));//constucted new button and adds to parameters for method listed within this class
 		addNewButton(new privateBlock(this));
 		addNewButton(new staticBlock(this));
 		addNewButton(new Method1(this));

@@ -5,7 +5,7 @@ import util.panelDimension;
 import com.troi.balloon.Button;
 import com.troi.balloon.Panel;
 
-public class ObjectManager extends Panel {
+public class ObjectManager extends Panel {//inheritos all data from Panels class
 	protected String currentState;
 	
 	public ObjectManager(Panel container,panelDimension dimension,String state) {
